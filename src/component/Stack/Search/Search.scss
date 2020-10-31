@@ -1,0 +1,49 @@
+.search-stack {
+  &-head {
+    padding: 40px 40px 20px;
+    position: sticky;
+    top: 0;
+    background-color: rgba(0,0,0,.7);
+    backdrop-filter: blur(30px);
+  }
+
+  &-input {
+    background-color: transparent;
+    color: white;
+    font-size: 48px;
+    border: 0;
+    outline: none;
+    border-bottom: 2px solid white;
+    width: 70%;
+    padding-left: 56px;
+
+    &-wrapper {
+      position: relative;
+
+      i {
+        position: absolute;
+        top: 16px;
+        left: 0;
+        font-size: 48px;
+      }
+    }
+  }
+
+  &-grid {
+    padding: 0 40px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 -20px;
+
+    &-item {
+      padding: 20px;
+      width: 20%;
+
+      img {
+        height: 100%;
+        background-color: red;
+      }
+    }
+  }
+}

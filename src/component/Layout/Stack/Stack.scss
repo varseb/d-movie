@@ -8,16 +8,16 @@
   -webkit-overflow-scrolling: touch;
   animation: stack-show .4s cubic-bezier(.55,0,.1,1);
   transform-origin: center center;
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.7);
 
   .exit & {
     animation: layer-hide .4s cubic-bezier(.55,0,.1,1) forwards;
   }
 
   &-close {
-    position: absolute;
-    top: 86px;
-    right: 80px;
+    position: fixed;
+    top: 48px;
+    right: 40px;
     z-index: 2;
 
     i {

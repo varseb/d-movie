@@ -1,11 +1,15 @@
 import React from 'react'
+import { register } from 'redux/app'
 import Layer from 'component/Layout/Layer'
 import MovieStack from 'component/Stack/Movie'
-import { register } from 'redux/app'
+import SearchStack from 'component/Stack/Search'
+
 
 const stackList = {
-  'movie': MovieStack
+  'movie': MovieStack,
+  'search': SearchStack
 }
+
 
 const StackLayer = ({ stack, closeStack }) => (
   <Layer className="ui-stack-layer">

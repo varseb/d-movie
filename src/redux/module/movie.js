@@ -1,6 +1,8 @@
 import api from 'redux/api'
 import { success, failure } from 'redux/http'
 
+import { SEARCH_MOVIES_SUCCESS } from './search'
+
 const DISCOVER_MOVIES_REQUEST = 'movie/DISCOVER_MOVIES_REQUEST'
 const DISCOVER_MOVIES_SUCCESS = 'movie/DISCOVER_MOVIES_SUCCESS'
 const DISCOVER_MOVIES_FAILURE = 'movie/DISCOVER_MOVIES_FAILURE'
@@ -23,6 +25,18 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
 
         // on this object we store all the returned movies from the api indexed by id
         // we use this movie object as single source of truth
+        movies: results.reduce((movies, movie) => ({
+          ...movies,
+          [movie.id]: movie
+        }), { ...state.movies })
+      }
+    }
+
+    case SEARCH_MOVIES_SUCCESS: {
+      const { results } = payload.data
+
+      return {
+        ...state,
         movies: results.reduce((movies, movie) => ({
           ...movies,
           [movie.id]: movie

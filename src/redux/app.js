@@ -6,13 +6,15 @@ import * as config from './module/config'
 import * as genre from './module/genre'
 import * as layout from './module/layout'
 import * as movie from './module/movie'
+import * as search from './module/search'
 
 
 export const action = {
   config,
   genre,
   layout,
-  movie
+  movie,
+  search
 }
 
 

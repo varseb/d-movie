@@ -14,9 +14,13 @@ const MovieStack = ({ movie, genres, closeStack }) => (
       <h1 className="movie-stack-title">
         {movie.title}
       </h1>
-      <div className="movie-stack-date">
-        {moment(movie.release_date).format('Y')}
-      </div>
+
+      {movie.release_date && (
+        <div className="movie-stack-date">
+          {moment(movie.release_date).format('Y')}
+        </div>
+      )}
+
       <p className="movie-stack-overview">
         {movie.overview}
       </p>
@@ -31,11 +35,13 @@ const MovieStack = ({ movie, genres, closeStack }) => (
         </ul>
       )}
 
-      <div className="movie-stack-rating">
-        <div className="movie-stack-rating-number">
-          {movie.vote_average}
+      {movie.vote_average > 0 && (
+        <div className="movie-stack-rating">
+          <div className="movie-stack-rating-number">
+            {movie.vote_average}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   </Stack>
 )
