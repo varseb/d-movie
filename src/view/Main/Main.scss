@@ -1,13 +1,13 @@
 .movie-grid {
   display: flex;
   width: 1300%;
-  padding: 30px;
+  padding: 20px;
   align-items: center;
   height: 100%;
 
   &-item {
     width: 100%;
-    margin: 0 10px;
+    padding: 0 20px;
     cursor: pointer;
 
     img {
@@ -19,6 +19,6 @@
 
 @media(min-width: 768px) {
   .movie-grid {
-    width: 450%;
+    width: calc(550% + 160px);
   }
 }

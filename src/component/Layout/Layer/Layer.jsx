@@ -2,12 +2,8 @@ import React, { useRef } from 'react'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import classnames from 'classnames'
 
-const Layer = ({
-  className,
-  children
-}) => {
+const Layer = ({ className, children }) => {
   const ref = useRef(null)
-
   const arrayChildren = React.Children.toArray(children)
 
   return (
@@ -16,7 +12,9 @@ const Layer = ({
         <CSSTransition nodeRef={ref} key={child.key} timeout={400}>
           <div
             ref={ref}
-            className={classnames('layer-wrap', className, { active: i === arrayChildren.length - 1})}
+            className={classnames('layer-wrap', className, {
+              active: i === arrayChildren.length - 1
+            })}
           >
             {child}
           </div>

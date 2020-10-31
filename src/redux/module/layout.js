@@ -41,7 +41,7 @@ export const openStack = namespace => props => dispatch => dispatch({
   }
 })
 
-export const closeStack = namespace => payload => dispatch => dispatch({
+export const closeStack = namespace => () => dispatch => dispatch({
   type: CLOSE_STACK,
   payload: {
     namespace

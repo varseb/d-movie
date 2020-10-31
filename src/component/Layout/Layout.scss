@@ -19,10 +19,7 @@
   &-content {
     flex-grow: 1;
     overflow-x: scroll;
-    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 }

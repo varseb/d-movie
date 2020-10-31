@@ -10,19 +10,18 @@
   transform-origin: center center;
   background-color: rgba(0,0,0,.8);
 
-  &-layer {
-    backdrop-filter: blur(30px);
-    /*
-    &.enter {
-      animation: none;
-    }
+  .exit & {
+    animation: layer-hide .4s cubic-bezier(.55,0,.1,1) forwards;
+  }
 
-    &.exit {
-      animation: none;
-    }*/
+  &-close {
+    position: absolute;
+    top: 86px;
+    right: 80px;
+    z-index: 2;
 
-    &.exit .ui-stack {
-      animation: stack-hide .4s cubic-bezier(.55,0,.1,1) forwards;
+    i {
+      font-size: 56px;
     }
   }
 }
@@ -37,16 +36,5 @@
   100% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-
-@keyframes stack-hide {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
   }
 }

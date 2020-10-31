@@ -17,17 +17,16 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
 
       return {
         ...state,
-        // on this array we just keep the id's of the movies, here are our movie order
+        // on this array we just keep the id's of the movies
+        // here lives our movies order
         list: results.map(({ id }) => id),
 
         // on this object we store all the returned movies from the api indexed by id
-        // we keep this as source of true and allow us better access to the data
-        movies: {
-          ...results.reduce((movies, movie) => ({
-            ...movies,
-            [movie.id]: movie
-          }), { ...state.movies })
-        }
+        // we use this movie object as single source of truth
+        movies: results.reduce((movies, movie) => ({
+          ...movies,
+          [movie.id]: movie
+        }), { ...state.movies })
       }
     }
 

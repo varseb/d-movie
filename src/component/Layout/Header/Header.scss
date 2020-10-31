@@ -3,4 +3,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 40px 40px 0;
+
+  &-search {
+    i {
+      font-size: 48px;
+    }
+  }
 }

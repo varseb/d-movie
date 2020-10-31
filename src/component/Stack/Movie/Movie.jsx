@@ -11,15 +11,31 @@ const MovieStack = ({ movie, genres, closeStack }) => (
     </div>
 
     <div className="movie-stack-content">
-      <h1>{movie.title}</h1>
-      <p>{movie.overview}</p>
-      <p>{moment(movie.release_date).format('MMMM Y')}</p>
+      <h1 className="movie-stack-title">
+        {movie.title}
+      </h1>
+      <div className="movie-stack-date">
+        {moment(movie.release_date).format('Y')}
+      </div>
+      <p className="movie-stack-overview">
+        {movie.overview}
+      </p>
 
-      {genres.map(({ id, name }) => (
-        <span key={id}>
-          {name}
-        </span>
-      ))}
+      {genres.length > 0 && (
+        <ul className="movie-stack-genres">
+          {genres.map(({ id, name }) => (
+            <li key={id}>
+              {name}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="movie-stack-rating">
+        <div className="movie-stack-rating-number">
+          {movie.vote_average}
+        </div>
+      </div>
     </div>
   </Stack>
 )
