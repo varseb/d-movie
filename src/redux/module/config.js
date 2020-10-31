@@ -24,15 +24,13 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
   }
 }
 
-export const getConfiguration = () => dispatch => {
-  dispatch({
-    type: GET_CONFIGURATION_REQUEST
-  })
 
-  api.config.getConfiguration()
+export const getConfiguration = () => dispatch => dispatch({
+  type: GET_CONFIGURATION_REQUEST,
+  meta: api.config.getConfiguration()
     .then(success(GET_CONFIGURATION_SUCCESS))
     .catch(failure(GET_CONFIGURATION_FAILURE))
-}
+})
 
 
 export default reducer

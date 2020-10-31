@@ -37,15 +37,12 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
 }
 
 
-export const discoverMovies = () => dispatch => {
-  dispatch({
-    type: DISCOVER_MOVIES_REQUEST
-  })
-
-  api.movie.discoverMovies()
+export const discoverMovies = () => dispatch => dispatch({
+  type: DISCOVER_MOVIES_REQUEST,
+  meta: api.movie.discoverMovies()
     .then(success(DISCOVER_MOVIES_SUCCESS))
     .catch(failure(DISCOVER_MOVIES_FAILURE))
-}
+})
 
 
 export default reducer

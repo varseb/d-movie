@@ -7,7 +7,7 @@
   z-index: 100;
   opacity: 1;
   will-change: opacity, transform;
-  transition: transform .3s ease;
+  transition: transform .4s ease;
   transform: scale(.95) translate3d(0,0,0);
 
   &.active {
@@ -15,11 +15,11 @@
   }
 
   &.enter {
-    animation: layer-show .3s ease;
+    animation: layer-show .4s ease;
   }
 
   &.exit {
-    animation: layer-hide .3s ease forwards;
+    animation: layer-hide .4s ease forwards;
   }
 }
 

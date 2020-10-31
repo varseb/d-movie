@@ -13,7 +13,7 @@ const Layer = ({
   return (
     <TransitionGroup component={null}>
       {arrayChildren.map((child, i) => (
-        <CSSTransition nodeRef={ref} key={child.key} timeout={300}>
+        <CSSTransition nodeRef={ref} key={child.key} timeout={400}>
           <div
             ref={ref}
             className={classnames('layer-wrap', className, { active: i === arrayChildren.length - 1})}

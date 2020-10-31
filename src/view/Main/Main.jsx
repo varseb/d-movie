@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { register, selector, action } from 'redux/app'
 import Poster from 'component/Poster'
 
-const Main = ({ movies, discoverMovies, getConfiguration, openMovie }) => {
+const Main = ({ movies, discoverMovies, getConfiguration, getGenres, openMovie }) => {
   useEffect(
     () => {
       discoverMovies()
@@ -15,6 +15,13 @@ const Main = ({ movies, discoverMovies, getConfiguration, openMovie }) => {
       getConfiguration()
     },
     [ getConfiguration ]
+  )
+
+  useEffect(
+    () => {
+      getGenres()
+    },
+    [ getGenres ]
   )
 
   return (
@@ -36,6 +43,7 @@ export default register(
   {
     discoverMovies: action.movie.discoverMovies,
     getConfiguration: action.config.getConfiguration,
+    getGenres: action.genre.getGenres,
     openMovie: action.layout.openStack('movie')
   },
   Main

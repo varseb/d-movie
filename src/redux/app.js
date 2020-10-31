@@ -3,12 +3,14 @@ import { bindActionCreators } from 'redux'
 import selector from './selector'
 
 import * as config from './module/config'
+import * as genre from './module/genre'
 import * as layout from './module/layout'
 import * as movie from './module/movie'
 
 
 export const action = {
   config,
+  genre,
   layout,
   movie
 }
