@@ -1,0 +1,24 @@
+.movie-grid {
+  display: flex;
+  width: 1300%;
+  padding: 30px;
+  align-items: center;
+  height: 100%;
+
+  &-item {
+    width: 100%;
+    margin: 0 10px;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .movie-grid {
+    width: 450%;
+  }
+}

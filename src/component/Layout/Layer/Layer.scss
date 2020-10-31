@@ -1,0 +1,42 @@
+.layer-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 1;
+  will-change: opacity, transform;
+  transition: transform .3s ease;
+  transform: scale(.95) translate3d(0,0,0);
+
+  &.active {
+    transform: scale(1) translate3d(0,0,0);
+  }
+
+  &.enter {
+    animation: layer-show .3s ease;
+  }
+
+  &.exit {
+    animation: layer-hide .3s ease forwards;
+  }
+}
+
+@keyframes layer-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes layer-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

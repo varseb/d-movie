@@ -1,0 +1,28 @@
+.layer-main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  transform: scale(1);
+  transition: transform .3s ease;
+
+  &.stack-open {
+    transform: scale(0.95);
+  }
+
+
+  &-header {
+
+  }
+
+  &-content {
+    flex-grow: 1;
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
