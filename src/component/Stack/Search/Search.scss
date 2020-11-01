@@ -3,8 +3,8 @@
     padding: 40px 40px 20px;
     position: sticky;
     top: 0;
-    background-color: rgba(0,0,0,.8);
-    backdrop-filter: blur(60px);
+    background-color: rgba(0,0,0,.7);
+    backdrop-filter: blur(30px);
   }
 
   &-input {
@@ -14,18 +14,25 @@
     border: 0;
     outline: none;
     border-bottom: 2px solid white;
-    width: 70%;
+    width: 100%;
     padding-left: 56px;
 
     &-wrapper {
       position: relative;
+      width: 80%;
 
-      i {
+      .icon-search {
         position: absolute;
         top: 16px;
         left: 0;
         font-size: 48px;
       }
+    }
+
+    &-rating {
+      position: absolute;
+      right: 0;
+      top: 24px;
     }
   }
 

@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { register, selector, action } from 'redux/app'
 import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
+import Rating from 'component/Rating'
 
-const SearchStack = ({ query, movies, results, searchMovies, openMovie, closeStack }) => {
+const SearchStack = ({
+  query,
+  filter,
+  results,
+  updateQuery,
+  updateFilter,
+  openMovie,
+  closeStack
+}) => {
 
-  const [searchResults, setSearchResults] = useState(movies)
+  const handleRatingChange = star => {
+    const rating = star * 2
 
-  useEffect(
-    () => {
-      if( results.length ){
-        setSearchResults(results)
-      }
-    },
-    [results, setSearchResults]
-  )
-
-  useEffect(
-    () => {
-      if( !query ){
-        setSearchResults(movies)
-      }
-    },
-    [query, movies, setSearchResults]
-  )
+    updateFilter({
+      rating: rating === filter.rating ? null : rating
+    })
+  }
 
   return (
     <Stack className="search-stack" closeStack={closeStack}>
@@ -34,16 +31,24 @@ const SearchStack = ({ query, movies, results, searchMovies, openMovie, closeSta
             type="text"
             placeholder="search movies"
             value={query}
-            onChange={event => searchMovies({ query: event.target.value })}
+            onChange={event => updateQuery({ query: event.target.value })}
             className="search-stack-input"
           />
+
           <i className="icon-search" />
+
+          <div className="search-stack-input-rating">
+            <Rating
+              voteAverage={filter.rating}
+              onChange={handleRatingChange}
+            />
+          </div>
         </div>
       </div>
 
-      {searchResults.length > 0 && (
+      {results.length > 0 && (
         <div className="search-stack-grid">
-          {searchResults.map(({ id }) => (
+          {results.map(({ id }) => (
             <div key={id} className="search-stack-grid-item">
               <Poster id={id} size="w342" onClick={() => openMovie({ id })} />
             </div>
@@ -57,16 +62,15 @@ const SearchStack = ({ query, movies, results, searchMovies, openMovie, closeSta
 export default register(
   ({ search, movie }) => ({
     query: search.query,
-    movies: selector.movie.getMovies({
-      movie
-    }),
-    results: selector.movie.getSearchResults({
+    filter: search.filter,
+    results: selector.movie.getResults({
       movie,
       search
     })
   }),
   {
-    searchMovies: action.search.searchMovies,
+    updateFilter: action.search.updateFilter,
+    updateQuery: action.search.updateQuery,
     closeStack: action.layout.closeStack('search'),
     openMovie: action.layout.openStack('movie')
   },
