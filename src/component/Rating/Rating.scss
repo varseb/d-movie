@@ -1,0 +1,13 @@
+.ui-rating {
+  i {
+    font-size: 20px;
+  }
+}
+
+@media(min-width: 768px) {
+  .ui-rating {
+    i {
+      font-size: 32px;
+    }
+  }
+}

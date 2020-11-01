@@ -1,4 +1,8 @@
 .ui-poster {
+  &.has-click {
+    cursor: pointer;
+  }
+
   img {
     width: 100%;
     display: block;

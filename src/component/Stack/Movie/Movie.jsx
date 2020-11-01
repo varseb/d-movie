@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
+import Rating from 'component/Rating'
 import { register, selector, action } from 'redux/app'
 
 const MovieStack = ({ movie, genres, closeStack }) => (
@@ -14,6 +15,12 @@ const MovieStack = ({ movie, genres, closeStack }) => (
       <h1 className="movie-stack-title">
         {movie.title}
       </h1>
+
+      {movie.vote_average > 0 && (
+        <div className="movie-stack-rating">
+          <Rating voteAverage={movie.vote_average} />
+        </div>
+      )}
 
       {movie.release_date && (
         <div className="movie-stack-date">
@@ -33,14 +40,6 @@ const MovieStack = ({ movie, genres, closeStack }) => (
             </li>
           ))}
         </ul>
-      )}
-
-      {movie.vote_average > 0 && (
-        <div className="movie-stack-rating">
-          <div className="movie-stack-rating-number">
-            {movie.vote_average}
-          </div>
-        </div>
       )}
     </div>
   </Stack>

@@ -27,8 +27,8 @@ const Main = ({ movies, discoverMovies, getConfiguration, getGenres, openMovie }
   return (
     <div className="movie-grid">
       {movies.map(({ id, title }) => (
-        <div key={id} className="movie-grid-item" onClick={() => openMovie({ id })}>
-          <Poster id={id} />
+        <div key={id} className="movie-grid-item">
+          <Poster id={id} onClick={() => openMovie({ id })} />
         </div>
       ))}
     </div>

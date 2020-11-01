@@ -6,5 +6,12 @@
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 28px;
+}
+
+
+@media(min-width: 768px) {
+  h1 {
+    font-size: 48px;
+  }
 }

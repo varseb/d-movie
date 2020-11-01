@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import { register } from 'redux/app'
 
-const Poster = ({ size = 'w500', backdrop = false, movie, config }) => {
-
+const Poster = ({
+  size = 'w500',
+  backdrop = false,
+  onClick = null,
+  movie,
+  config
+}) => {
   const [loaded, setLoaded] = useState(false)
 
   const posterUrl = [
@@ -17,7 +22,7 @@ const Poster = ({ size = 'w500', backdrop = false, movie, config }) => {
   }
 
   return (
-    <div className="ui-poster">
+    <div className={classnames("ui-poster", { 'has-click': onClick })} onClick={onClick}>
       <img
         alt=""
         className={classnames({ loaded })}

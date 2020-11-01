@@ -44,8 +44,8 @@ const SearchStack = ({ query, movies, results, searchMovies, openMovie, closeSta
       {searchResults.length > 0 && (
         <div className="search-stack-grid">
           {searchResults.map(({ id }) => (
-            <div key={id} className="search-stack-grid-item" onClick={() => openMovie({ id })}>
-              <Poster id={id} size="w185" />
+            <div key={id} className="search-stack-grid-item">
+              <Poster id={id} size="w342" onClick={() => openMovie({ id })} />
             </div>
           ))}
         </div>

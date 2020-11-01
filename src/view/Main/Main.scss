@@ -1,24 +1,22 @@
 .movie-grid {
   display: flex;
-  width: 1300%;
-  padding: 20px;
+  padding-left: 20px;
   align-items: center;
   height: 100%;
 
   &-item {
-    width: 100%;
-    padding: 0 20px;
-    cursor: pointer;
-
-    img {
-      display: block;
-      width: 100%;
-    }
+    min-width: 75%;
+    padding-right: 20px;
   }
 }
 
 @media(min-width: 768px) {
   .movie-grid {
-    width: calc(550% + 160px);
+    padding-left: 40px;
+
+    &-item {
+      min-width: 30%;
+      padding-right: 40px;
+    }
   }
 }
