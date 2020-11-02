@@ -4,7 +4,6 @@ import { register, selector, action } from 'redux/app'
 import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
 import Rating from 'component/Rating'
-import Genres from 'component/Genres'
 
 
 const MovieStack = ({
