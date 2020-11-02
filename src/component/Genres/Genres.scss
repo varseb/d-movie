@@ -1,0 +1,16 @@
+.ui-genres {
+  li {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+
+@media(min-width: 768px) {
+  .ui-genres {
+    li {
+      font-size: 18px;
+    }
+  }
+}

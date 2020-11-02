@@ -1,4 +1,6 @@
 .ui-poster {
+  user-select: none;
+
   &.has-click {
     cursor: pointer;
   }

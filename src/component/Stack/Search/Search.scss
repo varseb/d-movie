@@ -1,6 +1,6 @@
 .search-stack {
   &-head {
-    padding: 40px 40px 20px;
+    padding: 20px 20px 10px;
     position: sticky;
     top: 0;
     background-color: rgba(0,0,0,.7);
@@ -10,12 +10,15 @@
   &-input {
     background-color: transparent;
     color: white;
-    font-size: 48px;
+    font-size: 28px;
     border: 0;
     outline: none;
     border-bottom: 2px solid white;
+    font-family: Oswald;
+    font-weight: 300;
     width: 100%;
-    padding-left: 56px;
+    padding-left: 36px;
+    border-radius: 0;
 
     &-wrapper {
       position: relative;
@@ -23,16 +26,16 @@
 
       .icon-search {
         position: absolute;
-        top: 16px;
+        top: 8px;
         left: 0;
-        font-size: 48px;
+        font-size: 28px;
       }
     }
 
     &-rating {
       position: absolute;
       right: 0;
-      top: 24px;
+      top: 14px;
     }
   }
 
@@ -52,6 +55,26 @@
 
 @media(min-width: 768px) {
   .search-stack {
+    &-head {
+      padding: 40px 40px 20px;
+    }
+
+    &-input {
+      font-size: 48px;
+      padding-left: 56px;
+
+      &-wrapper {
+        .icon-search {
+          top: 16px;
+          font-size: 48px;
+        }
+      }
+
+      &-rating {
+        top: 24px;
+      }
+    }
+
     &-grid {
       padding: 0 20px 20px;
 

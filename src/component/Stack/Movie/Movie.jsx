@@ -1,9 +1,11 @@
 import React from 'react'
 import moment from 'moment'
+import { register, selector, action } from 'redux/app'
 import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
 import Rating from 'component/Rating'
-import { register, selector, action } from 'redux/app'
+import Genres from 'component/Genres'
+
 
 const MovieStack = ({ movie, genres, closeStack }) => (
   <Stack className="movie-stack" closeStack={closeStack}>
@@ -33,13 +35,9 @@ const MovieStack = ({ movie, genres, closeStack }) => (
       </p>
 
       {genres.length > 0 && (
-        <ul className="movie-stack-genres">
-          {genres.map(({ id, name }) => (
-            <li key={id}>
-              {name}
-            </li>
-          ))}
-        </ul>
+        <div className="movie-stack-genres">
+          <Genres genres={genres} />
+        </div>
       )}
     </div>
   </Stack>
