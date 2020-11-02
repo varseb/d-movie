@@ -63,10 +63,7 @@ export default register(
   ({ search, movie }) => ({
     query: search.query,
     filter: search.filter,
-    results: selector.movie.getResults({
-      movie,
-      search
-    })
+    results: selector.movie.getResults({ movie, search })
   }),
   {
     updateFilter: action.search.updateFilter,

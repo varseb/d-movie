@@ -20,9 +20,38 @@ if( process.env.NODE_ENV === 'development' ){
 
 const store = createStore(
   reducer,
-  {},
+  getState(),
   compose(applyMiddleware(...middleware), ...enhancers)
 )
+
+
+store.subscribe(() => {
+  const { config, genres } = store.getState()
+
+  // save configuration and genres states into localStorage
+  saveState({
+    config,
+    genres
+  })
+})
+
+
+function getState(){
+  try {
+    return JSON.parse(window.localStorage.getItem('state')) || {}
+  }
+  catch (e) {
+    return {}
+  }
+}
+
+
+function saveState( state ){
+  try {
+    window.localStorage.setItem('state', JSON.stringify(state))
+  }
+  catch (e) {}
+}
 
 
 export default store

@@ -1,11 +1,15 @@
 .ui-poster {
   user-select: none;
+  //position: relative;
+  //width: 100%;
+  //padding-bottom: 150%;
 
   &.has-click {
     cursor: pointer;
   }
 
   img {
+    //position: absolute;
     width: 100%;
     display: block;
     opacity: 0;
@@ -14,5 +18,25 @@
     &.loaded {
       opacity: 1;
     }
+  }
+
+  &.backdrop {
+    img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      animation: backdrop-zoom 90s linear forwards;
+    }
+  }
+}
+
+
+@keyframes backdrop-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.3);
   }
 }

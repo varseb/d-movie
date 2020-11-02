@@ -9,7 +9,10 @@
   will-change: opacity, transform;
   transition: transform .4s ease;
   transform: scale(.95) translate3d(0,0,0);
+  transform-style: preserve-3d;
   backdrop-filter: blur(30px);
+  backface-visibility: hidden;
+  perspective: 1000;
 
   &.active {
     transform: scale(1) translate3d(0,0,0);

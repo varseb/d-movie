@@ -6,7 +6,7 @@ const Poster = ({
   size = 'w500',
   backdrop = false,
   onClick = null,
-  movie,
+  movie: { backdrop_path, poster_path },
   config
 }) => {
   const [loaded, setLoaded] = useState(false)
@@ -14,7 +14,7 @@ const Poster = ({
   const posterUrl = [
     config.base_url,
     size,
-    backdrop ? movie.backdrop_path : movie.poster_path
+    backdrop ? backdrop_path || poster_path : poster_path
   ].join('')
 
   const onLoad = () => {
@@ -22,7 +22,13 @@ const Poster = ({
   }
 
   return (
-    <div className={classnames("ui-poster", { 'has-click': onClick })} onClick={onClick}>
+    <div
+      onClick={onClick}
+      className={classnames('ui-poster', {
+        backdrop,
+        'has-click': onClick
+      })}
+    >
       <img
         alt=""
         className={classnames({ loaded })}

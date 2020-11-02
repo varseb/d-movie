@@ -7,9 +7,18 @@ const DISCOVER_MOVIES_REQUEST = 'movie/DISCOVER_MOVIES_REQUEST'
 const DISCOVER_MOVIES_SUCCESS = 'movie/DISCOVER_MOVIES_SUCCESS'
 const DISCOVER_MOVIES_FAILURE = 'movie/DISCOVER_MOVIES_FAILURE'
 
+const GET_MOVIE_REQUEST = 'movie/GET_MOVIE_REQUEST'
+const GET_MOVIE_SUCCESS = 'movie/GET_MOVIE_SUCCESS'
+const GET_MOVIE_FAILURE = 'movie/GET_MOVIE_FAILURE'
+
+const GET_CREDITS_REQUEST = 'movie/GET_CREDITS_REQUEST'
+const GET_CREDITS_SUCCESS = 'movie/GET_CREDITS_SUCCESS'
+const GET_CREDITS_FAILURE = 'movie/GET_CREDITS_FAILURE'
+
 const initialState = {
   list: [],
-  movies: {}
+  movies: {},
+  credits: {}
 }
 
 const reducer = (state = initialState, { type: actionType, payload }) => {
@@ -44,6 +53,33 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
       }
     }
 
+    case GET_MOVIE_SUCCESS: {
+      const { id, data: movie } = payload
+
+      return {
+        ...state,
+        movies: {
+          ...state.movies,
+          [id]: {
+            ...state.movies[id],
+            ...movie
+          }
+        }
+      }
+    }
+
+    case GET_CREDITS_SUCCESS: {
+      const { id, data } = payload
+
+      return {
+        ...state,
+        credits: {
+          ...state.credits,
+          [id]: data
+        }
+      }
+    }
+
     default:
       return state
   }
@@ -55,6 +91,21 @@ export const discoverMovies = () => dispatch => dispatch({
   meta: api.movie.discoverMovies()
     .then(success(DISCOVER_MOVIES_SUCCESS))
     .catch(failure(DISCOVER_MOVIES_FAILURE))
+})
+
+
+export const getMovie = payload => dispatch => dispatch({
+  type: GET_MOVIE_REQUEST,
+  meta: api.movie.getMovie(payload)
+    .then(success(GET_MOVIE_SUCCESS, payload))
+    .catch(failure(GET_MOVIE_FAILURE))
+})
+
+export const getCredits = payload => dispatch => dispatch({
+  type: GET_CREDITS_REQUEST,
+  meta: api.movie.getCredits(payload)
+    .then(success(GET_CREDITS_SUCCESS, payload))
+    .catch(failure(GET_CREDITS_FAILURE))
 })
 
 

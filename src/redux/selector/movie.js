@@ -5,6 +5,18 @@ export const getMovies = createSelector(
   (movie) => (movie.list || []).map(id => movie.movies[id])
 )
 
+export const getCast = createSelector(
+  ({ movie }) => movie.credits,
+  ({ id }) => id,
+  (credits, id) => credits[id] ? credits[id].cast.slice(0,3) : []
+)
+
+export const getDirector = createSelector(
+  ({ movie }) => movie.credits,
+  ({ id }) => id,
+  (credits, id) => credits[id] ? credits[id].crew.find(crew => crew.job === 'Director') : null
+)
+
 export const filterMovies = createSelector(
   ({ movies }) => movies,
   ({ rating }) => rating,

@@ -5,6 +5,7 @@
     top: 0;
     background-color: rgba(0,0,0,.7);
     backdrop-filter: blur(30px);
+    transform: translate3d(0,0,0);
   }
 
   &-input {
@@ -22,7 +23,7 @@
 
     &-wrapper {
       position: relative;
-      width: 80%;
+      width: calc(80% - 10px);
 
       .icon-search {
         position: absolute;
@@ -33,9 +34,7 @@
     }
 
     &-rating {
-      position: absolute;
-      right: 0;
-      top: 14px;
+      padding-top: 20px;
     }
   }
 
@@ -71,7 +70,10 @@
       }
 
       &-rating {
+        padding-top: 0;
+        position: absolute;
         top: 24px;
+        right: 0;
       }
     }
 
