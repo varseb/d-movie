@@ -13,7 +13,7 @@ const Poster = ({
 
   const path = backdrop ? backdrop_path || poster_path : poster_path
 
-  const posterUrl = [config.base_url, size, path].join('')
+  const posterUrl = [config.secure_base_url, size, path].join('')
 
   const onLoad = () => {
     setLoaded(true)
