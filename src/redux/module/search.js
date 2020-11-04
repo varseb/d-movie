@@ -14,7 +14,8 @@ const initialState = {
   filter: {
     rating: null
   },
-  results: {}
+  results: {},
+  loading: {}
 }
 
 const reducer = (state = initialState, { type: actionType, payload }) => {
@@ -34,12 +35,25 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
         }
       }
 
+    case SEARCH_MOVIES_REQUEST:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          [payload.query]: true
+        }
+      }
+
     case SEARCH_MOVIES_SUCCESS: {
       const { query, data: { results } } = payload
 
       // search results (movie id's) indexed by query
       return {
         ...state,
+        loading: {
+          ...state.loading,
+          [query]: false
+        },
         results: {
           ...state.results,
           [query]: results.map(({ id }) => id)
@@ -75,6 +89,7 @@ export const updateQuery = payload => dispatch => {
 
 export const searchMovies = payload => dispatch => dispatch({
   type: SEARCH_MOVIES_REQUEST,
+  payload,
   meta: api.search.searchMovies(payload)
     .then(success(SEARCH_MOVIES_SUCCESS, payload))
     .catch(failure(SEARCH_MOVIES_FAILURE))

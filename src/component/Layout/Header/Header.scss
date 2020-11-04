@@ -5,16 +5,38 @@
   padding: 20px 20px 0;
   user-select: none;
 
+  &-title {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 32px;
+      margin-top: 1px;
+    }
+
+    h1 {
+      padding-left: 10px;
+      letter-spacing: -2px;
+    }
+  }
+
+  &-title:after {
+    content: ' ';
+    font-weight: 300;
+    position: absolute;
+  }
+
   &-search {
     opacity: 1;
     transition: opacity .2s ease;
+    padding-top: 3px;
 
     &:active {
       opacity: .7;
     }
 
     i {
-      font-size: 32px;
+      font-size: 34px;
     }
   }
 }
@@ -22,6 +44,12 @@
 @media(min-width: 768px) {
   .ui-header {
     padding: 40px 40px 0;
+
+    &-title {
+      i {
+        font-size: 48px;
+      }
+    }
 
     &-search {
       cursor: pointer;

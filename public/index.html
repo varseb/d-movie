@@ -70,15 +70,9 @@
         transition: opacity .3s ease;
       }
 
-      .splash::before {
-        content: ' ';
-        font-family: 'Oswald', sans-serif;
-        font-weight: 300;
-      }
-
       .splash svg {
-        width: 192px;
-        animation: splash-enter 1s;
+        height: 192px;
+        animation: splash-enter 1s cubic-bezier(0.280, 0.840, 0.420, 1) forwards;
       }
 
       #root.ready + .splash  {
@@ -88,10 +82,12 @@
 
       @keyframes splash-enter {
         from {
+          transform: scale(.8) translate3d(0,0,0);
           opacity: 0;
         }
 
         to {
+          transform: scale(1) translate3d(0,0,0);
           opacity: 1;
         }
       }
@@ -124,7 +120,6 @@
         -229 -16 -13 -17 0 -17 229 0 229 1 242 17 229 10 -8 74 -61 143 -118z"/>
         </g>
       </svg>
-
     </div>
   </body>
 </html>

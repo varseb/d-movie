@@ -8,6 +8,7 @@ const SearchStack = ({
   query,
   filter,
   results,
+  loading,
   updateQuery,
   updateFilter,
   openMovie,
@@ -46,6 +47,12 @@ const SearchStack = ({
         </div>
       </div>
 
+      {!loading && !results.length && (
+        <div className="search-stack-empty fade-in">
+          <p>No movies found</p>
+        </div>
+      )}
+
       {results.length > 0 && (
         <div className="search-stack-grid">
           {results.map(({ id }) => (
@@ -63,7 +70,8 @@ export default register(
   ({ search, movie }) => ({
     query: search.query,
     filter: search.filter,
-    results: selector.movie.getResults({ movie, search })
+    results: selector.movie.getResults({ movie, search }),
+    loading: search.loading[search.query]
   }),
   {
     updateFilter: action.search.updateFilter,

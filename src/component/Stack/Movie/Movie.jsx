@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
-import moment from 'moment'
 import { register, selector, action } from 'redux/app'
 import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
 import Rating from 'component/Rating'
+import Info from 'component/Info'
+import Genres from 'component/Genres'
+import Credits from 'component/Credits'
 
 
 const MovieStack = ({
   id,
-  movie,
+  movie: { title, vote_average, release_date, runtime, overview },
   genres,
   cast,
   director,
@@ -33,68 +35,46 @@ const MovieStack = ({
 
       <div className="movie-stack-content">
         <h1 className="movie-stack-title">
-          {movie.title}
+          {title}
         </h1>
 
-        {movie.vote_average > 0 && (
+        {vote_average > 0 && (
           <div className="movie-stack-rating">
-            <Rating voteAverage={movie.vote_average} />
+            <Rating voteAverage={vote_average} />
           </div>
         )}
 
-        {(movie.release_date || movie.runtime) && (
-          <div className="movie-stack-date">
-            {movie.release_date && (
-              <span>
-                {moment(movie.release_date).format('Y')}
-              </span>
-            )}
-            {' '}
-            -
-            {' '}
-            {movie.runtime > 0 && (
-              <span className="fade-in">
-                {Math.floor(movie.runtime / 60)}h {Math.floor(movie.runtime % 60 % 60)}m
-              </span>
-            )}
+        {(release_date || runtime > 0) && (
+          <div className="movie-stack-info">
+            <Info releaseDate={release_date} runTime={runtime} />
           </div>
         )}
 
         <p className="movie-stack-overview">
-          {movie.overview}
+          {overview}
         </p>
 
         {genres.length > 0 && (
           <div className="movie-stack-genres">
-            <ul>
-              {genres.map(({ id, name }) => (
-                <li key={id}>
-                  {name}
-                </li>
-              ))}
-            </ul>
+            <Genres genres={genres} />
           </div>
         )}
 
         {cast.length > 0 && (
           <div className="movie-stack-credits fade-in">
-            <div className="movie-stack-credits-title">
-              Cast
-            </div>
-            <div className="movie-stack-credits-value">
-              {cast.map(actor => actor.name).reduce((prev, curr) => [prev, ', ', curr])}
-            </div>
+            <Credits
+              title="Cast"
+              value={cast.map(actor => actor.name).reduce((prev, curr) => [prev, ', ', curr])}
+            />
           </div>
         )}
 
         {director && (
           <div className="movie-stack-credits fade-in">
-            <div className="movie-stack-credits-title">
-              Director
-            </div>
-            <div className="movie-stack-credits-value">
-              {director.name}
-            </div>
+            <Credits
+              title="Director"
+              value={director.name}
+            />
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 @import './app/reboot';
+@import './app/animation';
 @import './app/typo';
 @import './app/icon';
 
@@ -9,6 +10,9 @@
 
 @import '../../component/Poster/Poster';
 @import '../../component/Rating/Rating';
+@import '../../component/Info/Info';
+@import '../../component/Genres/Genres';
+@import '../../component/Credits/Credits';
 
 @import '../../component/Stack/Movie/Movie';
 @import '../../component/Stack/Search/Search';

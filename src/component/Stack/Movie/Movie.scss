@@ -38,9 +38,8 @@
     padding-top: 6px;
   }
 
-  &-date {
+  &-info {
     padding-top: 6px;
-    font-size: 16px;
   }
 
   &-overview {
@@ -54,25 +53,10 @@
 
   &-genres {
     padding-bottom: 40px;
-
-    li {
-      font-size: 16px;
-      text-transform: uppercase;
-    }
   }
 
   &-credits {
     padding-bottom: 40px;
-
-    &-title {
-      font-size: 16px;
-      text-transform: uppercase;
-    }
-
-    &-value {
-      font-size: 17px;
-      font-weight: 300;
-    }
 
     &:last-of-type {
       padding-bottom: 0;
@@ -90,42 +74,12 @@
       padding-top: 2px;
     }
 
-    &-date {
-      font-size: 18px;
+    &-info {
       padding-top: 10px;
     }
 
     &-overview {
       font-size: 24px;
     }
-
-    &-genres {
-      li {
-        font-size: 18px;
-      }
-    }
-
-    &-credits {
-      &-title {
-        font-size: 18px;
-      }
-
-      &-value {
-        font-size: 20px;
-      }
-    }
-  }
-}
-
-.fade-in {
-  animation: fade-in .4s ease;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

@@ -6,16 +6,14 @@ const Poster = ({
   size = 'w500',
   backdrop = false,
   onClick = null,
-  movie: { backdrop_path, poster_path },
+  movie: { title, backdrop_path, poster_path },
   config
 }) => {
   const [loaded, setLoaded] = useState(false)
 
-  const posterUrl = [
-    config.base_url,
-    size,
-    backdrop ? backdrop_path || poster_path : poster_path
-  ].join('')
+  const path = backdrop ? backdrop_path || poster_path : poster_path
+
+  const posterUrl = [config.base_url, size, path].join('')
 
   const onLoad = () => {
     setLoaded(true)
@@ -29,12 +27,19 @@ const Poster = ({
         'has-click': onClick
       })}
     >
-      <img
-        alt=""
-        className={classnames({ loaded })}
-        src={posterUrl}
-        onLoad={onLoad}
-      />
+      <div className={classnames("ui-poster-content", { 'no-image': !path, loaded })}>
+        {path && (
+          <img
+            alt=""
+            src={posterUrl}
+            onLoad={onLoad}
+          />
+        )}
+
+        {!path && !backdrop && (
+          <div className="ui-poster-title">{title}</div>
+        )}
+      </div>
     </div>
   )
 }
