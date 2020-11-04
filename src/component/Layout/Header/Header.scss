@@ -21,7 +21,8 @@
   }
 
   &-title:after {
-    content: ' ';
+    content: '-';
+    visibility: hidden;
     font-weight: 300;
     position: absolute;
   }
