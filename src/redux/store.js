@@ -38,7 +38,7 @@ store.subscribe(() => {
 
 function getState(){
   try {
-    return JSON.parse(window.localStorage.getItem('state')) || {}
+    return JSON.parse(window.localStorage.getItem('d-movie-state')) || {}
   }
   catch (e) {
     return {}
@@ -48,7 +48,7 @@ function getState(){
 
 function saveState( state ){
   try {
-    window.localStorage.setItem('state', JSON.stringify(state))
+    window.localStorage.setItem('d-movie-state', JSON.stringify(state))
   }
   catch (e) {}
 }
