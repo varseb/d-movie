@@ -9,7 +9,7 @@ const initialState = {
   images: {}
 }
 
-const reducer = (state = initialState, { type: actionType, payload }) => {
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
     case GET_CONFIGURATION_SUCCESS: {
       const { images } = payload.data
@@ -24,13 +24,9 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
   }
 }
 
-
 export const getConfiguration = () => dispatch => dispatch({
   type: GET_CONFIGURATION_REQUEST,
   meta: api.config.getConfiguration()
-    .then(success(GET_CONFIGURATION_SUCCESS))
-    .catch(failure(GET_CONFIGURATION_FAILURE))
+    .then(success(dispatch, GET_CONFIGURATION_SUCCESS))
+    .catch(failure(dispatch, GET_CONFIGURATION_FAILURE))
 })
-
-
-export default reducer

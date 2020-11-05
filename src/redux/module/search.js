@@ -18,7 +18,7 @@ const initialState = {
   loading: {}
 }
 
-const reducer = (state = initialState, { type: actionType, payload }) => {
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
     case UPDATE_QUERY:
       return {
@@ -91,9 +91,6 @@ export const searchMovies = payload => dispatch => dispatch({
   type: SEARCH_MOVIES_REQUEST,
   payload,
   meta: api.search.searchMovies(payload)
-    .then(success(SEARCH_MOVIES_SUCCESS, payload))
-    .catch(failure(SEARCH_MOVIES_FAILURE))
+    .then(success(dispatch, SEARCH_MOVIES_SUCCESS, payload))
+    .catch(failure(dispatch, SEARCH_MOVIES_FAILURE))
 })
-
-
-export default reducer

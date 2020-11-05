@@ -12,7 +12,6 @@ hr {
   overflow: visible;
 }
 
-
 address {
   font-style: normal;
   line-height: inherit;
@@ -22,8 +21,7 @@ dt {
   font-weight: 700;
 }
 
-b,
-strong {
+b, strong {
   font-weight: bolder;
 }
 
@@ -63,7 +61,6 @@ table {
 th {
   text-align: inherit;
 }
-
 
 input,
 button,
@@ -117,7 +114,6 @@ input[type="checkbox"] {
   padding: 0;
 }
 
-
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],
@@ -128,7 +124,6 @@ input[type="month"] {
 textarea {
   overflow: auto;
 }
-
 
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {

@@ -1,20 +1,21 @@
-@import './app/reboot';
-@import './app/animation';
-@import './app/typo';
-@import './app/icon';
+@import
+  './app/reboot',
+  './app/animation',
+  './app/typo',
+  './app/icon',
 
-@import '../../component/Layout/Layout';
-@import '../../component/Layout/Layer/Layer';
-@import '../../component/Layout/Stack/Stack';
-@import '../../component/Layout/Header/Header';
+  'component/Layout/Layout',
+  'component/Layout/Layer/Layer',
+  'component/Layout/Stack/Stack',
+  'component/Layout/Header/Header',
 
-@import '../../component/Poster/Poster';
-@import '../../component/Rating/Rating';
-@import '../../component/Info/Info';
-@import '../../component/Genres/Genres';
-@import '../../component/Credits/Credits';
+  'component/Poster/Poster',
+  'component/Rating/Rating',
+  'component/Info/Info',
+  'component/Genres/Genres',
+  'component/Credits/Credits',
 
-@import '../../component/Stack/Movie/Movie';
-@import '../../component/Stack/Search/Search';
+  'component/Stack/Movie/Movie',
+  'component/Stack/Search/Search',
 
-@import '../../view/Main/Main';
+  'view/Main/Main';

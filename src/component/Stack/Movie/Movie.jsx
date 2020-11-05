@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { register, selector, action } from 'redux/app'
-import Stack from 'component/Layout/Stack'
+import { apiLogo } from 'env'
 import Poster from 'component/Poster'
 import Rating from 'component/Rating'
 import Info from 'component/Info'
 import Genres from 'component/Genres'
 import Credits from 'component/Credits'
-
 
 const MovieStack = ({
   id,
@@ -15,22 +14,35 @@ const MovieStack = ({
   cast,
   director,
   getMovie,
-  getCredits,
-  closeStack
+  getCredits
 }) => {
 
   useEffect(
     () => {
       getMovie({ id })
-      getCredits({ id })
     },
-    [ id, getMovie, getCredits ]
+    [ id, getMovie ]
+  )
+
+  useEffect(
+    () => {
+      if( !director ){
+        getCredits({ id })
+      }
+    },
+    [ id, director, getCredits ]
   )
 
   return (
-    <Stack className="movie-stack" closeStack={closeStack}>
+    <section className="movie-stack">
       <div className="movie-stack-backdrop">
         <Poster id={id} size="w1280" backdrop />
+
+        <img
+          className="thanks-themoviedb"
+          src={apiLogo}
+          alt=""
+        />
       </div>
 
       <div className="movie-stack-content">
@@ -64,7 +76,7 @@ const MovieStack = ({
           <div className="movie-stack-credits fade-in">
             <Credits
               title="Cast"
-              value={cast.map(actor => actor.name).reduce((prev, curr) => [prev, ', ', curr])}
+              value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
             />
           </div>
         )}
@@ -78,7 +90,7 @@ const MovieStack = ({
           </div>
         )}
       </div>
-    </Stack>
+    </section>
   )
 }
 
@@ -91,8 +103,7 @@ export default register(
   }),
   {
     getMovie: action.movie.getMovie,
-    getCredits: action.movie.getCredits,
-    closeStack: action.layout.closeStack('movie')
+    getCredits: action.movie.getCredits
   },
   MovieStack
 )

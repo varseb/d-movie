@@ -14,7 +14,7 @@ export const getCast = createSelector(
 export const getDirector = createSelector(
   ({ movie }) => movie.credits,
   ({ id }) => id,
-  (credits, id) => credits[id] ? credits[id].crew.find(crew => crew.job === 'Director') : null
+  (credits, id) => credits[id] ? credits[id].crew.find(({ job }) => job === 'Director') : null
 )
 
 export const filterMovies = createSelector(
@@ -25,10 +25,8 @@ export const filterMovies = createSelector(
 
 export const getResults = createSelector(
   ({ movie }) => movie,
-  ({ search }) => search,
-  (movie, search) => {
-    const { query, filter: { rating }, results } = search
-
+  ({ search }) => [search.query, search.filter.rating, search.results],
+  (movie, [query, rating, results]) => {
     let movies
 
     if( query ){

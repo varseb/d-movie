@@ -1,17 +1,9 @@
-import store from 'redux/store'
-
-const success = (type, payload = {}) => response => {
-
-  const result = store.dispatch({
-    type,
-    payload: {
-      ...payload,
-      data: response.data
-    }
-  })
-
-  return result
-}
-
+const success = (dispatch, type, payload = {}) => response => dispatch({
+  type,
+  payload: {
+    ...payload,
+    data: response.data
+  }
+})
 
 export default success

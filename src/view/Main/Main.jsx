@@ -35,7 +35,6 @@ const Main = ({ movies, discoverMovies, getConfiguration, getGenres, openMovie }
   )
 }
 
-
 export default register(
   ({ movie }) => ({
     movies: selector.movie.getMovies({ movie })

@@ -1,26 +1,16 @@
 import React, { useRef } from 'react'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import classnames from 'classnames'
 
-const Layer = ({ className, children }) => {
+const Layer = ({ active, children, ...props }) => {
   const ref = useRef(null)
-  const arrayChildren = React.Children.toArray(children)
 
   return (
-    <TransitionGroup component={null}>
-      {arrayChildren.map((child, i) => (
-        <CSSTransition nodeRef={ref} key={child.key} timeout={400}>
-          <div
-            ref={ref}
-            className={classnames('layer-wrap', className, {
-              active: i === arrayChildren.length - 1
-            })}
-          >
-            {child}
-          </div>
-        </CSSTransition>
-      ))}
-    </TransitionGroup>
+    <CSSTransition nodeRef={ref} timeout={400} {...props}>
+      <div ref={ref} className={classnames('ui-layer', { active })}>
+        {children}
+      </div>
+    </CSSTransition>
   )
 }
 

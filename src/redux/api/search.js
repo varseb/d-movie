@@ -7,4 +7,3 @@ export const searchMovies = ({ query }) => request({
     query
   }
 })
-

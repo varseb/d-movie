@@ -9,7 +9,7 @@ const initialState = {
   genres: {}
 }
 
-const reducer = (state = initialState, { type: actionType, payload }) => {
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
     case GET_GENRES_SUCCESS: {
       const { genres } = payload.data
@@ -28,13 +28,9 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
   }
 }
 
-
 export const getGenres = () => dispatch => dispatch({
   type: GET_GENRES_REQUEST,
   meta: api.genre.getGenres()
-    .then(success(GET_GENRES_SUCCESS))
-    .catch(failure(GET_GENRES_FAILURE))
+    .then(success(dispatch, GET_GENRES_SUCCESS))
+    .catch(failure(dispatch, GET_GENRES_FAILURE))
 })
-
-
-export default reducer

@@ -1,41 +1,43 @@
 import React from 'react'
-import { register } from 'redux/app'
+import { register, action } from 'redux/app'
 import Layer from 'component/Layout/Layer'
+import LayerGroup from 'component/Layout/Layer/Group'
+import Stack from 'component/Layout/Stack'
 import MovieStack from 'component/Stack/Movie'
 import SearchStack from 'component/Stack/Search'
-
 
 const stackList = {
   'movie': MovieStack,
   'search': SearchStack
 }
 
-
 const StackLayer = ({ stack, closeStack }) => (
-  <Layer className="ui-stack-layer">
-    {stack.map(({ namespace, props }) => {
+  <LayerGroup>
+    {stack.map(({ namespace, props }, index) => {
+      const active = stack.length === index + 1
+      const Content = stackList[namespace]
 
-      const Stack = stackList[namespace]
-
-      if( !Stack ){
+      if( !Content ){
         return null
       }
 
       return (
-        <Stack
-          key={namespace}
-          {...props}
-        />
-       )
+        <Layer key={namespace} active={active} {...props}>
+          <Stack active={active} closeStack={closeStack}>
+            <Content {...props} />
+          </Stack>
+        </Layer>
+      )
     })}
-  </Layer>
+  </LayerGroup>
 )
-
 
 export default register(
   ({ layout }) => ({
     stack: layout.stack
   }),
-  null,
+  {
+    closeStack: action.layout.closeStack
+  },
   StackLayer
 )

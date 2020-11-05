@@ -6,12 +6,12 @@ import { register } from 'redux/app'
 
 const Layout = ({ stackOpen, children }) => (
   <>
-    <main className={classnames('layer-main', { 'stack-open': stackOpen })}>
-      <div className="layer-main-header">
+    <main className={classnames('ui-main', { 'stack-open': stackOpen })}>
+      <div className="ui-main-header">
         <Header />
       </div>
 
-      <div className="layer-main-content">
+      <div className="ui-main-content">
         {children}
       </div>
     </main>

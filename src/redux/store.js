@@ -6,7 +6,6 @@ import reducer from './module'
 const enhancers = []
 const middleware = [ thunk ]
 
-
 if( process.env.NODE_ENV === 'development' ){
   if( typeof window.__REDUX_DEVTOOLS_EXTENSION__ === 'function' ){
     enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
@@ -17,13 +16,11 @@ if( process.env.NODE_ENV === 'development' ){
   }))
 }
 
-
 const store = createStore(
   reducer,
   getState(),
   compose(applyMiddleware(...middleware), ...enhancers)
 )
-
 
 store.subscribe(() => {
   const { config, genres } = store.getState()
@@ -35,7 +32,6 @@ store.subscribe(() => {
   })
 })
 
-
 function getState(){
   try {
     return JSON.parse(window.localStorage.getItem('d-movie-state')) || {}
@@ -45,13 +41,11 @@ function getState(){
   }
 }
 
-
 function saveState( state ){
   try {
     window.localStorage.setItem('d-movie-state', JSON.stringify(state))
   }
   catch (e) {}
 }
-
 
 export default store

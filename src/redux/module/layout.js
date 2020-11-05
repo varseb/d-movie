@@ -5,7 +5,7 @@ const initialState = {
   stack: []
 }
 
-const reducer = (state = initialState, { type: actionType, payload }) => {
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
     case OPEN_STACK: {
       const { namespace, props } = payload
@@ -25,7 +25,7 @@ const reducer = (state = initialState, { type: actionType, payload }) => {
     case CLOSE_STACK:
       return {
         ...state,
-        stack: state.stack.filter(({ namespace }) => namespace !== payload.namespace)
+        stack: state.stack.slice(0, -1)
       }
 
     default:
@@ -41,11 +41,6 @@ export const openStack = namespace => props => dispatch => dispatch({
   }
 })
 
-export const closeStack = namespace => () => dispatch => dispatch({
-  type: CLOSE_STACK,
-  payload: {
-    namespace
-  }
+export const closeStack = () => dispatch => dispatch({
+  type: CLOSE_STACK
 })
-
-export default reducer

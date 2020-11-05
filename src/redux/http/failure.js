@@ -1,19 +1,13 @@
-import store from 'redux/store'
-
-const failure = (type, payload = {}) => error => {
-
+const failure = (dispatch, type, payload = {}) => error => {
   const { data } = error.response || { data : {} }
 
-  const result = store.dispatch({
+  return dispatch({
     type,
     payload: {
       ...payload,
       error: data.error
     }
   })
-
-  return result
 }
-
 
 export default failure

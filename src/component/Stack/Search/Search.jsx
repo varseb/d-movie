@@ -1,20 +1,17 @@
 import React from 'react'
 import { register, selector, action } from 'redux/app'
-import Stack from 'component/Layout/Stack'
 import Poster from 'component/Poster'
 import Rating from 'component/Rating'
 
 const SearchStack = ({
   query,
   filter,
-  results,
   loading,
+  results,
   updateQuery,
   updateFilter,
-  openMovie,
-  closeStack
+  openMovie
 }) => {
-
   const handleRatingChange = star => {
     const rating = star * 2
 
@@ -24,7 +21,7 @@ const SearchStack = ({
   }
 
   return (
-    <Stack className="search-stack" closeStack={closeStack}>
+    <section className="search-stack">
       <div className="search-stack-head">
         <div className="search-stack-input-wrapper">
           <input
@@ -62,7 +59,7 @@ const SearchStack = ({
           ))}
         </div>
       )}
-    </Stack>
+    </section>
   )
 }
 
@@ -70,13 +67,12 @@ export default register(
   ({ search, movie }) => ({
     query: search.query,
     filter: search.filter,
-    results: selector.movie.getResults({ movie, search }),
-    loading: search.loading[search.query]
+    loading: search.loading[search.query],
+    results: selector.movie.getResults({ movie, search })
   }),
   {
     updateFilter: action.search.updateFilter,
     updateQuery: action.search.updateQuery,
-    closeStack: action.layout.closeStack('search'),
     openMovie: action.layout.openStack('movie')
   },
   SearchStack
