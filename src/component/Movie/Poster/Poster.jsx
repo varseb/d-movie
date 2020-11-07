@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classnames from 'classnames'
-import { register } from 'redux/app'
+import { connect } from 'redux/app'
 
 const Poster = ({
   size = 'w500',
@@ -44,7 +44,7 @@ const Poster = ({
   )
 }
 
-export default register(
+export default connect(
   ({ config, movie }, { id }) => ({
     movie: movie.movies[id],
     config: config.images

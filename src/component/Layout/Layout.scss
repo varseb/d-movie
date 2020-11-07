@@ -29,3 +29,13 @@
     }
   }
 }
+
+.ui-clickable {
+  opacity: 1;
+  transition: opacity .2s ease;
+  cursor: pointer;
+
+  &:active {
+    opacity: .7;
+  }
+}

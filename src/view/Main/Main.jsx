@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { register, selector, action } from 'redux/app'
+import { connect, selector, action } from 'redux/app'
 import Poster from 'component/Movie/Poster'
 
 const Main = ({
   movies,
+  language,
   getConfiguration,
   getGenres,
   discoverMovies,
@@ -18,16 +19,16 @@ const Main = ({
 
   useEffect(
     () => {
-      getGenres()
+      getGenres({ language })
     },
-    [ getGenres ]
+    [ language, getGenres ]
   )
 
   useEffect(
     () => {
-      discoverMovies()
+      discoverMovies({ language })
     },
-    [ discoverMovies ]
+    [ language, discoverMovies ]
   )
 
   return (
@@ -41,8 +42,9 @@ const Main = ({
   )
 }
 
-export default register(
-  ({ movie }) => ({
+export default connect(
+  ({ user, movie }) => ({
+    language: user.language,
     movies: selector.movie.getMovies({ movie })
   }),
   {

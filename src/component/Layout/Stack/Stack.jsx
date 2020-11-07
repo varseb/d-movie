@@ -29,7 +29,7 @@ const Stack = ({ active, closeStack, children }) => {
 
   return (
     <div ref={ref} className="ui-stack">
-      <div className="ui-stack-close" onClick={closeStack}>
+      <div className="ui-stack-close ui-clickable" onClick={closeStack}>
         <i className="icon-close" />
       </div>
 

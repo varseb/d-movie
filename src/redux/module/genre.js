@@ -28,9 +28,9 @@ export default function reducer(state = initialState, { type: actionType, payloa
   }
 }
 
-export const getGenres = () => dispatch => dispatch({
+export const getGenres = payload => dispatch => dispatch({
   type: GET_GENRES_REQUEST,
-  meta: api.genre.getGenres()
+  meta: api.genre.getGenres(payload)
     .then(success(dispatch, GET_GENRES_SUCCESS))
     .catch(failure(dispatch, GET_GENRES_FAILURE))
 })

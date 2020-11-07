@@ -1,13 +1,19 @@
 import { request } from 'redux/http'
 
-export const discoverMovies = () => request({
+export const discoverMovies = ({ language }) => request({
   method: 'GET',
-  url: '/discover/movie'
+  url: '/discover/movie',
+  params: {
+    language
+  }
 })
 
-export const getMovie = ({ id }) => request({
+export const getMovie = ({ id, language }) => request({
   method: 'GET',
-  url: `/movie/${id}`
+  url: `/movie/${id}`,
+  params: {
+    language
+  }
 })
 
 export const getCredits = ({ id }) => request({
@@ -15,7 +21,10 @@ export const getCredits = ({ id }) => request({
   url: `/movie/${id}/credits`
 })
 
-export const getVideos = ({ id }) => request({
+export const getVideos = ({ id, language }) => request({
   method: 'GET',
-  url: `/movie/${id}/videos`
+  url: `/movie/${id}/videos`,
+  params: {
+    language
+  }
 })

@@ -1,0 +1,36 @@
+.language-stack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  ul {
+    min-width: 160px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-lang {
+    margin-right: 10px;
+  }
+
+  &-name {
+    font-size: 28px;
+    font-weight: 300;
+    color: #DDD;
+
+    &.active {
+      font-weight: 400;
+      color: white;
+    }
+  }
+}

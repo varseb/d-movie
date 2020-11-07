@@ -1,5 +1,5 @@
 import React from 'react'
-import { register, action } from 'redux/app'
+import { connect, action } from 'redux/app'
 
 const Videos = ({ videos, openVideo }) => (
   <div className="ui-videos">
@@ -24,7 +24,7 @@ const Videos = ({ videos, openVideo }) => (
   </div>
 )
 
-export default register(
+export default connect(
   null,
   {
     openVideo: action.layout.openStack('video')

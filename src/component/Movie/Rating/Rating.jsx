@@ -13,7 +13,8 @@ const Rating = ({ voteAverage, onChange }) => (
           onChange && onChange(star)
         }}
         className={classnames('icon-star-outline', {
-          'icon-star-rate': voteAverage !== null && voteAverage >= star * range
+          'icon-star-rate': voteAverage !== null && voteAverage >= star * range,
+          'ui-clickable': onChange
         })}
       />
     ))}

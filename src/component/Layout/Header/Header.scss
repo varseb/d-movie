@@ -27,14 +27,18 @@
     position: absolute;
   }
 
-  &-search {
-    opacity: 1;
-    transition: opacity .2s ease;
-    padding-top: 3px;
+  &-nav {
+    display: flex;
+    align-items: center;
+    padding-top: 1px;
+  }
 
-    &:active {
-      opacity: .7;
-    }
+  &-language {
+    margin-right: 20px;
+  }
+
+  &-search {
+    padding-top: 2px;
 
     i {
       font-size: 34px;
@@ -52,9 +56,11 @@
       }
     }
 
-    &-search {
-      cursor: pointer;
+    &-language {
+      margin-right: 40px;
+    }
 
+    &-search {
       i {
         font-size: 48px;
       }

@@ -1,16 +1,18 @@
 import React from 'react'
-import { register, action } from 'redux/app'
+import { connect, action } from 'redux/app'
 import Layer from 'component/Layout/Layer'
 import LayerGroup from 'component/Layout/Layer/Group'
 import Stack from 'component/Layout/Stack'
 import MovieStack from 'component/Stack/Movie'
 import SearchStack from 'component/Stack/Search'
 import VideoStack from 'component/Stack/Video'
+import LanguageStack from 'component/Stack/Language'
 
 const stackList = {
   'movie': MovieStack,
   'search': SearchStack,
-  'video': VideoStack
+  'video': VideoStack,
+  'language': LanguageStack
 }
 
 const StackLayer = ({ stack, closeStack }) => (
@@ -34,7 +36,7 @@ const StackLayer = ({ stack, closeStack }) => (
   </LayerGroup>
 )
 
-export default register(
+export default connect(
   ({ layout }) => ({
     stack: layout.stack
   }),

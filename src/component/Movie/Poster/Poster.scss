@@ -52,7 +52,6 @@
         width: 100vw;
         height: 100vh;
         object-fit: cover;
-        //animation: backdrop-zoom 60s linear forwards;
         transform: translate3d(0,0,0);
       }
     }
@@ -65,15 +64,5 @@
       padding: 0 40px;
       font-size: 28px;
     }
-  }
-}
-
-@keyframes backdrop-zoom {
-  from {
-    transform: scale(1) translate3d(0,0,0);
-  }
-
-  to {
-    transform: scale(1.1) translate3d(0,0,0);
   }
 }

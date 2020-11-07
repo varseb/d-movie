@@ -1,0 +1,27 @@
+.ui-lang {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  border: 1px solid #DDD;
+
+  &.x38 {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+    border: 2px solid #DDD;
+  }
+}
+
+@media(min-width: 768px) {
+  .ui-lang {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+    border: 2px solid #DDD;
+  }
+}

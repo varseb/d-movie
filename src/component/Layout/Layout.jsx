@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import Header from 'component/Layout/Header'
 import StackLayer from 'component/Layout/Stack/Layer'
-import { register } from 'redux/app'
+import { connect } from 'redux/app'
 
 const Layout = ({ stackOpen, hasVideoStack, playingVideo, children }) => (
   <>
@@ -24,7 +24,7 @@ const Layout = ({ stackOpen, hasVideoStack, playingVideo, children }) => (
   </>
 )
 
-export default register(
+export default connect(
   ({ layout }) => ({
     stackOpen: layout.stack.length > 0,
     hasVideoStack: layout.stack.find(({ namespace }) => namespace === 'video'),

@@ -5,6 +5,7 @@ import layout from './layout'
 import movie from './movie'
 import search from './search'
 import status from './status'
+import user from './user'
 
 export default combineReducers({
   config,
@@ -12,5 +13,6 @@ export default combineReducers({
   layout,
   movie,
   search,
-  status
+  status,
+  user
 })

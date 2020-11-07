@@ -25,8 +25,8 @@ export default function reducer(state = initialState, { type: actionType, payloa
       ...state.success,
       [namespace]: requestState === 'SUCCESS'
     },
-    error: {
-      ...state.error,
+    failure: {
+      ...state.failure,
       [namespace]: requestState === 'FAILURE'
     }
   }

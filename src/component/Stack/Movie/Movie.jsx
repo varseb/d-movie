@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { register, selector, action } from 'redux/app'
+import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
 import Poster from 'component/Movie/Poster'
 import Rating from 'component/Movie/Rating'
@@ -10,6 +10,7 @@ import Videos from 'component/Movie/Videos'
 
 const MovieStack = ({
   id,
+  language,
   movie: {
     title,
     vote_average,
@@ -29,9 +30,9 @@ const MovieStack = ({
 }) => {
   useEffect(
     () => {
-      getMovie({ id })
+      getMovie({ id, language })
     },
-    [ id, getMovie ]
+    [ id, language, getMovie ]
   )
 
   useEffect(
@@ -43,9 +44,9 @@ const MovieStack = ({
 
   useEffect(
     () => {
-      getVideos({ id })
+      getVideos({ id, language })
     },
-    [ id, getVideos ]
+    [ id, language, getVideos ]
   )
 
   return (
@@ -125,8 +126,9 @@ const MovieStack = ({
   )
 }
 
-export default register(
-  ({ movie, genre, status }, { id }) => ({
+export default connect(
+  ({ user, movie, genre, status }, { id }) => ({
+    language: user.language,
     movie: movie.movies[id],
     genres: selector.genre.getGenres({ genre, movie, id }),
     cast: selector.movie.getCast({ movie, id }),

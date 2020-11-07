@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import YouTube from 'react-youtube'
 import classnames from 'classnames'
-import { register, action } from 'redux/app'
+import { connect, action } from 'redux/app'
 import Progress from 'component/Video/Progress'
-
 
 const VideoStack = ({ title, videoKey, playingVideo, updateVideoState, closeStack }) => {
   const ref = useRef(null)
@@ -17,6 +16,12 @@ const VideoStack = ({ title, videoKey, playingVideo, updateVideoState, closeStac
     },
     [ updateVideoState ]
   )
+
+  const onReady = event => {
+    ref.current = event.target
+    ref.current.setVolume(100)
+    setReady(true)
+  }
 
   const handleLayerClick = () => {
     if( ref.current && ready ){
@@ -35,11 +40,7 @@ const VideoStack = ({ title, videoKey, playingVideo, updateVideoState, closeStac
         videoId={videoKey}
         containerClassName="video-stack"
         className={classnames('video-stack-frame', { ready, playing: playingVideo })}
-        onReady={event => {
-          ref.current = event.target
-          ref.current.setVolume(100)
-          setReady(true)
-        }}
+        onReady={onReady}
         onPlay={() => updateVideoState({ playing: true })}
         onEnd={() => closeStack()}
         onError={() => closeStack()}
@@ -66,7 +67,7 @@ const VideoStack = ({ title, videoKey, playingVideo, updateVideoState, closeStac
   )
 }
 
-export default register(
+export default connect(
   ({ layout }) => ({
     playingVideo: layout.playingVideo
   }),

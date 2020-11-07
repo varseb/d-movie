@@ -39,10 +39,7 @@ export default function movieReducer(state = initialState, { type: actionType, p
 
         // on this object we store all the returned movies from the api indexed by id
         // we use this movie object as single source of truth
-        movies: results.reduce((movies, movie) => ({
-          ...movies,
-          [movie.id]: movie
-        }), { ...state.movies })
+        movies: indexMovies({ state, results })
       }
     }
 
@@ -51,10 +48,7 @@ export default function movieReducer(state = initialState, { type: actionType, p
 
       return {
         ...state,
-        movies: results.reduce((movies, movie) => ({
-          ...movies,
-          [movie.id]: movie
-        }), { ...state.movies })
+        movies: indexMovies({ state, results })
       }
     }
 
@@ -102,9 +96,21 @@ export default function movieReducer(state = initialState, { type: actionType, p
   }
 }
 
-export const discoverMovies = () => dispatch => dispatch({
+const indexMovies = ({ state, results }) =>
+  results.reduce((movies, movie) => ({
+    ...movies,
+    [movie.id]: {
+      ...(state.movies[movie.id] || {}),
+      ...movie
+    }
+  }), {
+    ...state.movies
+  }
+)
+
+export const discoverMovies = payload => dispatch => dispatch({
   type: DISCOVER_MOVIES_REQUEST,
-  meta: api.movie.discoverMovies()
+  meta: api.movie.discoverMovies(payload)
     .then(success(dispatch, DISCOVER_MOVIES_SUCCESS))
     .catch(failure(dispatch, DISCOVER_MOVIES_FAILURE))
 })

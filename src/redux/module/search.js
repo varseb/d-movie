@@ -76,16 +76,10 @@ export const updateFilter = payload => dispatch => dispatch({
   payload
 })
 
-export const updateQuery = payload => dispatch => {
-  dispatch({
-    type: UPDATE_QUERY,
-    payload
-  })
-
-  if( payload.query ){
-    dispatch(searchMovies(payload))
-  }
-}
+export const updateQuery = payload => dispatch => dispatch({
+  type: UPDATE_QUERY,
+  payload
+})
 
 export const searchMovies = payload => dispatch => dispatch({
   type: SEARCH_MOVIES_REQUEST,

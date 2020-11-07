@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect as reduxConnect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import selector from './selector'
 
@@ -7,23 +7,22 @@ import * as genre from './module/genre'
 import * as layout from './module/layout'
 import * as movie from './module/movie'
 import * as search from './module/search'
-
+import * as user from './module/user'
 
 export const action = {
   config,
   genre,
   layout,
   movie,
-  search
+  search,
+  user
 }
-
 
 export {
   selector
 }
 
-
-export const register = (mapStateToProps, actions, Component) => connect(
+export const connect = (mapStateToProps, mapDispatchToProps, Component) => reduxConnect(
   mapStateToProps,
-  actions && (dispatch => bindActionCreators(actions, dispatch))
+  mapDispatchToProps && (dispatch => bindActionCreators(mapDispatchToProps, dispatch))
 )(Component)
