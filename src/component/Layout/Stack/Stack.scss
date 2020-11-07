@@ -9,6 +9,8 @@
   animation: stack-show .4s cubic-bezier(.55,0,.1,1);
   transform-origin: center center;
   background-color: rgba(0,0,0,.7);
+  backface-visibility: hidden;
+  perspective: 1000;
 
   .exit & {
     animation: layer-hide .4s cubic-bezier(.55,0,.1,1) forwards;

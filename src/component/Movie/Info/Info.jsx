@@ -1,12 +1,22 @@
 import React from 'react'
 import moment from 'moment'
 
-const Info = ({ releaseDate, runTime }) => {
+const Info = ({ releaseDate, originalLanguage, runTime }) => {
   const info = []
 
   if( releaseDate ){
     info.push(
-      <span key={releaseDate}>{moment(releaseDate).format('Y')}</span>
+      <span key={releaseDate}>
+        {moment(releaseDate).format('Y')}
+      </span>
+    )
+  }
+
+  if( originalLanguage ){
+    info.push(
+      <span key={originalLanguage}>
+        {originalLanguage.toUpperCase()}
+      </span>
     )
   }
 
@@ -23,7 +33,7 @@ const Info = ({ releaseDate, runTime }) => {
 
   return (
     <div className="ui-info">
-      {info.reduce((prev, curr) => [prev, ' - ', curr])}
+      {info.reduce((prev, curr) => [prev, ' / ', curr])}
     </div>
   )
 }

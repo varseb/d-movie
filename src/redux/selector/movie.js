@@ -17,6 +17,12 @@ export const getDirector = createSelector(
   (credits, id) => credits[id] ? credits[id].crew.find(({ job }) => job === 'Director') : null
 )
 
+export const getYouTubeVideos = createSelector(
+  ({ movie }) => movie.videos,
+  ({ id }) => id,
+  (videos, id) => (videos[id] || []).filter(({ site }) => site === 'YouTube')
+)
+
 export const filterMovies = createSelector(
   ({ movies }) => movies,
   ({ rating }) => rating,

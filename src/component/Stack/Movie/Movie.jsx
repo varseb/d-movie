@@ -1,22 +1,32 @@
 import React, { useEffect } from 'react'
 import { register, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
-import Poster from 'component/Poster'
-import Rating from 'component/Rating'
-import Info from 'component/Info'
-import Genres from 'component/Genres'
-import Credits from 'component/Credits'
+import Poster from 'component/Movie/Poster'
+import Rating from 'component/Movie/Rating'
+import Info from 'component/Movie/Info'
+import Genres from 'component/Movie/Genres'
+import Credits from 'component/Movie/Credits'
+import Videos from 'component/Movie/Videos'
 
 const MovieStack = ({
   id,
-  movie: { title, vote_average, release_date, runtime, overview },
+  movie: {
+    title,
+    vote_average,
+    release_date,
+    runtime,
+    overview,
+    original_language
+  },
   genres,
   cast,
   director,
+  videos,
+  loadingCredits,
   getMovie,
-  getCredits
+  getCredits,
+  getVideos
 }) => {
-
   useEffect(
     () => {
       getMovie({ id })
@@ -26,15 +36,20 @@ const MovieStack = ({
 
   useEffect(
     () => {
-      if( !director ){
-        getCredits({ id })
-      }
+      getCredits({ id })
     },
-    [ id, director, getCredits ]
+    [ id, getCredits ]
+  )
+
+  useEffect(
+    () => {
+      getVideos({ id })
+    },
+    [ id, getVideos ]
   )
 
   return (
-    <section className="movie-stack">
+    <>
       <div className="movie-stack-backdrop">
         <Poster id={id} size="w1280" backdrop />
 
@@ -56,9 +71,13 @@ const MovieStack = ({
           </div>
         )}
 
-        {(release_date || runtime > 0) && (
+        {(release_date || original_language || runtime > 0) && (
           <div className="movie-stack-info">
-            <Info releaseDate={release_date} runTime={runtime} />
+            <Info
+              releaseDate={release_date}
+              originalLanguage={original_language}
+              runTime={runtime}
+            />
           </div>
         )}
 
@@ -89,21 +108,36 @@ const MovieStack = ({
             />
           </div>
         )}
+
+        {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
+          <div className="movie-stack-videos fade-in">
+            <div className="movie-stack-videos-title">
+              VIDEOS
+            </div>
+
+            <div className="movie-stack-videos-wrap scroll-lock-ignore">
+              <Videos videos={videos} />
+            </div>
+          </div>
+        )}
       </div>
-    </section>
+    </>
   )
 }
 
 export default register(
-  ({ movie, genre }, { id }) => ({
+  ({ movie, genre, status }, { id }) => ({
     movie: movie.movies[id],
     genres: selector.genre.getGenres({ genre, movie, id }),
     cast: selector.movie.getCast({ movie, id }),
-    director: selector.movie.getDirector({ movie, id })
+    director: selector.movie.getDirector({ movie, id }),
+    videos: selector.movie.getYouTubeVideos({ movie, id }),
+    loadingCredits: status.loading['movie/GET_CREDITS']
   }),
   {
     getMovie: action.movie.getMovie,
-    getCredits: action.movie.getCredits
+    getCredits: action.movie.getCredits,
+    getVideos:  action.movie.getVideos
   },
   MovieStack
 )

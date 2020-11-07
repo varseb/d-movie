@@ -1,8 +1,11 @@
 const OPEN_STACK  = 'layout/OPEN_STACK'
 const CLOSE_STACK = 'layout/CLOSE_STACK'
 
+const UPDATE_VIDEO_STATE = 'layout/UPDATE_VIDEO_STATE'
+
 const initialState = {
-  stack: []
+  stack: [],
+  playingVideo: false
 }
 
 export default function reducer(state = initialState, { type: actionType, payload }){
@@ -28,6 +31,12 @@ export default function reducer(state = initialState, { type: actionType, payloa
         stack: state.stack.slice(0, -1)
       }
 
+    case UPDATE_VIDEO_STATE:
+      return {
+        ...state,
+        playingVideo: payload.playing
+      }
+
     default:
       return state
   }
@@ -43,4 +52,9 @@ export const openStack = namespace => props => dispatch => dispatch({
 
 export const closeStack = () => dispatch => dispatch({
   type: CLOSE_STACK
+})
+
+export const updateVideoState = payload => dispatch => dispatch({
+  type: UPDATE_VIDEO_STATE,
+  payload
 })

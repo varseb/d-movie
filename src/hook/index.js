@@ -1,5 +1,5 @@
-import useLockScroll from './useLockScroll'
+import useScrollLock from './useScrollLock'
 
 export {
-  useLockScroll
+  useScrollLock
 }

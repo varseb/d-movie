@@ -1,0 +1,36 @@
+.video-stack {
+  height: 100%;
+  position: relative;
+  user-select: none;
+
+  &-frame {
+     display: block;
+     opacity: 0;
+     transition: opacity 1s;
+
+     &.ready {
+       opacity: 1;
+     }
+  }
+
+  &-overlay {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+@media(min-width: 768px) {
+  .video-stack {
+    &-frame {
+       &.playing {
+         opacity: 1;
+       }
+    }
+  }
+}

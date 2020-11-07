@@ -14,3 +14,8 @@ export const getCredits = ({ id }) => request({
   method: 'GET',
   url: `/movie/${id}/credits`
 })
+
+export const getVideos = ({ id }) => request({
+  method: 'GET',
+  url: `/movie/${id}/videos`
+})

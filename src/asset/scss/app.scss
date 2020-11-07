@@ -1,21 +1,25 @@
 @import
-  './app/reboot',
-  './app/animation',
-  './app/typo',
-  './app/icon',
+  'app/reboot',
+  'app/animation',
+  'app/typo',
+  'app/icon',
 
   'component/Layout/Layout',
   'component/Layout/Layer/Layer',
   'component/Layout/Stack/Stack',
   'component/Layout/Header/Header',
 
-  'component/Poster/Poster',
-  'component/Rating/Rating',
-  'component/Info/Info',
-  'component/Genres/Genres',
-  'component/Credits/Credits',
-
   'component/Stack/Movie/Movie',
   'component/Stack/Search/Search',
+  'component/Stack/Video/Video',
+
+  'component/Movie/Poster/Poster',
+  'component/Movie/Rating/Rating',
+  'component/Movie/Info/Info',
+  'component/Movie/Genres/Genres',
+  'component/Movie/Credits/Credits',
+  'component/Movie/Videos/Videos',
+
+  'component/Video/Progress/Progress',
 
   'view/Main/Main';

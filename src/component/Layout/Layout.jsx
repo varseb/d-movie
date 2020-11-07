@@ -4,9 +4,13 @@ import Header from 'component/Layout/Header'
 import StackLayer from 'component/Layout/Stack/Layer'
 import { register } from 'redux/app'
 
-const Layout = ({ stackOpen, children }) => (
+const Layout = ({ stackOpen, hasVideoStack, playingVideo, children }) => (
   <>
-    <main className={classnames('ui-main', { 'stack-open': stackOpen })}>
+    <main className={classnames('ui-main', {
+      'stack-open': stackOpen,
+      'playing-video': playingVideo,
+      'has-video-stack': hasVideoStack
+    })}>
       <div className="ui-main-header">
         <Header />
       </div>
@@ -22,7 +26,9 @@ const Layout = ({ stackOpen, children }) => (
 
 export default register(
   ({ layout }) => ({
-    stackOpen: layout.stack.length > 0
+    stackOpen: layout.stack.length > 0,
+    hasVideoStack: layout.stack.find(({ namespace }) => namespace === 'video'),
+    playingVideo: layout.playingVideo
   }),
   null,
   Layout

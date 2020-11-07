@@ -3,9 +3,7 @@
     padding: 20px 20px 10px;
     position: sticky;
     top: 0;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.3));
-    backdrop-filter: blur(30px);
-    transform: translate3d(0,0,0);
+    background-color: rgba(0,0,0,.9);
     z-index: 2;
   }
 
@@ -41,7 +39,7 @@
       padding-top: 15px;
       text-align: center;
 
-      i {
+      .ui-rating i {
         font-size: 32px;
       }
     }
@@ -73,7 +71,6 @@
     }
   }
 }
-
 
 @media(min-width: 768px) {
   .search-stack {

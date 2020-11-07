@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
-import { useLockScroll } from 'hook'
+import React, { useEffect, useRef } from 'react'
+import { useScrollLock } from 'hook'
 
 const Stack = ({ active, closeStack, children }) => {
-  useLockScroll()
+  const ref = useRef(null)
+
+  useScrollLock(ref)
 
   useEffect(
     () => {
@@ -26,7 +28,7 @@ const Stack = ({ active, closeStack, children }) => {
   )
 
   return (
-    <div className="ui-stack">
+    <div ref={ref} className="ui-stack">
       <div className="ui-stack-close" onClick={closeStack}>
         <i className="icon-close" />
       </div>

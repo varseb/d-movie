@@ -5,10 +5,12 @@ import LayerGroup from 'component/Layout/Layer/Group'
 import Stack from 'component/Layout/Stack'
 import MovieStack from 'component/Stack/Movie'
 import SearchStack from 'component/Stack/Search'
+import VideoStack from 'component/Stack/Video'
 
 const stackList = {
   'movie': MovieStack,
-  'search': SearchStack
+  'search': SearchStack,
+  'video': VideoStack
 }
 
 const StackLayer = ({ stack, closeStack }) => (
@@ -22,7 +24,7 @@ const StackLayer = ({ stack, closeStack }) => (
       }
 
       return (
-        <Layer key={namespace} active={active} {...props}>
+        <Layer key={namespace} namespace={namespace} active={active}>
           <Stack active={active} closeStack={closeStack}>
             <Content {...props} />
           </Stack>

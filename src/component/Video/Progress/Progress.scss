@@ -1,0 +1,11 @@
+.video-progress {
+  overflow: hidden;
+  width: 100%;
+
+  &-fill {
+    transform: translate3d(-100%, 0, 0);
+    height: 5px;
+    background-color: white;
+    transition: transform .5s linear;
+  }
+}
