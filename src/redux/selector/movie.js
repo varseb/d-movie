@@ -19,8 +19,9 @@ export const getDirector = createSelector(
 
 export const getYouTubeVideos = createSelector(
   ({ movie }) => movie.videos,
+  ({ user }) => user.language,
   ({ id }) => id,
-  (videos, id) => (videos[id] || []).filter(({ site }) => site === 'YouTube')
+  (videos, language, id) => (videos[id] && videos[id][language] || []).filter(({ site }) => site === 'YouTube')
 )
 
 export const filterMovies = createSelector(

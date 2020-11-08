@@ -133,7 +133,7 @@ export default connect(
     genres: selector.genre.getGenres({ genre, movie, id }),
     cast: selector.movie.getCast({ movie, id }),
     director: selector.movie.getDirector({ movie, id }),
-    videos: selector.movie.getYouTubeVideos({ movie, id }),
+    videos: selector.movie.getYouTubeVideos({ movie, user, id }),
     loadingCredits: status.loading['movie/GET_CREDITS']
   }),
   {

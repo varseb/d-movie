@@ -80,13 +80,16 @@ export default function movieReducer(state = initialState, { type: actionType, p
     }
 
     case GET_VIDEOS_SUCCESS: {
-      const { id, data: { results: videos } } = payload
+      const { id, language, data: { results: videos } } = payload
 
       return {
         ...state,
         videos: {
           ...state.videos,
-          [id]: videos
+          [id]: {
+            ...(state.videos[id] || {}),
+            [language]: videos
+          }
         }
       }
     }
