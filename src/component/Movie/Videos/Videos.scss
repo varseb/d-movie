@@ -27,6 +27,14 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        opacity: 0;
+        transition: opacity .3s ease;
+      }
+
+      &.loaded {
+        img {
+          opacity: 1;
+        }
       }
     }
 

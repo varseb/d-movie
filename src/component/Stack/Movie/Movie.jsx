@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTitle, useUpdateCheck } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
 import Poster from 'component/Movie/Poster'
@@ -7,6 +8,7 @@ import Info from 'component/Movie/Info'
 import Genres from 'component/Movie/Genres'
 import Credits from 'component/Movie/Credits'
 import Videos from 'component/Movie/Videos'
+import classnames from 'classnames'
 
 const MovieStack = ({
   id,
@@ -28,6 +30,8 @@ const MovieStack = ({
   getCredits,
   getVideos
 }) => {
+  useTitle(title)
+
   useEffect(
     () => {
       getMovie({ id, language })
@@ -48,6 +52,10 @@ const MovieStack = ({
     },
     [ id, language, getVideos ]
   )
+
+  const isCastUpdated = useUpdateCheck(cast.length)
+  const isDirectorUpdated = useUpdateCheck(director?.name)
+  const isVideosUpdated = useUpdateCheck(videos.length)
 
   return (
     <>
@@ -93,7 +101,7 @@ const MovieStack = ({
         )}
 
         {cast.length > 0 && (
-          <div className="movie-stack-credits fade-in">
+          <div className={classnames('movie-stack-credits', { 'fade-in': isCastUpdated })}>
             <Credits
               title="Cast"
               value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
@@ -102,7 +110,7 @@ const MovieStack = ({
         )}
 
         {director && (
-          <div className="movie-stack-credits fade-in">
+          <div className={classnames('movie-stack-credits', { 'fade-in': isDirectorUpdated })}>
             <Credits
               title="Director"
               value={director.name}
@@ -111,7 +119,7 @@ const MovieStack = ({
         )}
 
         {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
-          <div className="movie-stack-videos fade-in">
+          <div className={classnames('movie-stack-videos', { 'fade-in': isVideosUpdated })}>
             <div className="movie-stack-videos-title">
               VIDEOS
             </div>

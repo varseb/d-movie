@@ -1,8 +1,14 @@
 import React from 'react'
+import { useUpdateCheck } from 'hook'
 import moment from 'moment'
+import classnames from 'classnames'
 
 const Info = ({ releaseDate, originalLanguage, runTime }) => {
+
+  const isRuntimeUpdated = useUpdateCheck(runTime)
+
   const info = []
+
 
   if( releaseDate ){
     info.push(
@@ -25,7 +31,7 @@ const Info = ({ releaseDate, originalLanguage, runTime }) => {
     const m = Math.floor(runTime % 60 % 60)
 
     info.push(
-      <span key={runTime} className="fade-in">
+      <span key={runTime} className={classnames({ 'fade-in': isRuntimeUpdated })}>
         {h > 0 && `${h}h`} {m > 0 && `${m}m`}
       </span>
     )

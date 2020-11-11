@@ -31,6 +31,23 @@ const Main = ({
     [ language, discoverMovies ]
   )
 
+  useEffect(
+    () => {
+      const visibilityEvent = () => {
+        if( !document.hidden ){
+          discoverMovies({ language })
+        }
+      }
+
+      document.addEventListener('visibilitychange', visibilityEvent)
+
+      return () => {
+        document.removeEventListener('visibilitychange', visibilityEvent)
+      }
+    },
+    [ language, discoverMovies ]
+  )
+
   return (
     <div className="movie-grid">
       {movies.map(({ id, title }) => (

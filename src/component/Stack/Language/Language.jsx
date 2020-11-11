@@ -3,13 +3,11 @@ import classnames from 'classnames'
 import { connect, action } from 'redux/app'
 import Lang from 'component/Layout/Lang'
 
-const languages = [ 'en', 'es', 'pt', 'fr', 'it' ]
+const languages = [ 'en', 'es', 'pt' ]
 const names = {
-  en: 'English',
-  es: 'Español',
-  pt: 'Português',
-  fr: 'Français',
-  it: 'Italiano'
+  'en': 'English',
+  'es': 'Español',
+  'pt': 'Português'
 }
 
 const LanguageStack = ({ language, changeLanguage, closeStack }) => (
@@ -27,7 +25,11 @@ const LanguageStack = ({ language, changeLanguage, closeStack }) => (
           <div className="language-stack-lang">
             <Lang language={lang} size="x38" />
           </div>
-          <div className={classnames('language-stack-name', { active: language === lang })}>
+          <div
+            className={classnames('language-stack-name', {
+              active: language === lang
+            })}
+          >
             {names[lang]}
           </div>
         </li>

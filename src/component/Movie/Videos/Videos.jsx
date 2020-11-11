@@ -1,25 +1,16 @@
 import React from 'react'
 import { connect, action } from 'redux/app'
+import Video from './Video'
 
 const Videos = ({ videos, openVideo }) => (
   <div className="ui-videos">
     {videos.map(({ id, name, key }) => (
-      <div
+      <Video
         key={id}
-        className="ui-videos-item-wrap"
-        onClick={() => openVideo({
-          title: name,
-          videoKey: key
-        })}
-      >
-        <div className="ui-videos-item">
-          <div className="ui-videos-item-thumb">
-            <img src={`https://img.youtube.com/vi/${key}/hqdefault.jpg`} alt="" />
-          </div>
-        </div>
-
-        <div className="ui-videos-item-name">{name}</div>
-      </div>
+        name={name}
+        videoKey={key}
+        openVideo={openVideo}
+      />
     ))}
   </div>
 )

@@ -21,7 +21,7 @@ export const getYouTubeVideos = createSelector(
   ({ movie }) => movie.videos,
   ({ user }) => user.language,
   ({ id }) => id,
-  (videos, language, id) => (videos[id] && videos[id][language] || []).filter(({ site }) => site === 'YouTube')
+  (videos, language, id) => (videos[id] ? videos[id][language] || [] : []).filter(({ site }) => site === 'YouTube')
 )
 
 export const filterMovies = createSelector(

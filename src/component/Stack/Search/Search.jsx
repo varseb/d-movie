@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTitle } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import Poster from 'component/Movie/Poster'
 import Rating from 'component/Movie/Rating'
@@ -14,6 +15,8 @@ const SearchStack = ({
   searchMovies,
   openMovie
 }) => {
+  useTitle('Search')
+
   useEffect(
     () => {
       if( query ){
