@@ -44,9 +44,9 @@ export const getResults = createSelector(
     }
 
     if( rating !== null ){
-      return filterMovies({ movies, rating })
+      movies = filterMovies({ movies, rating })
     }
 
-    return movies
+    return movies.slice(0, 20)
   }
 )

@@ -31,11 +31,16 @@ export default function movieReducer(state = initialState, { type: actionType, p
     case DISCOVER_MOVIES_SUCCESS: {
       const { results } = payload.data
 
+      const list = results.map(({ id }) => id)
+
       return {
         ...state,
         // on this array we just keep the id's of the movies
         // here lives our movies order
-        list: results.map(({ id }) => id),
+        list: payload.page === 1 ? list : [...new Set([
+          ...state.list,
+          ...list
+        ])],
 
         // on this object we store all the returned movies from the api indexed by id
         // we use this movie object as single source of truth
@@ -61,7 +66,7 @@ export default function movieReducer(state = initialState, { type: actionType, p
           ...state.movies,
           [id]: {
             ...state.movies[id],
-            ...movie
+            ...movieExtractor(movie)
           }
         }
       }
@@ -99,12 +104,25 @@ export default function movieReducer(state = initialState, { type: actionType, p
   }
 }
 
+const movieExtractor = movie => ({
+  id: movie.id,
+  title: movie.title,
+  poster_path: movie.poster_path,
+  backdrop_path: movie.backdrop_path,
+  original_language: movie.original_language,
+  genre_ids: movie.genre_ids || (movie.genres || []).map(({ id }) => id),
+  vote_average: movie.vote_average,
+  overview: movie.overview,
+  release_date: movie.release_date,
+  runtime: movie.runtime
+})
+
 const indexMovies = ({ state, results }) =>
   results.reduce((movies, movie) => ({
     ...movies,
     [movie.id]: {
       ...(state.movies[movie.id] || {}),
-      ...movie
+      ...movieExtractor(movie)
     }
   }), {
     ...state.movies
@@ -114,7 +132,7 @@ const indexMovies = ({ state, results }) =>
 export const discoverMovies = payload => dispatch => dispatch({
   type: DISCOVER_MOVIES_REQUEST,
   meta: api.movie.discoverMovies(payload)
-    .then(success(dispatch, DISCOVER_MOVIES_SUCCESS))
+    .then(success(dispatch, DISCOVER_MOVIES_SUCCESS, payload))
     .catch(failure(dispatch, DISCOVER_MOVIES_FAILURE))
 })
 

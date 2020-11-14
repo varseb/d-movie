@@ -8,6 +8,7 @@
   opacity: 1;
   transition: transform .4s ease;
   transform: scale(.95) translate3d(0,0,0);
+  transform-origin: center center;
   transform-style: preserve-3d;
   backdrop-filter: blur(30px);
   backface-visibility: hidden;

@@ -31,6 +31,7 @@ const Poster = ({
         {path && (
           <img
             alt=""
+            key={posterUrl}
             src={posterUrl}
             onLoad={onLoad}
           />

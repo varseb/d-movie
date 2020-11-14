@@ -1,9 +1,10 @@
 import { request } from 'redux/http'
 
-export const discoverMovies = ({ language }) => request({
+export const discoverMovies = ({ page, language }) => request({
   method: 'GET',
   url: '/discover/movie',
   params: {
+    page,
     language
   }
 })
