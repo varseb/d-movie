@@ -1,16 +1,29 @@
 .ui-stack {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  height: 100%;
   animation: stack-show .4s cubic-bezier(.55,0,.1,1);
-  transform-origin: center center;
+  transform-origin: top center;
   background-color: rgba(0,0,0,.7);
   backface-visibility: hidden;
   perspective: 1000;
+
+  &-content {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &-wrap {
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    transform: scale(1) translate3d(0,0,0);
+    transition: transform .25s cubic-bezier(.55,0,.1,1);
+    transform-origin: center center;
+
+    &.closing {
+      transition: transform .05s linear;
+    }
+  }
 
   &-close {
     position: fixed;
@@ -27,6 +40,10 @@
 
 @media(min-width: 768px) {
   .ui-stack {
+    &-wrap {
+      border-radius: 0;
+    }
+
     &-close {
       top: 48px;
       right: 40px;

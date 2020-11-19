@@ -90,45 +90,51 @@ const MovieStack = ({
           </div>
         )}
 
-        <p className="movie-stack-overview">
-          {overview}
-        </p>
+        <div className="show-up-primary">
+          <p className="movie-stack-overview">
+            {overview}
+          </p>
+        </div>
 
-        {genres.length > 0 && (
-          <div className="movie-stack-genres">
-            <Genres genres={genres} />
-          </div>
-        )}
-
-        {cast.length > 0 && (
-          <div className={classnames('movie-stack-credits', { 'fade-in': isCastUpdated })}>
-            <Credits
-              title="Cast"
-              value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
-            />
-          </div>
-        )}
-
-        {director && (
-          <div className={classnames('movie-stack-credits', { 'fade-in': isDirectorUpdated })}>
-            <Credits
-              title="Director"
-              value={director.name}
-            />
-          </div>
-        )}
-
-        {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
-          <div className={classnames('movie-stack-videos', { 'fade-in': isVideosUpdated })}>
-            <div className="movie-stack-videos-title">
-              VIDEOS
+        <div className="show-up-secondary">
+          {genres.length > 0 && (
+            <div className="movie-stack-genres">
+              <Genres genres={genres} />
             </div>
+          )}
+        </div>
 
-            <div className="movie-stack-videos-wrap scroll-lock-ignore">
-              <Videos videos={videos} />
+        <div className="show-up-tertiary">
+          {cast.length > 0 && (
+            <div className={classnames('movie-stack-credits', { 'fade-in': isCastUpdated })}>
+              <Credits
+                title="Cast"
+                value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
+              />
             </div>
-          </div>
-        )}
+          )}
+
+          {director && (
+            <div className={classnames('movie-stack-credits', { 'fade-in': isDirectorUpdated })}>
+              <Credits
+                title="Director"
+                value={director.name}
+              />
+            </div>
+          )}
+
+          {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
+            <div className={classnames('movie-stack-videos', { 'fade-in': isVideosUpdated })}>
+              <div className="movie-stack-videos-title">
+                VIDEOS
+              </div>
+
+              <div className="movie-stack-videos-wrap scroll-lock-ignore">
+                <Videos videos={videos} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   )

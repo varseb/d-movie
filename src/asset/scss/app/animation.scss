@@ -10,3 +10,28 @@
     opacity: 1;
   }
 }
+
+.show-up-primary {
+  transform: translate3d(0, 10px, 0);
+  animation: section-show-up .6s ease forwards;
+}
+
+.show-up-secondary {
+  transform: translate3d(0, 10px, 0);
+  animation: section-show-up .5s .1s ease forwards;
+}
+
+.show-up-tertiary {
+  transform: translate3d(0, 10px, 0);
+  animation: section-show-up .4s .2s ease forwards;
+}
+
+@keyframes section-show-up {
+  from {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

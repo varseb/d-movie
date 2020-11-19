@@ -13,6 +13,7 @@
   backdrop-filter: blur(30px);
   backface-visibility: hidden;
   perspective: 1000;
+  border-radius: 8px;
 
   .has-video-stack.playing-video ~ &:not(.active) {
     visibility: hidden;
@@ -29,6 +30,12 @@
 
   &.exit {
     animation: layer-hide .4s ease forwards;
+  }
+}
+
+@media(min-width: 768px) {
+  .ui-layer {
+    border-radius: 0;
   }
 }
 

@@ -9,13 +9,7 @@
     display: flex;
     align-items: center;
 
-    i {
-      font-size: 32px;
-      margin-top: 1px;
-    }
-
     h1 {
-      padding-left: 10px;
       letter-spacing: -2px;
     }
   }
@@ -49,12 +43,6 @@
 @media(min-width: 768px) {
   .ui-header {
     padding: 40px 40px 0;
-
-    &-title {
-      i {
-        font-size: 48px;
-      }
-    }
 
     &-language {
       margin-right: 40px;

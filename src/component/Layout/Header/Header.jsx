@@ -5,7 +5,6 @@ import Lang from 'component/Layout/Lang'
 const Header = ({ language, openLanguage, openSearch }) => (
   <div className="ui-header">
     <div className="ui-header-title">
-      <i className="icon-logo" />
       <h1>MUST WATCH</h1>
     </div>
 

@@ -66,7 +66,7 @@ export default function movieReducer(state = initialState, { type: actionType, p
           ...state.movies,
           [id]: {
             ...state.movies[id],
-            ...movieExtractor(movie)
+            ...movieDTO(movie)
           }
         }
       }
@@ -104,25 +104,32 @@ export default function movieReducer(state = initialState, { type: actionType, p
   }
 }
 
-const movieExtractor = movie => ({
-  id: movie.id,
-  title: movie.title,
-  poster_path: movie.poster_path,
-  backdrop_path: movie.backdrop_path,
-  original_language: movie.original_language,
-  genre_ids: movie.genre_ids || (movie.genres || []).map(({ id }) => id),
-  vote_average: movie.vote_average,
-  overview: movie.overview,
-  release_date: movie.release_date,
-  runtime: movie.runtime
-})
+const movieDTO = movie => {
+  const m = {
+    id: movie.id,
+    title: movie.title,
+    poster_path: movie.poster_path,
+    backdrop_path: movie.backdrop_path,
+    original_language: movie.original_language,
+    genre_ids: movie.genre_ids || (movie.genres || []).map(({ id }) => id),
+    vote_average: movie.vote_average,
+    overview: movie.overview,
+    release_date: movie.release_date
+  }
+
+  if( movie.runtime ){
+    m.runtime = movie.runtime
+  }
+
+  return m
+}
 
 const indexMovies = ({ state, results }) =>
   results.reduce((movies, movie) => ({
     ...movies,
     [movie.id]: {
       ...(state.movies[movie.id] || {}),
-      ...movieExtractor(movie)
+      ...movieDTO(movie)
     }
   }), {
     ...state.movies
