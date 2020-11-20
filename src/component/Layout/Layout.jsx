@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import Header from 'component/Layout/Header'
 import StackLayer from 'component/Layout/Stack/Layer'
 import ToastLayer from 'component/Layout/Toast/Layer'
+import OfflineLayer from 'component/Layout/Offline/Layer'
 import { connect } from 'redux/app'
 
 const Layout = ({ stackOpen, hasVideoStack, playingVideo, children }) => (
@@ -24,6 +25,8 @@ const Layout = ({ stackOpen, hasVideoStack, playingVideo, children }) => (
     <StackLayer />
 
     <ToastLayer />
+
+    <OfflineLayer />
   </>
 )
 

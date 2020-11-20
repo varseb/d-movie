@@ -7,7 +7,7 @@ import { connect, action } from 'redux/app'
 const ToastLayer = ({ toast, closeToast }) => (
   <LayerGroup>
     {toast.open && (
-      <Layer active={true} namespace="ui-toast-layer">
+      <Layer active namespace="ui-toast-layer">
         <Toast
           message={toast.message}
           closeToast={closeToast}

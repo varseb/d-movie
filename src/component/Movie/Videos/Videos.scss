@@ -1,7 +1,6 @@
 .ui-videos {
   padding-left: 20px;
   display: flex;
-  user-select: none;
   width: 100%;
 
   &-item {
@@ -21,6 +20,8 @@
       right: 0;
       bottom: 0;
       left: 0;
+      border-radius: 2px;
+      overflow: hidden;
 
       img {
         display: block;

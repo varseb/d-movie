@@ -6,6 +6,7 @@ import * as config from './module/config'
 import * as genre from './module/genre'
 import * as layout from './module/layout'
 import * as movie from './module/movie'
+import * as person from './module/person'
 import * as search from './module/search'
 import * as user from './module/user'
 
@@ -14,6 +15,7 @@ export const action = {
   genre,
   layout,
   movie,
+  person,
   search,
   user
 }

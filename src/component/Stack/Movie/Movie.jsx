@@ -28,7 +28,8 @@ const MovieStack = ({
   loadingCredits,
   getMovie,
   getCredits,
-  getVideos
+  getVideos,
+  openCast
 }) => {
   useTitle(title)
 
@@ -106,7 +107,11 @@ const MovieStack = ({
 
         <div className="show-up-tertiary">
           {cast.length > 0 && (
-            <div className={classnames('movie-stack-credits', { 'fade-in': isCastUpdated })}>
+            <div
+              onClick={() => openCast({ id })}
+              className={classnames('movie-stack-credits ui-tapable', {
+                'fade-in': isCastUpdated
+              })}>
               <Credits
                 title="Cast"
                 value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
@@ -153,7 +158,8 @@ export default connect(
   {
     getMovie: action.movie.getMovie,
     getCredits: action.movie.getCredits,
-    getVideos:  action.movie.getVideos
+    getVideos: action.movie.getVideos,
+    openCast: action.layout.openStack('cast')
   },
   MovieStack
 )

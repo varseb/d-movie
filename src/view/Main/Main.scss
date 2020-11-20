@@ -3,6 +3,7 @@
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  //scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
     display: none;
@@ -15,6 +16,7 @@
     height: 100%;
 
     &-item {
+      //scroll-snap-stop: always;
       min-width: calc(100vw * .85);
       min-height: calc(100vw * .85 * 1.5 - 40px);
       padding-right: 20px;

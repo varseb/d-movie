@@ -27,7 +27,7 @@ export const getYouTubeVideos = createSelector(
 export const filterMovies = createSelector(
   ({ movies }) => movies,
   ({ rating }) => rating,
-  (movies, rating) => movies.filter(({ vote_average }) => vote_average && (vote_average >= rating && vote_average < rating + 2))
+  (movies, rating) => movies.filter(({ vote_average }) => vote_average && (vote_average > rating - 2 && vote_average <= rating))
 )
 
 export const getResults = createSelector(

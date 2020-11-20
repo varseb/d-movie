@@ -104,6 +104,10 @@ export default function movieReducer(state = initialState, { type: actionType, p
   }
 }
 
+export {
+  GET_CREDITS_SUCCESS
+}
+
 const movieDTO = movie => {
   const m = {
     id: movie.id,

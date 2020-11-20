@@ -28,7 +28,6 @@
       right: 20px;
       opacity: .9;
       height: 10px;
-      user-select: none;
     }
   }
 
@@ -37,10 +36,6 @@
     position: relative;
     z-index: 2;
     text-shadow: 1px 1px 0 rgba(0,0,0,.7);
-  }
-
-  &-title {
-    padding-right: 40px;
   }
 
   &-rating {
@@ -65,10 +60,17 @@
   }
 
   &-credits {
-    padding-bottom: 40px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
 
     &:last-of-type {
-      padding-bottom: 0;
+      margin-bottom: 0;
     }
   }
 
@@ -102,6 +104,10 @@
       padding: 40px 40px 50px;
     }
 
+    &-title {
+      padding-right: 40px;
+    }
+
     &-rating {
       padding-top: 2px;
     }
@@ -112,6 +118,13 @@
 
     &-overview {
       font-size: 22px;
+    }
+
+    &-credits {
+      margin-left: -40px;
+      margin-right: -40px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
 
     &-videos {

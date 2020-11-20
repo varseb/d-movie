@@ -1,33 +1,34 @@
 import React from 'react'
-import { connect, action } from 'redux/app'
+import { connect, selector, action } from 'redux/app'
 import Layer from 'component/Layout/Layer'
 import LayerGroup from 'component/Layout/Layer/Group'
 import Stack from 'component/Layout/Stack'
-import MovieStack from 'component/Stack/Movie'
-import SearchStack from 'component/Stack/Search'
-import VideoStack from 'component/Stack/Video'
 import LanguageStack from 'component/Stack/Language'
+import SearchStack from 'component/Stack/Search'
+import MovieStack from 'component/Stack/Movie'
+import VideoStack from 'component/Stack/Video'
+import CastStack from 'component/Stack/Cast'
+import PersonStack from 'component/Stack/Person'
 
 const stackList = {
-  'movie': MovieStack,
-  'search': SearchStack,
-  'video': VideoStack,
-  'language': LanguageStack
+  language: LanguageStack,
+  search: SearchStack,
+  movie: MovieStack,
+  video: VideoStack,
+  cast: CastStack,
+  person: PersonStack
 }
 
-const StackLayer = ({ stack, closeStack }) => (
+const StackLayer = ({ stack, closeStack, loading }) => (
   <LayerGroup>
     {stack.map(({ namespace, props }, index) => {
       const active = stack.length === index + 1
+      const hidden = stack.length > index + 2
       const Content = stackList[namespace]
 
-      if( !Content ){
-        return null
-      }
-
       return (
-        <Layer key={namespace} namespace={namespace} active={active}>
-          <Stack active={active} closeStack={closeStack}>
+        <Layer key={namespace} namespace={namespace} active={active} hidden={hidden}>
+          <Stack active={active} loading={active && loading} closeStack={closeStack}>
             <Content {...props} />
           </Stack>
         </Layer>
@@ -37,8 +38,9 @@ const StackLayer = ({ stack, closeStack }) => (
 )
 
 export default connect(
-  ({ layout }) => ({
-    stack: layout.stack
+  ({ layout, status }) => ({
+    stack: layout.stack,
+    loading: selector.status.isLoading({ status })
   }),
   {
     closeStack: action.layout.closeStack

@@ -70,7 +70,7 @@ const SearchStack = ({
 }
 
 const handleRatingChange = (star, filter, updateFilter) => {
-  const rating = star * 2
+  const rating = (star+1) * 2
 
   updateFilter({
     rating: rating === filter.rating ? null : rating

@@ -2,7 +2,7 @@
   font-family: 'Oswald';
   src: url('../../font/Oswald/Oswald-Regular.ttf') format('truetype');
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 @font-face {
@@ -12,14 +12,25 @@
   font-weight: 300;
 }
 
+h1, h2 {
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+
 h1 {
   font-size: 32px;
-  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 24px;
 }
 
 @media(min-width: 768px) {
   h1 {
     font-size: 48px;
-    letter-spacing: 0;
+  }
+
+  h2 {
+    font-size: 36px;
   }
 }

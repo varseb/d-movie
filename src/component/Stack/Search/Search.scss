@@ -16,7 +16,7 @@
     border-bottom: 2px solid white;
     font-family: Oswald;
     font-weight: 300;
-    width: calc(80% - 8px);
+    width: 100%;
     padding-left: 36px;
     border-radius: 0;
 
@@ -81,6 +81,7 @@
     &-input {
       font-size: 48px;
       padding-left: 56px;
+      width: calc(80% - 8px);
 
       &-wrapper {
         .icon-search {

@@ -1,0 +1,50 @@
+.person-stack {
+  padding: 20px;
+
+  &-name {
+    margin-bottom: 40px;
+  }
+
+  dl {
+    dt {
+      font-weight: 400;
+    }
+
+    dd {
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+  }
+
+  &-info {
+    margin-bottom: 40px;
+  }
+
+  &-bio {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-picture {
+    width: 185px;
+    height: 278px;
+    margin: auto;
+    margin-bottom: 40px;
+    background-color: rgba(255,255,255,.1);
+    border-radius: 2px;
+
+    img {
+      border-radius: 2px;
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .person-stack {
+    padding: 40px;
+  }
+}

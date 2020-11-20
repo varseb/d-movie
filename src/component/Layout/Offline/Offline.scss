@@ -1,0 +1,14 @@
+.ui-offline {
+  background-color: #E34C56;
+  width: 40px;
+  height: 6px;
+  border-radius: 12px;
+
+  &-layer {
+    pointer-events: none;
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 20px;
+    backdrop-filter: none;
+  }
+}

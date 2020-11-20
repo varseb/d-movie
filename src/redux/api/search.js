@@ -5,6 +5,7 @@ export const searchMovies = ({ query, language }) => request({
   url: '/search/movie',
   params: {
     query,
-    language
+    language,
+    include_adult: true
   }
 })

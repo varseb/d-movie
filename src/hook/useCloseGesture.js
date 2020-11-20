@@ -1,22 +1,32 @@
 import { useState, useEffect } from 'react'
 
-const sensibility = 800
-const closeTarget = .25
+const sensibility   = 800
+const closeTarget   = .25
+const dragBarHeight = 35
 
-const useCloseGesture = (ref, closeStack) => {
+const useCloseGesture = (stackRef, contentRef, closeStack) => {
   const [progress, setProgress] = useState(0)
 
   useEffect(
     () => {
-      const node  = ref.current
+      setProgress(0)
+    },
+    [ setProgress ]
+  )
 
+  useEffect(
+    () => {
+      const content = contentRef.current
+
+      let startY  = null
       let clientY = null
       let closing = false
       let capture = false
       let blur    = true
 
-      const handleTouchStart = () => {
-        capture = node.scrollTop === 0
+      const handleTouchStart = ({ touches }) => {
+        startY  = touches[0].clientY
+        capture = content.scrollTop === 0 || startY < dragBarHeight
         blur    = true
       }
 
@@ -25,13 +35,13 @@ const useCloseGesture = (ref, closeStack) => {
           return
         }
 
-        if( node.scrollTop !== 0 ){
-          capture = false
-          return
-        }
-
         if( clientY === null ){
           clientY = touches[0].clientY
+        }
+
+        if( clientY < startY ){
+          capture = false
+          return
         }
 
         const diff = clientY - touches[0].clientY
@@ -62,19 +72,21 @@ const useCloseGesture = (ref, closeStack) => {
         }
       }
 
-      if( node ){
-        node.addEventListener('touchstart', handleTouchStart)
-        node.addEventListener('touchmove', handleTouchMove)
-        node.addEventListener('touchend', handleTouchEnd)
+      const stack = stackRef.current
+
+      if( stack ){
+        stack.addEventListener('touchstart', handleTouchStart)
+        stack.addEventListener('touchmove', handleTouchMove)
+        stack.addEventListener('touchend', handleTouchEnd)
 
         return () => {
-          node.removeEventListener('touchstart', handleTouchStart)
-          node.removeEventListener('touchmove', handleTouchMove)
-          node.removeEventListener('touchend', handleTouchEnd)
+          stack.removeEventListener('touchstart', handleTouchStart)
+          stack.removeEventListener('touchmove', handleTouchMove)
+          stack.removeEventListener('touchend', handleTouchEnd)
         }
       }
     },
-    [ ref, setProgress, closeStack ]
+    [ stackRef, contentRef, setProgress, closeStack ]
   )
 
   return progress

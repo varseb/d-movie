@@ -12,8 +12,10 @@ const Rating = ({ voteAverage, onChange }) => (
         onClick={() => {
           onChange && onChange(star)
         }}
+        data-rating={voteAverage}
         className={classnames('icon-star-outline', {
-          'icon-star-rate': voteAverage !== null && voteAverage >= star * range,
+          'icon-star-half': voteAverage !== null && voteAverage > star * range,
+          'icon-star-rate': voteAverage !== null && voteAverage >= star * range + 1,
           'ui-clickable': onChange
         })}
       />

@@ -2,13 +2,14 @@
   height: 100%;
   animation: stack-show .4s cubic-bezier(.55,0,.1,1);
   transform-origin: top center;
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0,0,0,.6);
   backface-visibility: hidden;
   perspective: 1000;
+  user-select: none;
 
   &-content {
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -25,18 +26,46 @@
     }
   }
 
-  &-close {
-    position: fixed;
-    top: 28px;
-    right: 20px;
+  &-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 35px;
     z-index: 3;
     transform: translate3d(0,0,0);
 
-    i {
-      font-size: 32px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      margin-left: -50px;
+      width: 100px;
+      height: 5px;
+      background-color: rgba(255, 255, 255, .7);
+      border-radius: 5px;
+    }
+
+    &.loading:after {
+      animation: expand 1.5s infinite;
     }
   }
+
+  &-close {
+    display: none;
+  }
 }
+
+@keyframes expand {
+  from {
+    transform: scale(.1, 1);
+  }
+  to {
+    transform: scale(1,1);
+  }
+}
+
 
 @media(min-width: 768px) {
   .ui-stack {
@@ -45,11 +74,19 @@
     }
 
     &-close {
+      position: absolute;
       top: 48px;
       right: 40px;
       cursor: pointer;
+      z-index: 3;
+      display: block;
+
+      &:after {
+        display: none;
+      }
 
       i {
+        display: block;
         font-size: 56px;
       }
     }
