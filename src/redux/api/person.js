@@ -4,7 +4,14 @@ export const getPerson = ({ personId, language }) => request({
   method: 'GET',
   url: `/person/${personId}`,
   params: {
-    language,
-    //append_to_response: 'movie_credits'
+    language
+  }
+})
+
+export const getMovieCredits = ({ personId, language }) => request({
+  method: 'GET',
+  url: `/person/${personId}/movie_credits`,
+  params: {
+    language
   }
 })

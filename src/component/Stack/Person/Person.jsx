@@ -2,18 +2,33 @@ import React, { useEffect } from 'react'
 import classnames from 'classnames'
 import moment from 'moment'
 import { useUpdateCheck } from 'hook'
-import { connect, action } from 'redux/app'
+import { connect, selector, action } from 'redux/app'
 import Picture from 'component/Person/Picture'
 import TextClamp from 'component/Layout/TextClamp'
+import Poster from 'component/Movie/Poster'
 
-
-const PersonStack = ({ personId, language, person, getPerson }) => {
+const PersonStack = ({
+  personId,
+  language,
+  person,
+  knownFor,
+  getPerson,
+  getMovieCredits,
+  //openMovie
+}) => {
 
   useEffect(
     () => {
       getPerson({ personId, language })
     },
     [ personId, language, getPerson ]
+  )
+
+  useEffect(
+    () => {
+      getMovieCredits({ personId, language })
+    },
+    [ personId, language, getMovieCredits ]
   )
 
   const isBioUpdated = useUpdateCheck(person.biography)
@@ -72,17 +87,37 @@ const PersonStack = ({ personId, language, person, getPerson }) => {
           )}
         </dl>
       </div>
+
+      <div className="show-up-tertiary">
+        {(person.birthday || person.place_of_birth || person.biography) && knownFor.length > 0 && (
+          <div className="person-stack-known-for">
+            <div>Known For</div>
+            <div className="person-stack-movies scroll-lock-ignore" dir="ltr">
+              <div className="person-stack-movies-scroll">
+                {knownFor.map(movie => (
+                  <div className="person-stack-movies-movie" key={movie.id}>
+                    <Poster id={movie.id} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
 
 export default connect(
-  ({ user, person }, { personId }) => ({
+  ({ user, movie, person }, { personId }) => ({
     person: person.persons[personId],
-    language: user.language
+    language: user.language,
+    knownFor: selector.person.getKnownFor({ movie, person, personId })
   }),
   {
-    getPerson: action.person.getPerson
+    getPerson: action.person.getPerson,
+    getMovieCredits: action.person.getMovieCredits,
+    //openMovie: action.layout.openStack('movie')
   },
   PersonStack
 )

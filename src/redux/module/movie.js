@@ -2,6 +2,7 @@ import api from 'redux/api'
 import { success, failure } from 'redux/http'
 
 import { SEARCH_MOVIES_SUCCESS } from './search'
+import { GET_MOVIE_CREDITS_SUCCESS } from 'redux/module/person'
 
 const DISCOVER_MOVIES_REQUEST = 'movie/DISCOVER_MOVIES_REQUEST'
 const DISCOVER_MOVIES_SUCCESS = 'movie/DISCOVER_MOVIES_SUCCESS'
@@ -35,16 +36,11 @@ export default function movieReducer(state = initialState, { type: actionType, p
 
       return {
         ...state,
-        // on this array we just keep the id's of the movies
-        // here lives our movies order
         list: payload.page === 1 ? list : [...new Set([
           ...state.list,
           ...list
         ])],
-
-        // on this object we store all the returned movies from the api indexed by id
-        // we use this movie object as single source of truth
-        movies: indexMovies({ state, results })
+        movies: storeMovies({ state, results })
       }
     }
 
@@ -53,7 +49,7 @@ export default function movieReducer(state = initialState, { type: actionType, p
 
       return {
         ...state,
-        movies: indexMovies({ state, results })
+        movies: storeMovies({ state, results })
       }
     }
 
@@ -99,6 +95,15 @@ export default function movieReducer(state = initialState, { type: actionType, p
       }
     }
 
+    case GET_MOVIE_CREDITS_SUCCESS: {
+      const { cast: results } = payload.data
+
+      return {
+        ...state,
+        movies: storeMovies({ state, results })
+      }
+    }
+
     default:
       return state
   }
@@ -118,7 +123,8 @@ const movieDTO = movie => {
     genre_ids: movie.genre_ids || (movie.genres || []).map(({ id }) => id),
     vote_average: movie.vote_average,
     overview: movie.overview,
-    release_date: movie.release_date
+    release_date: movie.release_date,
+    popularity: movie.popularity
   }
 
   if( movie.runtime ){
@@ -128,7 +134,7 @@ const movieDTO = movie => {
   return m
 }
 
-const indexMovies = ({ state, results }) =>
+const storeMovies = ({ state, results }) =>
   results.reduce((movies, movie) => ({
     ...movies,
     [movie.id]: {

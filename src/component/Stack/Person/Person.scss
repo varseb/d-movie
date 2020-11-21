@@ -28,10 +28,46 @@
     justify-content: center;
     margin-bottom: 40px;
   }
+
+  &-known-for {
+    margin-bottom: 40px;
+  }
+
+  &-movies {
+    padding-top: 6px;
+    margin: 0 -20px;
+
+    &-scroll {
+      //width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-flow: row nowrap;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &-movie {
+      width: 145px;
+      padding-left: 20px;
+      scroll-snap-align: start;
+      scroll-snap-stop: normal;
+      flex: none;
+    }
+  }
+
 }
 
 @media(min-width: 768px) {
   .person-stack {
     padding: 40px;
+
+    &-movies {
+      margin: 0 -40px;
+    }
   }
 }
