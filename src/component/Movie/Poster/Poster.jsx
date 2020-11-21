@@ -1,43 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import { connect } from 'redux/app'
+import Image from 'component/Layout/Image'
 
 const Poster = ({
-  size = 'w500',
-  backdrop = false,
-  onClick = null,
-  movie: { title, backdrop_path, poster_path },
-  config
+  movie: {
+    title,
+    poster_path
+  },
+  config,
+  onClick,
+  size = 'w500'
 }) => {
-  const [loaded, setLoaded] = useState(false)
-
-  const path = backdrop ? backdrop_path || poster_path : poster_path
-
-  const posterUrl = [config.secure_base_url, size, path].join('')
-
-  const onLoad = () => {
-    setLoaded(true)
-  }
+  const src = [ config.secure_base_url, size, poster_path ].join('')
 
   return (
-    <div
-      onClick={onClick}
-      className={classnames('ui-poster', {
-        backdrop,
-        'has-click': onClick
-      })}
-    >
-      <div className={classnames("ui-poster-content", { 'no-image': !path, loaded })}>
-        {path && (
-          <img
-            alt=""
-            key={posterUrl}
-            src={posterUrl}
-            onLoad={onLoad}
-          />
+    <div className="ui-poster" onClick={onClick}>
+      <div
+        className={classnames('ui-poster-content', {
+          'no-image': !poster_path
+        })}
+      >
+        {poster_path && (
+          <Image src={src} />
         )}
 
-        {!path && !backdrop && (
+        {!poster_path && (
           <div className="ui-poster-title">{title}</div>
         )}
       </div>

@@ -1,7 +1,6 @@
 .person-stack {
   padding: 20px;
 
-
   dl {
     dt {
       font-weight: 400;
@@ -25,18 +24,9 @@
   }
 
   &-picture {
-    width: 185px;
-    height: 278px;
-    margin: auto;
+    display: flex;
+    justify-content: center;
     margin-bottom: 40px;
-    background-color: rgba(255,255,255,.1);
-    border-radius: 2px;
-
-    img {
-      border-radius: 2px;
-      display: block;
-      width: 100%;
-    }
   }
 }
 

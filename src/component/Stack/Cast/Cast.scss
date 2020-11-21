@@ -5,26 +5,6 @@
     padding-top: 6px;
   }
 
-  &-head {
-    padding: 40px 0 20px;
-    //margin: -20px -20px 0 -20px;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.7);
-
-    position: sticky;
-    top: 20px;
-    z-index: 1;
-
-    &-fill {
-      padding-bottom: 40px;
-    }
-  }
-
-  &-fixed-header {
-    position: sticky;
-    top: 20px;
-    z-index: 1;
-  }
-
   &-list {
     margin: 0 -20px;
   }
@@ -34,17 +14,8 @@
     display: flex;
     align-items: center;
 
-    &-avatar {
-      width: 50px;
-      height: 75px;
-      overflow: hidden;
-      border-radius: 2px;
-      background-color: rgba(255, 255, 255, .1);
+    &-picture {
       margin-right: 15px;
-
-      img {
-        width: 100%;
-      }
     }
 
     &-info {

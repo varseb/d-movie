@@ -1,0 +1,8 @@
+.ui-backdrop {
+  img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transform: translate3d(0,0,0);
+  }
+}

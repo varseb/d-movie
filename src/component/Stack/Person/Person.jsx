@@ -3,9 +3,11 @@ import classnames from 'classnames'
 import moment from 'moment'
 import { useUpdateCheck } from 'hook'
 import { connect, action } from 'redux/app'
+import Picture from 'component/Person/Picture'
 import TextClamp from 'component/Layout/TextClamp'
 
-const PersonStack = ({ config, personId, language, person, getPerson }) => {
+
+const PersonStack = ({ personId, language, person, getPerson }) => {
 
   useEffect(
     () => {
@@ -13,8 +15,6 @@ const PersonStack = ({ config, personId, language, person, getPerson }) => {
     },
     [ personId, language, getPerson ]
   )
-
-  const pictureUrl = [config.secure_base_url, 'h632', person.profile_path].join('')
 
   const isBioUpdated = useUpdateCheck(person.biography)
 
@@ -29,9 +29,7 @@ const PersonStack = ({ config, personId, language, person, getPerson }) => {
 
       <div className="show-up-primary">
         <div className="person-stack-picture">
-          {person.profile_path && (
-            <img src={pictureUrl} alt="" />
-          )}
+          <Picture person={person} size="x185" placeholder="x50" />
         </div>
       </div>
 
@@ -79,9 +77,8 @@ const PersonStack = ({ config, personId, language, person, getPerson }) => {
 }
 
 export default connect(
-  ({ config, user, person }, { personId }) => ({
+  ({ user, person }, { personId }) => ({
     person: person.persons[personId],
-    config: config.images,
     language: user.language
   }),
   {

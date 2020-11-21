@@ -10,6 +10,10 @@
   transform-origin: top center;
   transition: transform .3s ease;
 
+  &.stack-open {
+    //opacity: 0;
+  }
+
   &.stack-open, #root:not(.ready) & {
     transform: scale(0.95) translate3d(0,0,0);
   }
@@ -44,10 +48,6 @@
 
 @media(min-width: 768px) {
   .ui-clickable {
-    cursor: pointer;
-  }
-
-  .ui-tapable {
     cursor: pointer;
   }
 }

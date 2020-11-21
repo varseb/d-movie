@@ -3,7 +3,7 @@ import { useTitle, useUpdateCheck } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
-import Poster from 'component/Movie/Poster'
+import Backdrop from 'component/Movie/Backdrop'
 import Rating from 'component/Movie/Rating'
 import Info from 'component/Movie/Info'
 import Genres from 'component/Movie/Genres'
@@ -14,14 +14,7 @@ import classnames from 'classnames'
 const MovieStack = ({
   id,
   language,
-  movie: {
-    title,
-    vote_average,
-    release_date,
-    runtime,
-    overview,
-    original_language
-  },
+  movie,
   genres,
   cast,
   director,
@@ -32,6 +25,15 @@ const MovieStack = ({
   getVideos,
   openCast
 }) => {
+  const {
+    title,
+    vote_average,
+    release_date,
+    runtime,
+    overview,
+    original_language
+  } = movie
+
   useTitle(title)
 
   useEffect(
@@ -75,7 +77,7 @@ const MovieStack = ({
   return (
     <>
       <div className="movie-stack-backdrop">
-        <Poster id={id} size="w1280" backdrop />
+        <Backdrop movie={movie} />
 
         <img
           className="thanks-themoviedb"
