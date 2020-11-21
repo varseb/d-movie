@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { useUpdateCheck } from 'hook'
-import { connect, action } from 'redux/app'
 import classnames from 'classnames'
 import moment from 'moment'
-
+import { useUpdateCheck } from 'hook'
+import { connect, action } from 'redux/app'
+import TextClamp from 'component/Layout/TextClamp'
 
 const PersonStack = ({ config, personId, language, person, getPerson }) => {
 
@@ -64,7 +64,9 @@ const PersonStack = ({ config, personId, language, person, getPerson }) => {
 
           {person.biography && (
             <dd className="person-stack-bio">
-              {person.biography}
+              <TextClamp>
+                {person.biography}
+              </TextClamp>
             </dd>
           )}
         </dl>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useTitle, useUpdateCheck } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
+import TextClamp from 'component/Layout/TextClamp'
 import Poster from 'component/Movie/Poster'
 import Rating from 'component/Movie/Rating'
 import Info from 'component/Movie/Info'
@@ -91,11 +92,15 @@ const MovieStack = ({
           </div>
         )}
 
-        <div className="show-up-primary">
-          <p className="movie-stack-overview">
-            {overview}
-          </p>
-        </div>
+        {overview && (
+          <div className="show-up-primary">
+            <div className="movie-stack-overview">
+              <TextClamp lineClamp="x4">
+                {overview}
+              </TextClamp>
+            </div>
+          </div>
+        )}
 
         <div className="show-up-secondary">
           {genres.length > 0 && (
