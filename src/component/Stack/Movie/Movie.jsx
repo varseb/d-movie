@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTitle, useUpdateCheck } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
@@ -55,7 +55,20 @@ const MovieStack = ({
     [ id, language, getVideos ]
   )
 
-  const isCastUpdated = useUpdateCheck(cast.length)
+  const principalCast = useMemo(
+    () => {
+      const principal = cast.slice(0,3).map(({ name }) => name)
+
+      if( principal.length !== cast.length ){
+        principal.push(`${cast.length - principal.length}+`)
+      }
+
+      return principal
+    },
+    [ cast ]
+  )
+
+  const isCastUpdated = useUpdateCheck(principalCast.length)
   const isDirectorUpdated = useUpdateCheck(director?.name)
   const isVideosUpdated = useUpdateCheck(videos.length)
 
@@ -116,10 +129,11 @@ const MovieStack = ({
               onClick={() => openCast({ id })}
               className={classnames('movie-stack-credits ui-tapable', {
                 'fade-in': isCastUpdated
-              })}>
+              })}
+            >
               <Credits
                 title="Cast"
-                value={cast.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
+                value={principalCast.reduce((prev, curr) => [prev, ', ', curr])}
               />
             </div>
           )}
@@ -136,7 +150,7 @@ const MovieStack = ({
           {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
             <div className={classnames('movie-stack-videos', { 'fade-in': isVideosUpdated })}>
               <div className="movie-stack-videos-title">
-                VIDEOS
+                Videos
               </div>
 
               <div className="movie-stack-videos-wrap scroll-lock-ignore">

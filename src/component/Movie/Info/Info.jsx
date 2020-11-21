@@ -9,7 +9,6 @@ const Info = ({ releaseDate, originalLanguage, runTime }) => {
 
   const info = []
 
-
   if( releaseDate ){
     info.push(
       <span key={releaseDate}>

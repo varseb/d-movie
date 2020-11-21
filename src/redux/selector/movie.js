@@ -8,7 +8,7 @@ export const getMovies = createSelector(
 export const getCast = createSelector(
   ({ movie }) => movie.credits,
   ({ id }) => id,
-  (credits, id) => credits[id] ? credits[id].cast.slice(0,3) : []
+  (credits, id) => credits[id] ? credits[id].cast : []
 )
 
 export const getDirector = createSelector(
