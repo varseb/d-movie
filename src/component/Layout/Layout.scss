@@ -25,7 +25,6 @@
 }
 
 .ui-clickable {
-  cursor: pointer;
   opacity: 1;
   transition: opacity .2s ease;
 
@@ -40,5 +39,15 @@
 
   &:active {
     background-color: rgba(255,255,255,.05);
+  }
+}
+
+@media(min-width: 768px) {
+  .ui-clickable {
+    cursor: pointer;
+  }
+
+  .ui-tapable {
+    cursor: pointer;
   }
 }

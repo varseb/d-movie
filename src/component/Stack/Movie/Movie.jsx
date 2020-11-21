@@ -60,7 +60,7 @@ const MovieStack = ({
       const principal = cast.slice(0,3).map(({ name }) => name)
 
       if( principal.length !== cast.length ){
-        principal.push(`${cast.length - principal.length}+`)
+        principal.push(`+${cast.length - principal.length}`)
       }
 
       return principal
@@ -85,25 +85,27 @@ const MovieStack = ({
       </div>
 
       <div className="movie-stack-content">
-        <h1 className="movie-stack-title">
-          {title}
-        </h1>
+        <div className="ui-stack-head">
+          <h1 className="movie-stack-title">
+            {title}
+          </h1>
 
-        {vote_average > 0 && (
-          <div className="movie-stack-rating">
-            <Rating voteAverage={vote_average} />
-          </div>
-        )}
+          {vote_average > 0 && (
+            <div className="movie-stack-rating">
+              <Rating voteAverage={vote_average} />
+            </div>
+          )}
 
-        {(release_date || original_language || runtime > 0) && (
-          <div className="movie-stack-info">
-            <Info
-              releaseDate={release_date}
-              originalLanguage={original_language}
-              runTime={runtime}
-            />
-          </div>
-        )}
+          {(release_date || original_language || runtime > 0) && (
+            <div className="movie-stack-info">
+              <Info
+                releaseDate={release_date}
+                originalLanguage={original_language}
+                runTime={runtime}
+              />
+            </div>
+          )}
+        </div>
 
         {overview && (
           <div className="show-up-primary">

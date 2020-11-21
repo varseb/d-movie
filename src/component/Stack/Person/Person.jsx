@@ -19,10 +19,13 @@ const PersonStack = ({ config, personId, language, person, getPerson }) => {
   const isBioUpdated = useUpdateCheck(person.biography)
 
   return (
+
     <div className="person-stack">
-      <h1 className="person-stack-name">
-        {person.name}
-      </h1>
+      <div className="ui-stack-head">
+        <h1 className="person-stack-name">
+          {person.name}
+        </h1>
+      </div>
 
       <div className="show-up-primary">
         <div className="person-stack-picture">

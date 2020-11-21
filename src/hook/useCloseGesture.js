@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const sensibility   = 800
 const closeTarget   = .25
-const dragBarHeight = 35
+const dragBarHeight = 45
 
 const useCloseGesture = (stackRef, contentRef, closeStack) => {
   const [progress, setProgress] = useState(0)

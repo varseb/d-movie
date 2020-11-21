@@ -6,36 +6,32 @@
   }
 
   &-head {
-    padding: 40px 20px;
+    padding: 40px 0 20px;
     //margin: -20px -20px 0 -20px;
     text-shadow: 1px 1px 0 rgba(0,0,0,.7);
 
-    span {
-      //background-color: rgba(0,0,0,.6);
-      //padding: 0 10px;
+    position: sticky;
+    top: 20px;
+    z-index: 1;
+
+    &-fill {
+      padding-bottom: 40px;
     }
   }
 
-  &-spacer {
-    padding: 20px;
-    margin-bottom: 30px;
-  }
-
-  &-sticky {
+  &-fixed-header {
     position: sticky;
-    top: 0;
+    top: 20px;
     z-index: 1;
   }
 
   &-list {
-    //background-color: red;
     margin: 0 -20px;
   }
 
   &-item {
     padding: 10px 20px;
     display: flex;
-    //margin-bottom: 20px;
     align-items: center;
 
     &-avatar {
@@ -72,6 +68,14 @@
 
     &-title {
       padding-right: 40px;
+    }
+
+    &-list {
+      margin: 0 -40px;
+    }
+
+    &-item {
+      padding: 10px 40px;
     }
   }
 }

@@ -4,24 +4,14 @@ import { connect, action } from 'redux/app'
 
 
 const CastStack = ({ config, credits, title, openPerson }) => (
-  <>
-
-    <div className="item">
-      <div className="cast-stack-head cast-stack-sticky">
-        <h2 className="cast-stack-title">
-          <span>{title}</span>
-        </h2>
-        <div className="cast-stack-subtitle"><span>CAST</span></div>
-      </div>
-    </div>
-
-
-    <div className="item">
-      <div className="cast-stack-sticky spacer">
-
-      </div>
-
   <div className="cast-stack">
+
+    <div className="ui-stack-head">
+      <h2 className="cast-stack-title">
+        {title}
+      </h2>
+      <div className="cast-stack-subtitle">Cast</div>
+    </div>
 
     <div className="show-up-primary">
       <div className="cast-stack-list">
@@ -58,8 +48,6 @@ const CastStack = ({ config, credits, title, openPerson }) => (
       </div>
     </div>
   </div>
-  </div>
-  </>
 )
 
 export default connect(

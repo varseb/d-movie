@@ -31,7 +31,7 @@
     top: 0;
     right: 0;
     left: 0;
-    height: 35px;
+    height: 45px;
     z-index: 3;
     transform: translate3d(0,0,0);
 
@@ -50,6 +50,11 @@
     &.loading:after {
       animation: expand 1.5s infinite;
     }
+  }
+
+  &-head {
+    padding: 20px 0 40px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.7);
   }
 
   &-close {
@@ -71,6 +76,10 @@
   .ui-stack {
     &-wrap {
       border-radius: 0;
+    }
+
+    &-head {
+      padding: 40px 0 80px;
     }
 
     &-close {
