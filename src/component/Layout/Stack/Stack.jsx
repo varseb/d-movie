@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useScrollLock, useCloseKey, useCloseGesture } from 'hook'
 import classnames from 'classnames'
+import Indicator from './Indicator'
 
 const Stack = ({ active, loading, closeStack, children }) => {
   const stackRef   = useRef(null)
@@ -19,7 +20,7 @@ const Stack = ({ active, loading, closeStack, children }) => {
     >
       <div ref={stackRef} className="ui-stack">
 
-        <div className={classnames('ui-stack-indicator', { loading })} />
+        <Indicator loading={loading} />
 
         <div className="ui-stack-close ui-clickable" onClick={closeStack}>
           <i className="icon-close" />

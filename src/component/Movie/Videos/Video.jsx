@@ -15,7 +15,9 @@ const Video = ({ name, videoKey, openVideo }) => (
       </div>
     </div>
 
-    <div className="ui-videos-item-name" title={name}>{name}</div>
+    <div className="ui-videos-item-name" title={name}>
+      {name}
+    </div>
   </div>
 )
 

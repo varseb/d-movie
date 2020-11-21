@@ -9,11 +9,11 @@ const sizeMap = {
 }
 
 const Picture = ({
+  size = 'x50',
   person: {
     profile_path
   },
   config,
-  size = 'x50',
   placeholder
 }) => {
   const [ path ] = useState(profile_path)
@@ -26,12 +26,12 @@ const Picture = ({
         'no-image': !profile_path
       })}
     >
-      {placeholder && (
+      {placeholder && path && (
         <Image src={hold} />
       )}
 
       {profile_path && (
-        <Image src={src}  />
+        <Image src={src} key={src} />
       )}
     </div>
   )

@@ -17,7 +17,7 @@ const CastStack = ({ credits, title, openPerson }) => (
       <div className="cast-stack-list">
         {credits.cast.map(person => (
           <div
-            key={person.id}
+            key={person.credit_id}
             className="cast-stack-item ui-tapable"
             onClick={() => openPerson({ personId: person.id })}
           >
