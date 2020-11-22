@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/d-movie/static/css/main.52704555.chunk.css",
-    "main.js": "/d-movie/static/js/main.dec38f9a.chunk.js",
+    "main.js": "/d-movie/static/js/main.540b63bf.chunk.js",
     "runtime-main.js": "/d-movie/static/js/runtime-main.102d36b3.js",
     "static/js/2.5b365db9.chunk.js": "/d-movie/static/js/2.5b365db9.chunk.js",
     "index.html": "/d-movie/index.html",
@@ -12,6 +12,6 @@
     "static/js/runtime-main.102d36b3.js",
     "static/js/2.5b365db9.chunk.js",
     "static/css/main.52704555.chunk.css",
-    "static/js/main.dec38f9a.chunk.js"
+    "static/js/main.540b63bf.chunk.js"
   ]
 }
