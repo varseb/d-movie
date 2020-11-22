@@ -23,13 +23,17 @@ const StackLayer = ({ stack, closeStack, loading }) => (
   <LayerGroup>
     {stack.map(({ namespace, props }, index) => {
       const active = stack.length === index + 1
-      //const hidden = stack.length > index + 2
+      const hidden = stack.length > index + 3
       const Content = stackList[namespace]
 
+      if( hidden ){
+        return null
+      }
+
       return (
-        <Layer key={namespace} namespace={namespace} active={active}>
+        <Layer key={`${namespace}-${index}`} namespace={namespace} active={active}>
           <Stack active={active} loading={active && loading} closeStack={closeStack}>
-            <Content {...props} />
+            <Content active={active} {...props} />
           </Stack>
         </Layer>
       )

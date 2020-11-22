@@ -5,6 +5,7 @@ import Poster from 'component/Movie/Poster'
 import Rating from 'component/Movie/Rating'
 
 const SearchStack = ({
+  active,
   language,
   query,
   filter,
@@ -31,7 +32,7 @@ const SearchStack = ({
       <div className="search-stack-head">
         <div className="search-stack-input-wrapper">
           <input
-            autoFocus
+            autoFocus={active}
             type="text"
             placeholder="search movies"
             value={query}

@@ -35,6 +35,7 @@ export default function reducer(state = initialState, { type: actionType, payloa
         persons: credits.cast.reduce((persons, person) => ({
           ...persons,
           [person.id]: {
+            ...(state.persons[person.id] || {}),
             id: person.id,
             name: person.name,
             profile_path: person.profile_path

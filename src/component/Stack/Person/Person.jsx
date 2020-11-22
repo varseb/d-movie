@@ -14,7 +14,7 @@ const PersonStack = ({
   knownFor,
   getPerson,
   getMovieCredits,
-  //openMovie
+  openMovie
 }) => {
 
   useEffect(
@@ -96,7 +96,7 @@ const PersonStack = ({
               <div className="person-stack-movies-scroll">
                 {knownFor.map(movie => (
                   <div className="person-stack-movies-movie" key={movie.id}>
-                    <Poster id={movie.id} />
+                    <Poster id={movie.id} onClick={() => openMovie({ id: movie.id })} />
                   </div>
                 ))}
               </div>
@@ -117,7 +117,7 @@ export default connect(
   {
     getPerson: action.person.getPerson,
     getMovieCredits: action.person.getMovieCredits,
-    //openMovie: action.layout.openStack('movie')
+    openMovie: action.layout.openStack('movie')
   },
   PersonStack
 )
