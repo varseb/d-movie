@@ -16,3 +16,10 @@
     }
   }
 }
+
+@media(min-width: 768px) {
+  .ui-backdrop {
+    height: calc(400px + env(safe-area-inset-top));
+    overflow: hidden;
+  }
+}
