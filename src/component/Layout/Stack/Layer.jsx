@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect, selector, action } from 'redux/app'
 import Layer from 'component/Layout/Layer'
 import LayerGroup from 'component/Layout/Layer/Group'

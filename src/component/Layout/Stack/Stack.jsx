@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { useScrollLock, useCloseKey, useCloseGesture } from 'hook'
 import classnames from 'classnames'
 import Indicator from './Indicator'
@@ -16,11 +16,11 @@ const Stack = ({ active, loading, closeStack, children }) => {
   return (
     <div
       className={classnames('ui-stack-wrap', { closing: progress !== 0 })}
-      style={{transform: `scale(${1 - progress}) translate3d(0,0,0)`}}
+      style={{transform: `scale(${1 - progress})`}}
     >
-      <div ref={stackRef} className="ui-stack">
+      <div className="ui-stack">
 
-        <Indicator loading={loading} />
+        <Indicator stackRef={stackRef} loading={loading} />
 
         <div className="ui-stack-close ui-clickable" onClick={closeStack}>
           <i className="icon-close" />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import classnames from 'classnames'
 
-const StackIndicator = ({ loading }) => {
+const StackIndicator = ({ stackRef, loading }) => {
   const [cycle, setCycle] = useState(0)
 
   useEffect(
@@ -19,7 +19,7 @@ const StackIndicator = ({ loading }) => {
   )
 
   return (
-    <div className={classnames('ui-stack-indicator', { loading, loop: cycle % 2 })} />
+    <div ref={stackRef} className={classnames('ui-stack-indicator', { loading, loop: cycle % 2 })} />
   )
 }
 

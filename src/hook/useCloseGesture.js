@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 const sensibility   = 800
 const closeTarget   = .25
-const dragBarHeight = 45
+const dragBarHeight = 60
 
 const useCloseGesture = (stackRef, contentRef, closeStack) => {
+  const scrollRef = useRef()
   const [progress, setProgress] = useState(0)
 
   useEffect(
@@ -17,6 +18,7 @@ const useCloseGesture = (stackRef, contentRef, closeStack) => {
   useEffect(
     () => {
       const content = contentRef.current
+      const stack = stackRef.current
 
       let startY  = null
       let clientY = null
@@ -26,7 +28,7 @@ const useCloseGesture = (stackRef, contentRef, closeStack) => {
 
       const handleTouchStart = ({ touches }) => {
         startY  = touches[0].clientY
-        capture = content.scrollTop === 0 || startY < dragBarHeight
+        capture = content.scrollTop <= 0 || startY < dragBarHeight
         blur    = true
       }
 
@@ -47,6 +49,11 @@ const useCloseGesture = (stackRef, contentRef, closeStack) => {
         const diff = clientY - touches[0].clientY
 
         if( diff < 0 ){
+          if( scrollRef.current < 0 ){
+            content.style.overflow = 'hidden'
+            content.style.transform = `translate3d(0, ${Math.abs(scrollRef.current)}px, 0)`
+          }
+
           if( blur && document.activeElement ){
             document.activeElement.blur()
             blur = false
@@ -66,27 +73,57 @@ const useCloseGesture = (stackRef, contentRef, closeStack) => {
       const handleTouchEnd = () => {
         clientY = null
         capture = false
+        content.removeAttribute('style')
+        scrollRef.current = 0
 
         if( !closing ){
           setProgress(0)
         }
       }
 
-      const stack = stackRef.current
+      if( content && stack ){
+        content.addEventListener('touchstart', handleTouchStart)
+        content.addEventListener('touchmove', handleTouchMove)
+        content.addEventListener('touchend', handleTouchEnd)
 
-      if( stack ){
         stack.addEventListener('touchstart', handleTouchStart)
         stack.addEventListener('touchmove', handleTouchMove)
         stack.addEventListener('touchend', handleTouchEnd)
 
         return () => {
+          content.removeEventListener('touchstart', handleTouchStart)
+          content.removeEventListener('touchmove', handleTouchMove)
+          content.removeEventListener('touchend', handleTouchEnd)
+
           stack.removeEventListener('touchstart', handleTouchStart)
           stack.removeEventListener('touchmove', handleTouchMove)
           stack.removeEventListener('touchend', handleTouchEnd)
         }
       }
     },
-    [ stackRef, contentRef, setProgress, closeStack ]
+    [ scrollRef, stackRef, contentRef, setProgress, closeStack ]
+  )
+
+  useEffect(
+    () => {
+      const content = contentRef.current
+
+      const handleScroll = () => {
+        if( content.scrollTop < 0 ){
+          scrollRef.current = content.scrollTop
+        }
+      }
+
+      if( content ){
+        content.addEventListener('scroll', handleScroll)
+
+        return () => {
+          content.removeEventListener('scroll', handleScroll)
+
+        }
+      }
+    },
+    [ contentRef, setProgress ]
   )
 
   return progress

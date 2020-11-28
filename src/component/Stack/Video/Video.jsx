@@ -27,6 +27,7 @@ const VideoStack = ({
   const onReady = event => {
     ref.current = event.target
     ref.current.setVolume(100)
+    //ref.current.playVideo()
     setReady(true)
   }
 

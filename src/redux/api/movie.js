@@ -13,7 +13,9 @@ export const getMovie = ({ id, language }) => request({
   method: 'GET',
   url: `/movie/${id}`,
   params: {
-    language
+    language,
+    append_to_response: 'images',
+    include_image_language: `${language},null`
   }
 })
 

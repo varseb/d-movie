@@ -10,7 +10,7 @@
   transform: scale(.95) translate3d(0,0,0);
   transform-origin: top center;
   transform-style: preserve-3d;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(60px);
   backface-visibility: hidden;
   perspective: 1000;
   border-radius: 8px;
@@ -23,15 +23,14 @@
   &.active {
     transform: scale(1) translate3d(0,0,0);
     z-index: 101;
-  }
 
-  &.enter {
-    animation: layer-show .4s ease;
-  }
+    &.enter {
+      animation: layer-show .4s ease;
+    }
 
-  &.exit {
-    //pointer-events: none;
-    animation: layer-hide .3s ease forwards;
+    &.exit {
+      animation: layer-hide .3s ease forwards;
+    }
   }
 }
 

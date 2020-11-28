@@ -1,6 +1,3 @@
-import React, { useEffect, useMemo } from 'react'
-import { useTitle, useUpdateCheck } from 'hook'
-import { connect, selector, action } from 'redux/app'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
 import Backdrop from 'component/Movie/Backdrop'
@@ -13,17 +10,16 @@ import classnames from 'classnames'
 
 const MovieStack = ({
   id,
-  language,
   movie,
   genres,
   cast,
   director,
   videos,
   loadingCredits,
-  getMovie,
-  getCredits,
-  getVideos,
-  openCast
+  openCast,
+  isCastUpdated,
+  isDirectorUpdated,
+  isVideosUpdated
 }) => {
   const {
     title,
@@ -33,46 +29,6 @@ const MovieStack = ({
     overview,
     original_language
   } = movie
-
-  useTitle(title)
-
-  useEffect(
-    () => {
-      getMovie({ id, language })
-    },
-    [ id, language, getMovie ]
-  )
-
-  useEffect(
-    () => {
-      getCredits({ id })
-    },
-    [ id, getCredits ]
-  )
-
-  useEffect(
-    () => {
-      getVideos({ id, language })
-    },
-    [ id, language, getVideos ]
-  )
-
-  const principalCast = useMemo(
-    () => {
-      const principal = cast.slice(0,3).map(({ name }) => name)
-
-      if( principal.length !== cast.length ){
-        principal.push(`+${cast.length - principal.length}`)
-      }
-
-      return principal
-    },
-    [ cast ]
-  )
-
-  const isCastUpdated = useUpdateCheck(principalCast.length)
-  const isDirectorUpdated = useUpdateCheck(director?.name)
-  const isVideosUpdated = useUpdateCheck(videos.length)
 
   return (
     <>
@@ -87,7 +43,7 @@ const MovieStack = ({
       </div>
 
       <div className="movie-stack-content">
-        <div className="ui-stack-head">
+        <div className="movie-stack-head show-up-primary">
           <h1 className="movie-stack-title">
             {title}
           </h1>
@@ -110,24 +66,22 @@ const MovieStack = ({
         </div>
 
         {overview && (
-          <div className="show-up-primary">
+          <div className="show-up-secondary">
             <div className="movie-stack-overview">
-              <TextClamp lineClamp="x4">
+              <TextClamp>
                 {overview}
               </TextClamp>
             </div>
           </div>
         )}
 
-        <div className="show-up-secondary">
+        <div className="show-up-tertiary">
           {genres.length > 0 && (
             <div className="movie-stack-genres">
               <Genres genres={genres} />
             </div>
           )}
-        </div>
 
-        <div className="show-up-tertiary">
           {cast.length > 0 && (
             <div
               onClick={() => openCast({ id })}
@@ -137,7 +91,7 @@ const MovieStack = ({
             >
               <Credits
                 title="Cast"
-                value={principalCast.reduce((prev, curr) => [prev, ', ', curr])}
+                value={cast.reduce((prev, curr) => [prev, ', ', curr])}
               />
             </div>
           )}
@@ -168,21 +122,4 @@ const MovieStack = ({
   )
 }
 
-export default connect(
-  ({ user, movie, genre, status }, { id }) => ({
-    language: user.language,
-    movie: movie.movies[id],
-    genres: selector.genre.getGenres({ genre, movie, id }),
-    cast: selector.movie.getCast({ movie, id }),
-    director: selector.movie.getDirector({ movie, id }),
-    videos: selector.movie.getYouTubeVideos({ movie, user, id }),
-    loadingCredits: status.loading['movie/GET_CREDITS']
-  }),
-  {
-    getMovie: action.movie.getMovie,
-    getCredits: action.movie.getCredits,
-    getVideos: action.movie.getVideos,
-    openCast: action.layout.openStack('cast')
-  },
-  MovieStack
-)
+export default MovieStack

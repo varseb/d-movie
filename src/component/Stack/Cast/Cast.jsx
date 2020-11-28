@@ -1,5 +1,3 @@
-import React from 'react'
-import { connect, action } from 'redux/app'
 import Picture from 'component/Person/Picture'
 
 const CastStack = ({ credits, title, openPerson }) => (
@@ -43,13 +41,4 @@ const CastStack = ({ credits, title, openPerson }) => (
   </div>
 )
 
-export default connect(
-  ({ movie }, { id }) => ({
-    title: movie.movies[id].title,
-    credits: movie.credits[id]
-  }),
-  {
-    openPerson: action.layout.openStack('person')
-  },
-  CastStack
-)
+export default CastStack
