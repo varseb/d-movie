@@ -22,7 +22,7 @@ const Picture = ({
 
   return (
     <div
-      className={classnames('ui-person-picture', size, {
+      className={classnames('ui-person-picture', {
         'no-image': !profile_path
       })}
     >

@@ -1,4 +1,6 @@
 .movie-stack {
+  padding-bottom: env(safe-area-inset-bottom);
+
   &-backdrop {
     position: relative;
 
@@ -24,7 +26,7 @@
   }
 
   &-content {
-    padding: 20px 20px 40px;
+    padding: 20px 20px 0;
     position: relative;
     z-index: 2;
   }

@@ -9,6 +9,10 @@ const SEARCH_MOVIES_REQUEST = 'search/SEARCH_MOVIES_REQUEST'
 const SEARCH_MOVIES_SUCCESS = 'search/SEARCH_MOVIES_SUCCESS'
 const SEARCH_MOVIES_FAILURE = 'search/SEARCH_MOVIES_FAILURE'
 
+const MULTI_SEARCH_REQUEST = 'search/MULTI_SEARCH_REQUEST'
+const MULTI_SEARCH_SUCCESS = 'search/MULTI_SEARCH_SUCCESS'
+const MULTI_SEARCH_FAILURE = 'search/MULTI_SEARCH_FAILURE'
+
 const initialState = {
   query: '',
   filter: {
@@ -36,6 +40,7 @@ export default function reducer(state = initialState, { type: actionType, payloa
       }
 
     case SEARCH_MOVIES_REQUEST:
+    case MULTI_SEARCH_REQUEST:
       return {
         ...state,
         loading: {
@@ -44,10 +49,10 @@ export default function reducer(state = initialState, { type: actionType, payloa
         }
       }
 
+      /*
     case SEARCH_MOVIES_SUCCESS: {
       const { query, data: { results } } = payload
 
-      // search results (movie id's) indexed by query
       return {
         ...state,
         loading: {
@@ -59,6 +64,24 @@ export default function reducer(state = initialState, { type: actionType, payloa
           [query]: results.map(({ id }) => id)
         }
       }
+    }*/
+
+    case MULTI_SEARCH_SUCCESS: {
+      const { query, data: { results } } = payload
+
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          [query]: false
+        },
+        results: {
+          ...state.results,
+          [query]: results.map(
+            ({ id, media_type }) => ({ id, media_type })
+          )
+        }
+      }
     }
 
     default:
@@ -68,7 +91,8 @@ export default function reducer(state = initialState, { type: actionType, payloa
 
 // Export this action will let the movie reducer use it to store the movie source
 export {
-  SEARCH_MOVIES_SUCCESS
+  SEARCH_MOVIES_SUCCESS,
+  MULTI_SEARCH_SUCCESS
 }
 
 export const updateFilter = payload => dispatch => dispatch({
@@ -87,4 +111,12 @@ export const searchMovies = payload => dispatch => dispatch({
   meta: api.search.searchMovies(payload)
     .then(success(dispatch, SEARCH_MOVIES_SUCCESS, payload))
     .catch(failure(dispatch, SEARCH_MOVIES_FAILURE))
+})
+
+export const multiSearch = payload => dispatch => dispatch({
+  type: MULTI_SEARCH_REQUEST,
+  payload,
+  meta: api.search.multiSearch(payload)
+    .then(success(dispatch, MULTI_SEARCH_SUCCESS, payload))
+    .catch(failure(dispatch, MULTI_SEARCH_FAILURE))
 })

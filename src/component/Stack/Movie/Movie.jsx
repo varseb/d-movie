@@ -31,7 +31,7 @@ const MovieStack = ({
   } = movie
 
   return (
-    <>
+    <div className="movie-stack">
       <div className="movie-stack-backdrop">
         <Backdrop movie={movie} />
 
@@ -118,7 +118,7 @@ const MovieStack = ({
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

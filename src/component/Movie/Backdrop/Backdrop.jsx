@@ -10,7 +10,7 @@ const Backdrop = ({
   config
 }) => {
   const path = backdrop_path || poster_path
-  const src  = [ config.secure_base_url, 'w1280', path ].join('')
+  const src  = [ config.secure_base_url, 'w780', path ].join('')
 
   return (
     <div className="ui-backdrop">

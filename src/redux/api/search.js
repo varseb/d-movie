@@ -9,3 +9,14 @@ export const searchMovies = ({ query, language }) => request({
     //include_adult: true
   }
 })
+
+
+export const multiSearch = ({ query, language }) => request({
+  method: 'GET',
+  url: '/search/multi',
+  params: {
+    query,
+    language,
+    //include_adult: true
+  }
+})

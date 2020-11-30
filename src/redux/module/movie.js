@@ -1,7 +1,7 @@
 import api from 'redux/api'
 import { success, failure } from 'redux/http'
 
-import { SEARCH_MOVIES_SUCCESS } from './search'
+import { MULTI_SEARCH_SUCCESS } from './search'
 import { GET_MOVIE_CREDITS_SUCCESS } from 'redux/module/person'
 
 const DISCOVER_MOVIES_REQUEST = 'movie/DISCOVER_MOVIES_REQUEST'
@@ -44,8 +44,10 @@ export default function movieReducer(state = initialState, { type: actionType, p
       }
     }
 
-    case SEARCH_MOVIES_SUCCESS: {
-      const { results } = payload.data
+    case MULTI_SEARCH_SUCCESS: {
+      const results = payload.data.results.filter(
+        ({ media_type }) => media_type === 'movie'
+      )
 
       return {
         ...state,
@@ -124,7 +126,8 @@ const movieDTO = movie => {
     vote_average: movie.vote_average,
     overview: movie.overview,
     release_date: movie.release_date,
-    popularity: movie.popularity
+    popularity: movie.popularity,
+    media_type: 'movie'
   }
 
   if( movie.runtime ){

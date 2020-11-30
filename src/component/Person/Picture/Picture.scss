@@ -2,16 +2,8 @@
   border-radius: 2px;
   position: relative;
   overflow: hidden;
-
-  &.x50 {
-    width: 50px;
-    height: 75px;
-  }
-
-  &.x185 {
-    width: 185px;
-    height: 278px;
-  }
+  width: 100%;
+  padding-bottom: 150%;
 
   &.no-image {
     background-color: rgba(255, 255, 255, .05);

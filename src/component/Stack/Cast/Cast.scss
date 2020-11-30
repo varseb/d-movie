@@ -1,6 +1,7 @@
 .cast-stack {
   padding: 20px;
   padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: env(safe-area-inset-bottom);
 
   &-subtitle {
     padding-top: 6px;
@@ -16,6 +17,7 @@
     align-items: center;
 
     &-picture {
+      width: 50px;
       margin-right: 15px;
     }
 

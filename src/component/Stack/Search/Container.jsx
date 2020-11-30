@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useTitle } from 'hook'
+import { useRef, useState, useEffect } from 'react'
+import { useTitle, useKeyboardSensor } from 'hook'
 import { connect, selector, action } from 'redux/app'
 import SearchStack from './Search'
 
@@ -12,28 +12,44 @@ const SearchStackContainer = ({
   results,
   updateQuery,
   //updateFilter,
-  searchMovies,
-  openMovie
+  multiSearch,
+  openMovie,
+  openPerson
 }) => {
+  const [ shouldFocus ] = useState(active)
+  const inputRef = useRef()
+  const keyboardOpen = useKeyboardSensor()
+
   useTitle('Search')
 
   useEffect(
     () => {
-      if( query ){
-        searchMovies({ query, language })
+      if( shouldFocus && inputRef.current ){
+        inputRef.current.focus()
       }
     },
-    [ query, language, searchMovies ]
+    [ inputRef, shouldFocus ]
+  )
+
+  useEffect(
+    () => {
+      if( query ){
+        multiSearch({ query, language })
+      }
+    },
+    [ query, language, multiSearch ]
   )
 
   return (
     <SearchStack
-      active={active}
+      inputRef={inputRef}
       query={query}
       loading={loading}
       results={results}
+      keyboardOpen={keyboardOpen}
       updateQuery={updateQuery}
       openMovie={openMovie}
+      openPerson={openPerson}
     />
   )
 }
@@ -49,18 +65,19 @@ const handleRatingChange = (star, filter, updateFilter) => {
 */
 
 export default connect(
-  ({ user, search, movie }) => ({
+  ({ user, search, movie, person }) => ({
     language: user.language,
     query: search.query,
     //filter: search.filter,
     loading: search.loading[search.query],
-    results: selector.movie.getResults({ movie, search })
+    results: selector.search.getResults({ movie, person, search })
   }),
   {
     //updateFilter: action.search.updateFilter,
     updateQuery: action.search.updateQuery,
-    searchMovies: action.search.searchMovies,
-    openMovie: action.layout.openStack('movie')
+    multiSearch: action.search.multiSearch,
+    openMovie: action.layout.openStack('movie'),
+    openPerson: action.layout.openStack('person')
   },
   SearchStackContainer
 )

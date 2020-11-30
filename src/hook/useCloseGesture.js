@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 
 const sensibility   = 800
 const closeTarget   = .25
-const dragBarHeight = 60
+const dragBarHeight = 50
 
 const useCloseGesture = (stackRef, contentRef, closeStack) => {
   const scrollRef = useRef()
