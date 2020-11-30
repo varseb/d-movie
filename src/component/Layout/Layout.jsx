@@ -1,4 +1,3 @@
-import React from 'react'
 import classnames from 'classnames'
 import Header from 'component/Layout/Header'
 import StackLayer from 'component/Layout/Stack/Layer'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect, action } from 'redux/app'
 import Lang from 'component/Layout/Lang'
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import Image from 'component/Layout/Image'
 
 const Video = ({ name, videoKey, openVideo }) => (

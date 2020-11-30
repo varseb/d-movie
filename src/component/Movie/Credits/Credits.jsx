@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Credits = ({ title, value }) => (
   <div className="ui-credits">

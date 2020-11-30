@@ -1,4 +1,3 @@
-import React from 'react'
 import LayerGroup from 'component/Layout/Layer/Group'
 import Layer from 'component/Layout/Layer'
 import Toast from './Toast'

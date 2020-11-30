@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react'
+import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react'
 import { connect, selector, action } from 'redux/app'
 import Poster from 'component/Movie/Poster'
 

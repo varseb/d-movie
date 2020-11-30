@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'redux/app'
 import classnames from 'classnames'
 import Image from 'component/Layout/Image'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 /*import randomcolor from 'randomcolor'
 
 export const getColor = (value, alpha = 1) => {

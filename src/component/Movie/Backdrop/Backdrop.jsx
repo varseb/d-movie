@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'redux/app'
 import Image from 'component/Layout/Image'
 

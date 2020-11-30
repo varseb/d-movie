@@ -1,4 +1,3 @@
-import React from 'react'
 import { useUpdateCheck } from 'hook'
 import moment from 'moment'
 import classnames from 'classnames'
