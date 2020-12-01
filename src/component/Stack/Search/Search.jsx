@@ -1,19 +1,4 @@
-import { Fragment } from 'react'
-import Movie from './Result/Movie'
-import Person from './Result/Person'
-import Serie from './Result/Serie'
-
-const mediaTypeLabels = {
-  movie: 'Movies',
-  person: 'People',
-  tv: 'Series'
-}
-
-const mediaTypeResult = {
-  movie: Movie,
-  person: Person,
-  tv: Serie
-}
+import Result from './Result'
 
 const SearchStack = ({
   query,
@@ -60,42 +45,18 @@ const SearchStack = ({
 
     {results.length > 0 && (
       <div className="search-stack-grid">
-        {results.map((result, index) => {
-          const { id, media_type } = result
-          const Result = mediaTypeResult[media_type]
-
-          const isFirstItem = index === 0
-          const isTopResult = isFirstItem && query
-
-          return (
-            <Fragment key={id}>
-              {isTopResult && (
-                <div className="search-stack-grid-head">
-                  Top Result
-                </div>
-              )}
-
-              {!isTopResult && isFirstItem && (
-                <div className="search-stack-grid-head">
-                  Popular movies
-                </div>
-              )}
-
-              {!isTopResult && ( (index === 1 && query ) || (index > 0 && media_type !== results[index - 1].media_type) ) && (
-                <div className="search-stack-grid-head">
-                  {mediaTypeLabels[media_type]}
-                </div>
-              )}
-
-              <Result
-                result={result}
-                isTopResult={isTopResult}
-                openMovie={openMovie}
-                openPerson={openPerson}
-              />
-            </Fragment>
-          )}
-        )}
+        {results.map((result, index) => (
+          <Result
+            key={result.id}
+            result={result}
+            isTopResult={index === 0 && query}
+            isFirstItem={index === 0}
+            isSecondItem={index === 1 && query}
+            prevResult={index > 0 && results[index - 1]}
+            openMovie={openMovie}
+            openPerson={openPerson}
+          />
+        ))}
       </div>
     )}
 

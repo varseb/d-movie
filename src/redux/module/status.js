@@ -4,8 +4,8 @@ const initialState = {
   failure: {}
 }
 
-export default function reducer(state = initialState, { type: actionType, payload = {} }){
-  const matches = /(\w+)\/(\w+)_(REQUEST|SUCCESS|ERROR)/.exec(actionType)
+export default function reducer(state = initialState, { type: actionType }){
+  const matches = /(\w+)\/(\w+)_(REQUEST|SUCCESS|FAILURE)/.exec(actionType)
 
   if (!matches){
     return state

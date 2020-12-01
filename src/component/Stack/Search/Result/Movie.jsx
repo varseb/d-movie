@@ -2,7 +2,6 @@ import classnames from 'classnames'
 import moment from 'moment'
 import Poster from 'component/Movie/Poster'
 
-
 const MovieResult = ({ result, isTopResult, openMovie }) => {
 
   const { id, title, release_date } = result

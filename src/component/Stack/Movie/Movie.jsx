@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
 import Backdrop from 'component/Movie/Backdrop'
@@ -6,7 +7,6 @@ import Info from 'component/Movie/Info'
 import Genres from 'component/Movie/Genres'
 import Credits from 'component/Movie/Credits'
 import Videos from 'component/Movie/Videos'
-import classnames from 'classnames'
 
 const MovieStack = ({
   id,
