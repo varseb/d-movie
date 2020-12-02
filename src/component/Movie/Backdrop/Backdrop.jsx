@@ -16,6 +16,10 @@ const Backdrop = ({
       {path && (
         <Image src={src} />
       )}
+
+      {!path && (
+        <div className="ui-backdrop-holder" />
+      )}
     </div>
   )
 }

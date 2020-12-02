@@ -45,7 +45,7 @@ const MovieStackContainer = ({
       const principal = cast.slice(0,3).map(({ name }) => name)
 
       if( principal.length !== cast.length ){
-        principal[2] = `${principal[2]} +${cast.length - principal.length}`
+        principal.push(`+${cast.length - principal.length}`)
       }
 
       return principal

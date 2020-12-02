@@ -1,4 +1,3 @@
-import classnames from 'classnames'
 import { connect } from 'redux/app'
 import Image from 'component/Layout/Image'
 
@@ -15,17 +14,15 @@ const Poster = ({
 
   return (
     <div className="ui-poster" onClick={onClick}>
-      <div
-        className={classnames('ui-poster-content', {
-          'no-image': !poster_path
-        })}
-      >
+      <div className="ui-poster-content">
         {poster_path && (
           <Image src={src} />
         )}
 
         {!poster_path && (
-          <div className="ui-poster-title">{title}</div>
+          <div className="ui-poster-holder">
+            {title}
+          </div>
         )}
       </div>
     </div>
