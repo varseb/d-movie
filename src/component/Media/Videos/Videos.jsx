@@ -2,7 +2,7 @@ import { connect, action } from 'redux/app'
 import Video from './Video'
 
 const Videos = ({ videos, openVideo }) => (
-  <div className="ui-videos">
+  <div className="media-videos">
     {videos.map(({ id, name, key }) => (
       <Video
         key={id}

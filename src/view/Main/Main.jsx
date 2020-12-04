@@ -1,12 +1,13 @@
 import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react'
 import { connect, selector, action } from 'redux/app'
-import Poster from 'component/Movie/Poster'
+import Poster from 'component/Media/Poster'
 
 const Main = ({
   movies,
   language,
   getConfiguration,
-  getGenres,
+  getMovieGenres,
+  getSerieGenres,
   discoverMovies,
   openMovie
 }) => {
@@ -23,9 +24,16 @@ const Main = ({
 
   useEffect(
     () => {
-      getGenres({ language })
+      getMovieGenres({ language })
     },
-    [ language, getGenres ]
+    [ language, getMovieGenres ]
+  )
+
+  useEffect(
+    () => {
+      getSerieGenres({ language })
+    },
+    [ language, getSerieGenres ]
   )
 
   useEffect(
@@ -156,7 +164,7 @@ const Main = ({
           return (
             <div key={nodeIndex} className="movie-grid-item" data-index={index + 1}>
               {shouldRender && (
-                <Poster id={id} onClick={() => openMovie({ id })} />
+                <Poster media={movie} onClick={() => openMovie({ id })} />
               )}
             </div>
           )
@@ -173,7 +181,8 @@ export default connect(
   }),
   {
     getConfiguration: action.config.getConfiguration,
-    getGenres: action.genre.getGenres,
+    getMovieGenres: action.genre.getMovieGenres,
+    getSerieGenres: action.genre.getSerieGenres,
     discoverMovies: action.movie.discoverMovies,
     openMovie: action.layout.openStack('movie')
   },

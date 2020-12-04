@@ -1,39 +1,43 @@
 import classnames from 'classnames'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
-import Info from 'component/Movie/Info'
+
 import Backdrop from 'component/Media/Backdrop'
 import Rating from 'component/Media/Rating'
+import Info from 'component/Serie/Info'
 import Genres from 'component/Media/Genres'
-import Credits from 'component/Media/Credits'
-import Videos from 'component/Media/Videos'
 
-const MovieStack = ({
+/*import Credits from 'component/Media/Credits'
+import Videos from 'component/Media/Videos'
+*/
+const SerieStack = ({
   id,
-  movie,
+  serie,
   genres,
-  cast,
-  director,
-  videos,
-  loadingCredits,
-  openCast,
-  isCastUpdated,
-  isDirectorUpdated,
-  isVideosUpdated
+  //cast,
+  //director,
+  //videos,
+  //loadingCredits,
+  //openCast,
+  //isCastUpdated,
+  //isDirectorUpdated,
+  //isVideosUpdated
 }) => {
   const {
-    title,
+    name,
     vote_average,
-    release_date,
-    runtime,
+    first_air_date,
+    last_air_date,
+    number_of_seasons,
     overview,
-    original_language
-  } = movie
+    original_language,
+    status
+  } = serie
 
   return (
     <div className="movie-stack">
       <div className="movie-stack-backdrop">
-        <Backdrop media={movie} />
+        <Backdrop media={serie} />
 
         <img
           className="thanks-themoviedb"
@@ -45,7 +49,7 @@ const MovieStack = ({
       <div className="movie-stack-content">
         <div className="movie-stack-head show-up-primary">
           <h1 className="movie-stack-title">
-            {title}
+            {name}
           </h1>
 
           {vote_average > 0 && (
@@ -54,12 +58,14 @@ const MovieStack = ({
             </div>
           )}
 
-          {(release_date || original_language || runtime > 0) && (
+          {(first_air_date || last_air_date || original_language || number_of_seasons > 0 || status) && (
             <div className="movie-stack-info">
               <Info
-                release_date={release_date}
+                first_air_date={first_air_date}
+                last_air_date={last_air_date}
                 original_language={original_language}
-                runtime={runtime}
+                number_of_seasons={number_of_seasons}
+                status={status}
               />
             </div>
           )}
@@ -82,7 +88,7 @@ const MovieStack = ({
             </div>
           )}
 
-          {cast.length > 0 && (
+          {/*cast.length > 0 && (
             <div
               onClick={() => openCast({ id })}
               className={classnames('movie-stack-credits ui-tapable', {
@@ -115,11 +121,11 @@ const MovieStack = ({
                 <Videos videos={videos} />
               </div>
             </div>
-          )}
+          )*/}
         </div>
       </div>
     </div>
   )
 }
 
-export default MovieStack
+export default SerieStack

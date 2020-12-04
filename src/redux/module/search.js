@@ -5,10 +5,6 @@ const UPDATE_QUERY = 'search/UPDATE_QUERY'
 
 const UPDATE_FILTER = 'search/UPDATE_FILTER'
 
-const SEARCH_MOVIES_REQUEST = 'search/SEARCH_MOVIES_REQUEST'
-const SEARCH_MOVIES_SUCCESS = 'search/SEARCH_MOVIES_SUCCESS'
-const SEARCH_MOVIES_FAILURE = 'search/SEARCH_MOVIES_FAILURE'
-
 const MULTI_SEARCH_REQUEST = 'search/MULTI_SEARCH_REQUEST'
 const MULTI_SEARCH_SUCCESS = 'search/MULTI_SEARCH_SUCCESS'
 const MULTI_SEARCH_FAILURE = 'search/MULTI_SEARCH_FAILURE'
@@ -39,7 +35,6 @@ export default function reducer(state = initialState, { type: actionType, payloa
         }
       }
 
-    case SEARCH_MOVIES_REQUEST:
     case MULTI_SEARCH_REQUEST:
       return {
         ...state,
@@ -48,23 +43,6 @@ export default function reducer(state = initialState, { type: actionType, payloa
           [payload.query]: true
         }
       }
-
-      /*
-    case SEARCH_MOVIES_SUCCESS: {
-      const { query, data: { results } } = payload
-
-      return {
-        ...state,
-        loading: {
-          ...state.loading,
-          [query]: false
-        },
-        results: {
-          ...state.results,
-          [query]: results.map(({ id }) => id)
-        }
-      }
-    }*/
 
     case MULTI_SEARCH_SUCCESS: {
       const { query, data: { results } } = payload
@@ -89,9 +67,7 @@ export default function reducer(state = initialState, { type: actionType, payloa
   }
 }
 
-// Export this action will let the movie reducer use it to store the movie source
 export {
-  SEARCH_MOVIES_SUCCESS,
   MULTI_SEARCH_SUCCESS
 }
 
@@ -103,14 +79,6 @@ export const updateFilter = payload => dispatch => dispatch({
 export const updateQuery = payload => dispatch => dispatch({
   type: UPDATE_QUERY,
   payload
-})
-
-export const searchMovies = payload => dispatch => dispatch({
-  type: SEARCH_MOVIES_REQUEST,
-  payload,
-  meta: api.search.searchMovies(payload)
-    .then(success(dispatch, SEARCH_MOVIES_SUCCESS, payload))
-    .catch(failure(dispatch, SEARCH_MOVIES_FAILURE))
 })
 
 export const multiSearch = payload => dispatch => dispatch({

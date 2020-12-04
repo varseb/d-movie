@@ -1,4 +1,4 @@
-.ui-videos {
+.media-videos {
   padding-left: 20px;
   display: flex;
   width: 100%;
@@ -41,7 +41,7 @@
 }
 
 @media(min-width: 768px) {
-  .ui-videos {
+  .media-videos {
     padding-left: 40px;
 
     &-item {

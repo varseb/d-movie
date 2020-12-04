@@ -21,6 +21,7 @@ const SearchResult = ({
   isSecondItem,
   prevResult,
   openMovie,
+  openSerie,
   openPerson
 }) => {
   const { media_type } = result
@@ -50,6 +51,7 @@ const SearchResult = ({
         result={result}
         isTopResult={isTopResult}
         openMovie={openMovie}
+        openSerie={openSerie}
         openPerson={openPerson}
       />
     </>

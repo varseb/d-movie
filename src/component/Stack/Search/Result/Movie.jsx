@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import moment from 'moment'
-import Poster from 'component/Movie/Poster'
+import Poster from 'component/Media/Poster'
 
 const MovieResult = ({ result, isTopResult, openMovie }) => {
 
@@ -9,13 +9,13 @@ const MovieResult = ({ result, isTopResult, openMovie }) => {
   return (
     <div
       onClick={() => openMovie({ id })}
-      className={classnames('search-stack-grid-item movie', {
+      className={classnames('search-stack-grid-item', {
         'top-result': isTopResult
       })}
     >
       <div className="content ui-tapable ui-tapable-round">
         <div className="search-stack-grid-item-poster">
-          <Poster id={id} size="w185"  />
+          <Poster media={result} size="w185"  />
         </div>
 
         {isTopResult && (

@@ -78,7 +78,7 @@ export default connect(
   ({ user, movie, genre, status }, { id }) => ({
     language: user.language,
     movie: movie.movies[id],
-    genres: selector.genre.getGenres({ genre, movie, id }),
+    genres: selector.movie.getGenres({ movie, genre, id }),
     cast: selector.movie.getCast({ movie, id }),
     director: selector.movie.getDirector({ movie, id }),
     videos: selector.movie.getYouTubeVideos({ movie, user, id }),

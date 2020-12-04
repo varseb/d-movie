@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import moment from 'moment'
 import Picture from 'component/Person/Picture'
 import TextClamp from 'component/Layout/TextClamp'
-import Poster from 'component/Movie/Poster'
+import Poster from 'component/Media/Poster'
 
 const PersonStack = ({
   person,
@@ -71,7 +71,7 @@ const PersonStack = ({
             <div className="person-stack-movies-scroll">
               {knownFor.map(movie => (
                 <div className="person-stack-movies-movie" key={movie.id}>
-                  <Poster id={movie.id} onClick={() => openMovie({ id: movie.id })} />
+                  <Poster media={movie} onClick={() => openMovie({ id: movie.id })} />
                 </div>
               ))}
             </div>

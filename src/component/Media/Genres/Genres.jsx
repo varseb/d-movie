@@ -16,7 +16,7 @@ export const getColor = (value, alpha = 1) => {
 */
 
 const Genres = ({ genres }) => (
-  <div className="ui-genres">
+  <div className="media-genres">
     {genres.map(({ name }) => name).reduce((prev, curr) => [prev, ', ', curr])}
   </div>
 )

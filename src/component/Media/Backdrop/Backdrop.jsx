@@ -2,7 +2,7 @@ import { connect } from 'redux/app'
 import Image from 'component/Layout/Image'
 
 const Backdrop = ({
-  movie: {
+  media: {
     backdrop_path,
     poster_path
   },
@@ -12,13 +12,13 @@ const Backdrop = ({
   const src  = [ config.secure_base_url, 'w780', path ].join('')
 
   return (
-    <div className="ui-backdrop">
+    <div className="media-backdrop">
       {path && (
         <Image src={src} />
       )}
 
       {!path && (
-        <div className="ui-backdrop-holder" />
+        <div className="media-backdrop-holder" />
       )}
     </div>
   )

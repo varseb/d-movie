@@ -5,6 +5,7 @@ import Stack from 'component/Layout/Stack'
 import LanguageStack from 'component/Stack/Language'
 import SearchStack from 'component/Stack/Search'
 import MovieStack from 'component/Stack/Movie'
+import SerieStack from 'component/Stack/Serie'
 import VideoStack from 'component/Stack/Video'
 import CastStack from 'component/Stack/Cast'
 import PersonStack from 'component/Stack/Person'
@@ -13,6 +14,7 @@ const stackList = {
   language: LanguageStack,
   search: SearchStack,
   movie: MovieStack,
+  serie: SerieStack,
   video: VideoStack,
   cast: CastStack,
   person: PersonStack

@@ -14,6 +14,7 @@ const SearchStackContainer = ({
   //updateFilter,
   multiSearch,
   openMovie,
+  openSerie,
   openPerson
 }) => {
   const [ shouldFocus ] = useState(active)
@@ -49,6 +50,7 @@ const SearchStackContainer = ({
       keyboardOpen={keyboardOpen}
       updateQuery={updateQuery}
       openMovie={openMovie}
+      openSerie={openSerie}
       openPerson={openPerson}
     />
   )
@@ -65,18 +67,19 @@ const handleRatingChange = (star, filter, updateFilter) => {
 */
 
 export default connect(
-  ({ user, search, movie, person }) => ({
+  ({ user, search, movie, serie, person }) => ({
     language: user.language,
     query: search.query,
     //filter: search.filter,
     loading: search.loading[search.query],
-    results: selector.search.getResults({ movie, person, search })
+    results: selector.search.getResults({ movie, serie, person, search })
   }),
   {
     //updateFilter: action.search.updateFilter,
     updateQuery: action.search.updateQuery,
     multiSearch: action.search.multiSearch,
     openMovie: action.layout.openStack('movie'),
+    openSerie: action.layout.openStack('serie'),
     openPerson: action.layout.openStack('person')
   },
   SearchStackContainer

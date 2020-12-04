@@ -2,8 +2,9 @@ import { connect } from 'redux/app'
 import Image from 'component/Layout/Image'
 
 const Poster = ({
-  movie: {
+  media: {
     title,
+    name,
     poster_path
   },
   config,
@@ -13,15 +14,15 @@ const Poster = ({
   const src = [ config.secure_base_url, size, poster_path ].join('')
 
   return (
-    <div className="ui-poster" onClick={onClick}>
-      <div className="ui-poster-content">
+    <div className="media-poster" onClick={onClick}>
+      <div className="media-poster-content">
         {poster_path && (
           <Image src={src} />
         )}
 
         {!poster_path && (
-          <div className="ui-poster-holder">
-            {title}
+          <div className="media-poster-holder">
+            {title || name}
           </div>
         )}
       </div>
@@ -30,8 +31,7 @@ const Poster = ({
 }
 
 export default connect(
-  ({ config, movie }, { id }) => ({
-    movie: movie.movies[id],
+  ({ config }, { id }) => ({
     config: config.images
   }),
   null,

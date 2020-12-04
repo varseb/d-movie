@@ -3,14 +3,14 @@ import { getMovies } from './movie'
 
 export const getResults = createSelector(
   ({ movie }) => movie,
+  ({ serie }) => serie.series,
   ({ person }) => person.persons,
   ({ search }) => [search.query, search.filter.rating, search.results],
-  (movie, persons, [query, rating, results]) => {
+  (movie, series, persons, [query, rating, results]) => {
     const source = {
       movie: movie.movies,
       person: persons,
-      tv: {
-      }
+      tv: series
     }
 
     let items
@@ -23,8 +23,6 @@ export const getResults = createSelector(
     else {
       items = getMovies({ movie })
     }
-
-    items = items.filter(item => item)
 
     if( !items.length ){
       return []

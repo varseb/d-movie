@@ -1,10 +1,10 @@
 
 const Credits = ({ title, value }) => (
-  <div className="ui-credits">
-    <div className="ui-credits-title">
+  <div className="media-credits">
+    <div className="media-credits-title">
       {title}
     </div>
-    <div className="ui-credits-value">
+    <div className="media-credits-value">
       {value}
     </div>
   </div>

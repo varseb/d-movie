@@ -8,6 +8,7 @@ const SearchStack = ({
   keyboardOpen,
   updateQuery,
   openMovie,
+  openSerie,
   openPerson
 }) => (
   <div className="search-stack">
@@ -54,6 +55,7 @@ const SearchStack = ({
             isSecondItem={index === 1 && query}
             prevResult={index > 0 && results[index - 1]}
             openMovie={openMovie}
+            openSerie={openSerie}
             openPerson={openPerson}
           />
         ))}

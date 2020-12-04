@@ -4,7 +4,7 @@ const stars = [ ...Array(5).keys() ]
 const range = 2
 
 const Rating = ({ voteAverage, onChange }) => (
-  <div className="ui-rating">
+  <div className="media-rating">
     {stars.map(star => (
       <i
         key={star}
