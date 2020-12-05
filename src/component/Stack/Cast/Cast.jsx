@@ -1,6 +1,6 @@
 import Picture from 'component/Person/Picture'
 
-const CastStack = ({ credits, title, openPerson }) => (
+const CastStack = ({ cast, title, openPerson }) => (
   <div className="cast-stack">
     <div className="ui-stack-head">
       <h2>
@@ -10,10 +10,9 @@ const CastStack = ({ credits, title, openPerson }) => (
         Cast
       </div>
     </div>
-
     <div className="show-up-primary">
       <div className="cast-stack-list">
-        {credits.cast.map(person => (
+        {cast.map(person => (
           <div
             key={person.credit_id}
             className="cast-stack-item ui-tapable"

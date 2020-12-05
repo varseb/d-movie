@@ -3,17 +3,16 @@ import { success, failure } from 'redux/http'
 
 import { MULTI_SEARCH_SUCCESS } from './search'
 
-const GET_SERIE_REQUEST = 'serie/GET_SERIE_REQUEST'
-const GET_SERIE_SUCCESS = 'serie/GET_SERIE_SUCCESS'
-const GET_SERIE_FAILURE = 'serie/GET_SERIE_FAILURE'
-
+export const GET_SERIE_REQUEST = 'serie/GET_SERIE_REQUEST'
+export const GET_SERIE_SUCCESS = 'serie/GET_SERIE_SUCCESS'
+export const GET_SERIE_FAILURE = 'serie/GET_SERIE_FAILURE'
 
 const initialState = {
   list: [],
   series: {},
 }
 
-export default function serieReducer(state = initialState, { type: actionType, payload }){
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
 
     case GET_SERIE_SUCCESS: {
@@ -41,7 +40,6 @@ export default function serieReducer(state = initialState, { type: actionType, p
         series: storeSeries({ state, results })
       }
     }
-
 
     default:
       return state
@@ -79,6 +77,7 @@ const serieDTO = serie => {
   return s
 }
 
+
 const storeSeries = ({ state, results }) =>
   results.reduce((series, serie) => ({
     ...series,
@@ -98,4 +97,3 @@ export const getSerie = payload => dispatch => dispatch({
     .then(success(dispatch, GET_SERIE_SUCCESS, payload))
     .catch(failure(dispatch, GET_SERIE_FAILURE))
 })
-

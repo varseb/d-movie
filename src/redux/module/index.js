@@ -9,6 +9,7 @@ import search from './search'
 import serie from './serie'
 import status from './status'
 import user from './user'
+import video from './video'
 
 export default combineReducers({
   config,
@@ -20,5 +21,6 @@ export default combineReducers({
   search,
   serie,
   status,
-  user
+  user,
+  video
 })

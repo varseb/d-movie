@@ -4,26 +4,19 @@ import classnames from 'classnames'
 
 const Info = ({
   first_air_date,
-  last_air_date,
   original_language,
-  number_of_seasons,
-  status
+  number_of_seasons
 }) => {
 
-  const isDatesUpdated = useUpdateCheck(last_air_date + last_air_date)
+  const isAirDateUpdated = useUpdateCheck(first_air_date)
   const isSeasonsUpdated = useUpdateCheck(number_of_seasons)
-  const isStatusUpdated = useUpdateCheck(status)
 
   const info = []
 
-  if( first_air_date || last_air_date ){
-    const first = moment(first_air_date).format('Y')
-    const last = last_air_date && moment(last_air_date).format('Y')
-    const str = `${first}${last && last !== first ? ` - ${last}` : ``}`
-
+  if( first_air_date ){
     info.push(
-      <span key={str} className={classnames({ 'fade-in': isDatesUpdated })}>
-        {str}
+      <span key={first_air_date} className={classnames({ 'fade-in': isAirDateUpdated })}>
+        {moment(first_air_date).format('Y')}
       </span>
     )
   }
@@ -40,14 +33,6 @@ const Info = ({
     info.push(
       <span key={number_of_seasons} className={classnames({ 'fade-in': isSeasonsUpdated })}>
         {number_of_seasons} Season{number_of_seasons !== 1 && 's'}
-      </span>
-    )
-  }
-
-  if( status ){
-    info.push(
-      <span key={status} className={classnames({ 'fade-in': isStatusUpdated })}>
-        {status}
       </span>
     )
   }

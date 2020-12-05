@@ -20,7 +20,7 @@ const SerieResult = ({ result, isTopResult, openSerie }) => {
 
         {isTopResult && (
           <div className="search-stack-grid-item-info">
-            <div className="media-type">TV Show</div>
+            <div className="media-type">Serie</div>
             <div className="title">{name}</div>
 
             {first_air_date && (

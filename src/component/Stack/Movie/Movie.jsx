@@ -17,6 +17,7 @@ const MovieStack = ({
   videos,
   loadingCredits,
   openCast,
+  openPerson,
   isCastUpdated,
   isDirectorUpdated,
   isVideosUpdated
@@ -84,7 +85,7 @@ const MovieStack = ({
 
           {cast.length > 0 && (
             <div
-              onClick={() => openCast({ id })}
+              onClick={() => openCast({ id, media: 'movie' })}
               className={classnames('movie-stack-credits ui-tapable', {
                 'fade-in': isCastUpdated
               })}
@@ -97,7 +98,12 @@ const MovieStack = ({
           )}
 
           {director && (
-            <div className={classnames('movie-stack-credits', { 'fade-in': isDirectorUpdated })}>
+            <div
+              onClick={() => openPerson({ personId: director.id })}
+              className={classnames('movie-stack-credits ui-tapable', {
+                'fade-in': isDirectorUpdated
+              })}
+            >
               <Credits
                 title="Director"
                 value={director.name}

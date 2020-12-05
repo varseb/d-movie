@@ -8,14 +8,13 @@ const SerieStackContainer = ({
   language,
   serie,
   genres,
-  //cast,
-  //director,
-  //videos,
-  //loadingCredits,
+  cast,
+  videos,
+  loadingCredits,
   getSerie,
-  //getCredits,
-  //getVideos,
-  //openCast
+  getSerieCredits,
+  getSerieVideos,
+  openCast
 }) => {
   useTitle(serie.name)
 
@@ -26,19 +25,18 @@ const SerieStackContainer = ({
     [ id, language, getSerie ]
   )
 
-  /*
   useEffect(
     () => {
-      getCredits({ id })
+      getSerieCredits({ id })
     },
-    [ id, getCredits ]
+    [ id, getSerieCredits ]
   )
 
   useEffect(
     () => {
-      getVideos({ id, language })
+      getSerieVideos({ id, language })
     },
-    [ id, language, getVideos ]
+    [ id, language, getSerieVideos ]
   )
 
   const principalCast = useMemo(
@@ -55,41 +53,37 @@ const SerieStackContainer = ({
   )
 
   const isCastUpdated = useUpdateCheck(principalCast.length)
-  const isDirectorUpdated = useUpdateCheck(director?.name)
   const isVideosUpdated = useUpdateCheck(videos.length)
-*/
+
   return (
     <SerieStack
       id={id}
       serie={serie}
       genres={genres}
-      //cast={principalCast}
-      //director={director}
-      //videos={videos}
-      //loadingCredits={loadingCredits}
-      //openCast={openCast}
-      //isCastUpdated={isCastUpdated}
-      //isDirectorUpdated={isDirectorUpdated}
-      //isVideosUpdated={isVideosUpdated}
+      cast={principalCast}
+      videos={videos}
+      loadingCredits={loadingCredits}
+      openCast={openCast}
+      isCastUpdated={isCastUpdated}
+      isVideosUpdated={isVideosUpdated}
     />
   )
 }
 
 export default connect(
-  ({ user, serie, genre, status }, { id }) => ({
+  ({ user, serie, genre, credit, person, status, video }, { id }) => ({
     language: user.language,
     serie: serie.series[id],
     genres: selector.serie.getGenres({ serie, genre, id }),
-    //cast: selector.movie.getCast({ movie, id }),
-    //director: selector.movie.getDirector({ movie, id }),
-    //videos: selector.movie.getYouTubeVideos({ movie, user, id }),
-    //loadingCredits: status.loading['movie/GET_CREDITS']
+    cast: selector.credit.getSerieCast({ credit, person, id }),
+    videos: selector.video.getSerieVideos({ video, user, id }),
+    loadingCredits: status.loading['credit/GET_SERIE_CREDITS']
   }),
   {
     getSerie: action.serie.getSerie,
-    //getCredits: action.movie.getCredits,
-    //getVideos: action.movie.getVideos,
-    //openCast: action.layout.openStack('cast')
+    getSerieCredits: action.credit.getSerieCredits,
+    getSerieVideos: action.video.getSerieVideos,
+    openCast: action.layout.openStack('cast')
   },
   SerieStackContainer
 )

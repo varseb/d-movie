@@ -1,37 +1,31 @@
 import classnames from 'classnames'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
-
 import Backdrop from 'component/Media/Backdrop'
 import Rating from 'component/Media/Rating'
 import Info from 'component/Serie/Info'
 import Genres from 'component/Media/Genres'
-
-/*import Credits from 'component/Media/Credits'
+import Credits from 'component/Media/Credits'
 import Videos from 'component/Media/Videos'
-*/
+
 const SerieStack = ({
   id,
   serie,
   genres,
-  //cast,
-  //director,
-  //videos,
-  //loadingCredits,
-  //openCast,
-  //isCastUpdated,
-  //isDirectorUpdated,
-  //isVideosUpdated
+  cast,
+  videos,
+  loadingCredits,
+  openCast,
+  isCastUpdated,
+  isVideosUpdated
 }) => {
   const {
     name,
     vote_average,
     first_air_date,
-    last_air_date,
     number_of_seasons,
     overview,
-    original_language,
-    status
+    original_language
   } = serie
 
   return (
@@ -58,14 +52,12 @@ const SerieStack = ({
             </div>
           )}
 
-          {(first_air_date || last_air_date || original_language || number_of_seasons > 0 || status) && (
+          {(first_air_date || original_language || number_of_seasons > 0) && (
             <div className="movie-stack-info">
               <Info
                 first_air_date={first_air_date}
-                last_air_date={last_air_date}
                 original_language={original_language}
                 number_of_seasons={number_of_seasons}
-                status={status}
               />
             </div>
           )}
@@ -88,9 +80,9 @@ const SerieStack = ({
             </div>
           )}
 
-          {/*cast.length > 0 && (
+          {cast.length > 0 && (
             <div
-              onClick={() => openCast({ id })}
+              onClick={() => openCast({ id, media: 'serie' })}
               className={classnames('movie-stack-credits ui-tapable', {
                 'fade-in': isCastUpdated
               })}
@@ -102,16 +94,7 @@ const SerieStack = ({
             </div>
           )}
 
-          {director && (
-            <div className={classnames('movie-stack-credits', { 'fade-in': isDirectorUpdated })}>
-              <Credits
-                title="Director"
-                value={director.name}
-              />
-            </div>
-          )}
-
-          {((cast.length > 0 || director || !loadingCredits) && videos.length > 0) && (
+          {((cast.length > 0 || !loadingCredits) && videos.length > 0) && (
             <div className={classnames('movie-stack-videos', { 'fade-in': isVideosUpdated })}>
               <div className="movie-stack-videos-title">
                 Videos
@@ -121,7 +104,7 @@ const SerieStack = ({
                 <Videos videos={videos} />
               </div>
             </div>
-          )*/}
+          )}
         </div>
       </div>
     </div>

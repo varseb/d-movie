@@ -42,13 +42,13 @@ export default function reducer(state = initialState, { type: actionType, payloa
 export const getMovieGenres = payload => dispatch => dispatch({
   type: GET_MOVIE_GENRES_REQUEST,
   meta: api.genre.getMovieGenres(payload)
-    .then(success(dispatch, GET_MOVIE_GENRES_SUCCESS))
+    .then(success(dispatch, GET_MOVIE_GENRES_SUCCESS, payload))
     .catch(failure(dispatch, GET_MOVIE_GENRES_FAILURE))
 })
 
 export const getSerieGenres = payload => dispatch => dispatch({
   type: GET_SERIE_GENRES_REQUEST,
   meta: api.genre.getSerieGenres(payload)
-    .then(success(dispatch, GET_SERIE_GENRES_SUCCESS))
+    .then(success(dispatch, GET_SERIE_GENRES_SUCCESS, payload))
     .catch(failure(dispatch, GET_SERIE_GENRES_FAILURE))
 })

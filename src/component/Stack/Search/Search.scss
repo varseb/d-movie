@@ -70,19 +70,11 @@
 
       &.person:not(.top-result) {
         width: 50%;
-        //background-color: red;
-
-        &:nth-of-type(odd){
-          //background-color: blue;
-          //padding-left: 0;
-        }
 
         .content {
           display: flex;
           align-items: center;
         }
-
-        //padding: 10px 5px;
 
         .search-stack-grid-item-poster {
           min-width: 50px;
@@ -96,18 +88,13 @@
 
       &.top-result {
         width: 100%;
-        //padding-top: 15px;
-
+        max-width: 600px;
         .content {
           display: flex;
         }
 
-        //padding-bottom: 15px;
-
         .search-stack-grid-item-poster {
           width: 35%;
-
-          //flex: 1;
         }
 
         .search-stack-grid-item-info {
@@ -142,7 +129,7 @@
   }
 
   &-empty {
-    height: 40%;
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,7 +137,6 @@
 
     p {
       color: rgba(255, 255, 255, .7);
-      //text-shadow: none;
       text-align: center;
       font-size: 28px;
     }
@@ -160,7 +146,7 @@
 @media(min-width: 768px) {
   .search-stack {
     &-head {
-      padding: 40px 40px 20px;
+      padding: 40px 40px 0;
     }
 
     &-input {
@@ -186,14 +172,19 @@
     &-grid {
       padding: 0 20px 20px;
 
+      &-head {
+        width: 100%;
+        padding: 15px 5px 15px 20px;
+        font-size: 17px;
+      }
+
       &-item {
         padding: 20px;
-        width: 20%;
+        width: 16.66666%;
       }
     }
 
     &-empty {
-      height: 70%;
       padding: 0 40px;
 
       p {

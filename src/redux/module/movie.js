@@ -12,22 +12,12 @@ const GET_MOVIE_REQUEST = 'movie/GET_MOVIE_REQUEST'
 const GET_MOVIE_SUCCESS = 'movie/GET_MOVIE_SUCCESS'
 const GET_MOVIE_FAILURE = 'movie/GET_MOVIE_FAILURE'
 
-const GET_CREDITS_REQUEST = 'movie/GET_CREDITS_REQUEST'
-const GET_CREDITS_SUCCESS = 'movie/GET_CREDITS_SUCCESS'
-const GET_CREDITS_FAILURE = 'movie/GET_CREDITS_FAILURE'
-
-const GET_VIDEOS_REQUEST = 'movie/GET_VIDEOS_REQUEST'
-const GET_VIDEOS_SUCCESS = 'movie/GET_VIDEOS_SUCCESS'
-const GET_VIDEOS_FAILURE = 'movie/GET_VIDEOS_FAILURE'
-
 const initialState = {
   list: [],
-  movies: {},
-  credits: {},
-  videos: {}
+  movies: {}
 }
 
-export default function movieReducer(state = initialState, { type: actionType, payload }){
+export default function reducer(state = initialState, { type: actionType, payload }){
   switch( actionType ){
     case DISCOVER_MOVIES_SUCCESS: {
       const { results } = payload.data
@@ -40,17 +30,6 @@ export default function movieReducer(state = initialState, { type: actionType, p
           ...state.list,
           ...list
         ])],
-        movies: storeMovies({ state, results })
-      }
-    }
-
-    case MULTI_SEARCH_SUCCESS: {
-      const results = payload.data.results.filter(
-        ({ media_type }) => media_type === 'movie'
-      )
-
-      return {
-        ...state,
         movies: storeMovies({ state, results })
       }
     }
@@ -70,30 +49,14 @@ export default function movieReducer(state = initialState, { type: actionType, p
       }
     }
 
-    case GET_CREDITS_SUCCESS: {
-      const { id, data: credits } = payload
+    case MULTI_SEARCH_SUCCESS: {
+      const results = payload.data.results.filter(
+        ({ media_type }) => media_type === 'movie'
+      )
 
       return {
         ...state,
-        credits: {
-          ...state.credits,
-          [id]: credits
-        }
-      }
-    }
-
-    case GET_VIDEOS_SUCCESS: {
-      const { id, language, data: { results: videos } } = payload
-
-      return {
-        ...state,
-        videos: {
-          ...state.videos,
-          [id]: {
-            ...(state.videos[id] || {}),
-            [language]: videos
-          }
-        }
+        movies: storeMovies({ state, results })
       }
     }
 
@@ -109,10 +72,6 @@ export default function movieReducer(state = initialState, { type: actionType, p
     default:
       return state
   }
-}
-
-export {
-  GET_CREDITS_SUCCESS
 }
 
 const movieDTO = movie => {
@@ -161,18 +120,4 @@ export const getMovie = payload => dispatch => dispatch({
   meta: api.movie.getMovie(payload)
     .then(success(dispatch, GET_MOVIE_SUCCESS, payload))
     .catch(failure(dispatch, GET_MOVIE_FAILURE))
-})
-
-export const getCredits = payload => dispatch => dispatch({
-  type: GET_CREDITS_REQUEST,
-  meta: api.movie.getCredits(payload)
-    .then(success(dispatch, GET_CREDITS_SUCCESS, payload))
-    .catch(failure(dispatch, GET_CREDITS_FAILURE))
-})
-
-export const getVideos = payload => dispatch => dispatch({
-  type: GET_VIDEOS_REQUEST,
-  meta: api.movie.getVideos(payload)
-    .then(success(dispatch, GET_VIDEOS_SUCCESS, payload))
-    .catch(failure(dispatch, GET_VIDEOS_FAILURE))
 })

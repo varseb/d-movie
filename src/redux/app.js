@@ -11,6 +11,7 @@ import * as person from './module/person'
 import * as search from './module/search'
 import * as serie from './module/serie'
 import * as user from './module/user'
+import * as video from './module/video'
 
 export const action = {
   config,
@@ -21,7 +22,8 @@ export const action = {
   person,
   search,
   serie,
-  user
+  user,
+  video
 }
 
 export {

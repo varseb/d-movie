@@ -13,9 +13,10 @@ const MovieStackContainer = ({
   videos,
   loadingCredits,
   getMovie,
-  getCredits,
-  getVideos,
-  openCast
+  getMovieCredits,
+  getMovieVideos,
+  openCast,
+  openPerson
 }) => {
   useTitle(movie.title)
 
@@ -28,16 +29,16 @@ const MovieStackContainer = ({
 
   useEffect(
     () => {
-      getCredits({ id })
+      getMovieCredits({ id })
     },
-    [ id, getCredits ]
+    [ id, getMovieCredits ]
   )
 
   useEffect(
     () => {
-      getVideos({ id, language })
+      getMovieVideos({ id, language })
     },
-    [ id, language, getVideos ]
+    [ id, language, getMovieVideos ]
   )
 
   const principalCast = useMemo(
@@ -67,6 +68,7 @@ const MovieStackContainer = ({
       videos={videos}
       loadingCredits={loadingCredits}
       openCast={openCast}
+      openPerson={openPerson}
       isCastUpdated={isCastUpdated}
       isDirectorUpdated={isDirectorUpdated}
       isVideosUpdated={isVideosUpdated}
@@ -75,20 +77,21 @@ const MovieStackContainer = ({
 }
 
 export default connect(
-  ({ user, movie, genre, status }, { id }) => ({
+  ({ user, movie, genre, credit, person, status, video }, { id }) => ({
     language: user.language,
     movie: movie.movies[id],
     genres: selector.movie.getGenres({ movie, genre, id }),
-    cast: selector.movie.getCast({ movie, id }),
-    director: selector.movie.getDirector({ movie, id }),
-    videos: selector.movie.getYouTubeVideos({ movie, user, id }),
-    loadingCredits: status.loading['movie/GET_CREDITS']
+    cast: selector.credit.getMovieCast({ credit, person, id }),
+    director: selector.credit.getMovieDirector({ credit, person, id }),
+    videos: selector.video.getMovieVideos({ video, user, id }),
+    loadingCredits: status.loading['credit/GET_MOVIE_CREDITS']
   }),
   {
     getMovie: action.movie.getMovie,
-    getCredits: action.movie.getCredits,
-    getVideos: action.movie.getVideos,
-    openCast: action.layout.openStack('cast')
+    getMovieCredits: action.credit.getMovieCredits,
+    getMovieVideos: action.video.getMovieVideos,
+    openCast: action.layout.openStack('cast'),
+    openPerson: action.layout.openStack('person')
   },
   MovieStackContainer
 )

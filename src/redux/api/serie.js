@@ -1,11 +1,22 @@
 import { request } from 'redux/http'
 
-export const getSerie = ({ id }) => request({
+export const getSerie = ({ id, language }) => request({
   method: 'GET',
-  url: `/tv/${id}`
+  url: `/tv/${id}`,
+  params: {
+    language
+  }
 })
 
 export const getCredits = ({ id }) => request({
   method: 'GET',
   url: `/tv/${id}/credits`
+})
+
+export const getVideos = ({ id, language }) => request({
+  method: 'GET',
+  url: `/tv/${id}/videos`,
+  params: {
+    language
+  }
 })

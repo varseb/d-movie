@@ -2,7 +2,12 @@ import api from 'redux/api'
 import { success, failure } from 'redux/http'
 
 import { MULTI_SEARCH_SUCCESS } from './search'
-import { GET_CREDITS_SUCCESS } from 'redux/module/movie'
+
+import {
+  GET_MOVIE_CREDITS_SUCCESS as MOVIE_GET_CREDITS,
+  GET_SERIE_CREDITS_SUCCESS as SERIE_GET_CREDITS
+} from './credit'
+
 
 const GET_PERSON_REQUEST = 'person/GET_PERSON_REQUEST'
 const GET_PERSON_SUCCESS = 'person/GET_PERSON_SUCCESS'
@@ -34,15 +39,6 @@ export default function reducer(state = initialState, { type: actionType, payloa
       }
     }
 
-    case GET_CREDITS_SUCCESS: {
-      const { data: credits } = payload
-
-      return {
-        ...state,
-        persons: storePersons({ state, results: credits.cast })
-      }
-    }
-
     case GET_MOVIE_CREDITS_SUCCESS: {
       const { cast } = payload.data
 
@@ -52,6 +48,19 @@ export default function reducer(state = initialState, { type: actionType, payloa
           ...state.movies,
           [payload.personId]: [...new Set([ ...cast.map(({ id }) => id) ])]
         }
+      }
+    }
+
+    case MOVIE_GET_CREDITS:
+    case SERIE_GET_CREDITS: {
+      const { data: credits } = payload
+
+      const results  = credits.cast
+      const director = credits.crew.filter(({ job }) => job === 'Director')
+
+      return {
+        ...state,
+        persons: storePersons({ state, results: [ ...results, ...director ] })
       }
     }
 
