@@ -16,7 +16,7 @@ const selectCast = {
 
 export default connect(
   ({ movie, serie, credit, person }, { id, media }) => ({
-    cast: selectCast[media]({ credit, person, id }),
+    cast: selectCast[media]({ credit, person }, id),
     title: media === 'movie' ? movie.movies[id].title : serie.series[id].name
   }),
   {

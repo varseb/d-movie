@@ -6,13 +6,16 @@ import MovieStack from './Movie'
 const MovieStackContainer = ({
   id,
   language,
+  country,
   movie,
   genres,
   cast,
   director,
   videos,
+  providers,
   loadingCredits,
   getMovie,
+  getMovieProviders,
   getMovieCredits,
   getMovieVideos,
   openCast,
@@ -25,6 +28,13 @@ const MovieStackContainer = ({
       getMovie({ id, language })
     },
     [ id, language, getMovie ]
+  )
+
+  useEffect(
+    () => {
+      getMovieProviders({ id, country })
+    },
+    [ id, country, getMovieProviders ]
   )
 
   useEffect(
@@ -66,6 +76,7 @@ const MovieStackContainer = ({
       cast={principalCast}
       director={director}
       videos={videos}
+      providers={providers}
       loadingCredits={loadingCredits}
       openCast={openCast}
       openPerson={openPerson}
@@ -77,17 +88,20 @@ const MovieStackContainer = ({
 }
 
 export default connect(
-  ({ user, movie, genre, credit, person, status, video }, { id }) => ({
+  ({ user, movie, genre, credit, person, status, video, watch }, { id }) => ({
     language: user.language,
+    country: user.country,
     movie: movie.movies[id],
-    genres: selector.movie.getGenres({ movie, genre, id }),
-    cast: selector.credit.getMovieCast({ credit, person, id }),
-    director: selector.credit.getMovieDirector({ credit, person, id }),
-    videos: selector.video.getMovieVideos({ video, user, id }),
+    genres: selector.movie.getGenres({ movie, genre }, id),
+    cast: selector.credit.getMovieCast({ credit, person }, id),
+    director: selector.credit.getMovieDirector({ credit, person }, id),
+    videos: selector.video.getMovieVideos({ video, user }, id),
+    providers: selector.watch.getMovieProviders({ watch, user }, id),
     loadingCredits: status.loading['credit/GET_MOVIE_CREDITS']
   }),
   {
     getMovie: action.movie.getMovie,
+    getMovieProviders: action.watch.getMovieProviders,
     getMovieCredits: action.credit.getMovieCredits,
     getMovieVideos: action.video.getMovieVideos,
     openCast: action.layout.openStack('cast'),

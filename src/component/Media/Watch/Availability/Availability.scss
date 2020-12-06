@@ -1,0 +1,33 @@
+.media-watch-availability {
+  background-color: rgba(mix(#0ED699, #000, 80%), .95);
+  padding: 5px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translate3d(0,100%, 0);
+  animation: available-animation .4s .6s cubic-bezier(.55,0,.1,1) forwards;
+  font-weight: 300;
+  z-index: 2;
+
+  &:active {
+    background-color: rgba(mix(#0ED699, #000, 80%), .98);
+  }
+}
+
+@keyframes available-animation {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

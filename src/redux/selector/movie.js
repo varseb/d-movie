@@ -6,10 +6,9 @@ export const getMovies = createSelector(
 )
 
 export const getGenres = createSelector(
-  ({ movie }) => movie.movies,
+  ({ movie }, id) => movie.movies[id],
   ({ genre }) => genre.movie,
-  ({ id }) => id,
-  (movies, genres, id) => movies[id].genre_ids.map(id => genres[id])
+  (movie, genres) => movie.genre_ids.map(id => genres[id])
 )
 
 export const filterMovies = createSelector(

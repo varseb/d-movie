@@ -31,10 +31,14 @@ const StackLayer = ({ stack, closeStack, loading }) => (
         return null
       }
 
+      if( namespace === 'search' ){
+        props.active = active
+      }
+
       return (
         <Layer key={`${namespace}-${index}`} namespace={namespace} active={active}>
           <Stack active={active} loading={active && loading} closeStack={closeStack}>
-            <Content active={active} {...props} />
+            <Content {...props} />
           </Stack>
         </Layer>
       )

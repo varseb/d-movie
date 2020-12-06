@@ -31,7 +31,7 @@ const Poster = ({
 }
 
 export default connect(
-  ({ config }, { id }) => ({
+  ({ config }) => ({
     config: config.images
   }),
   null,

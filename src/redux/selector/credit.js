@@ -1,10 +1,9 @@
 import { createSelector } from 'reselect'
 
 export const getMovieCast = createSelector(
-  ({ credit }) => credit.movie,
+  ({ credit }, id) => credit.movie[id],
   ({ person }) => person.persons,
-  ({ id }) => id,
-  (credits, persons, id) => (credits[id] ? credits[id].cast : []).map(
+  (credits, persons) => (credits ? credits.cast : []).map(
     ({ id, credit_id, character }) => ({
       ...persons[id],
       credit_id,
@@ -14,17 +13,15 @@ export const getMovieCast = createSelector(
 )
 
 export const getMovieDirector = createSelector(
-  ({ credit }) => credit.movie,
+  ({ credit }, id) => credit.movie[id],
   ({ person }) => person.persons,
-  ({ id }) => id,
-  (credits, persons, id) => credits[id] && credits[id].director && persons[credits[id].director.id]
+  (credits, persons) => credits && credits.director && persons[credits.director.id]
 )
 
 export const getSerieCast = createSelector(
-  ({ credit }) => credit.serie,
+  ({ credit }, id) => credit.serie[id],
   ({ person }) => person.persons,
-  ({ id }) => id,
-  (credits, persons, id) => (credits[id] ? credits[id].cast : []).map(
+  (credits, persons) => (credits ? credits.cast : []).map(
     ({ id, credit_id, character }) => ({
       ...persons[id],
       credit_id,

@@ -1,7 +1,8 @@
 const CHANGE_LAGUAGE  = 'user/CHANGE_LAGUAGE'
 
 const initialState = {
-  language: navigator.language?.substr(0, 2) || 'en'
+  language: (navigator.language?.substr(0, 2) || 'en').toLowerCase(),
+  country:  'AR' //(navigator.language?.substr(-2) || 'US').toUpperCase()
 }
 
 export default function reducer(state = initialState, { type: actionType, payload }){

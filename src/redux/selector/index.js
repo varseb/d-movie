@@ -5,6 +5,7 @@ import * as search from './search'
 import * as serie from './serie'
 import * as status from './status'
 import * as video from './video'
+import * as watch from './watch'
 
 const selector = {
   credit,
@@ -13,7 +14,8 @@ const selector = {
   search,
   serie,
   status,
-  video
+  video,
+  watch
 }
 
 export default selector

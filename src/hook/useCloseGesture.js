@@ -26,7 +26,13 @@ const useCloseGesture = (stackRef, contentRef, closeStack) => {
       let capture = false
       let blur    = true
 
-      const handleTouchStart = ({ touches }) => {
+      const handleTouchStart = event => {
+        const { target, touches } = event
+
+        if( target.matches('.scroll-lock-ignore') || target.closest('.scroll-lock-ignore') ){
+          return
+        }
+
         startY  = touches[0].clientY
         capture = content.scrollTop <= 0 || startY < dragBarHeight
         blur    = true

@@ -19,6 +19,11 @@ export const getMovie = ({ id, language }) => request({
   }
 })
 
+export const getProviders = ({ id }) => request({
+  method: 'GET',
+  url: `/movie/${id}/watch/providers`
+})
+
 export const getCredits = ({ id }) => request({
   method: 'GET',
   url: `/movie/${id}/credits`

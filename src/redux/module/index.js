@@ -10,6 +10,7 @@ import serie from './serie'
 import status from './status'
 import user from './user'
 import video from './video'
+import watch from './watch'
 
 export default combineReducers({
   config,
@@ -22,5 +23,6 @@ export default combineReducers({
   serie,
   status,
   user,
-  video
+  video,
+  watch
 })

@@ -6,12 +6,15 @@ import SerieStack from './Serie'
 const SerieStackContainer = ({
   id,
   language,
+  country,
   serie,
   genres,
   cast,
   videos,
+  providers,
   loadingCredits,
   getSerie,
+  getSerieProviders,
   getSerieCredits,
   getSerieVideos,
   openCast
@@ -23,6 +26,13 @@ const SerieStackContainer = ({
       getSerie({ id, language })
     },
     [ id, language, getSerie ]
+  )
+
+  useEffect(
+    () => {
+      getSerieProviders({ id, country })
+    },
+    [ id, country, getSerieProviders ]
   )
 
   useEffect(
@@ -62,6 +72,7 @@ const SerieStackContainer = ({
       genres={genres}
       cast={principalCast}
       videos={videos}
+      providers={providers}
       loadingCredits={loadingCredits}
       openCast={openCast}
       isCastUpdated={isCastUpdated}
@@ -71,16 +82,19 @@ const SerieStackContainer = ({
 }
 
 export default connect(
-  ({ user, serie, genre, credit, person, status, video }, { id }) => ({
+  ({ user, serie, genre, credit, person, status, video, watch }, { id }) => ({
     language: user.language,
+    country: user.country,
     serie: serie.series[id],
-    genres: selector.serie.getGenres({ serie, genre, id }),
-    cast: selector.credit.getSerieCast({ credit, person, id }),
-    videos: selector.video.getSerieVideos({ video, user, id }),
+    genres: selector.serie.getGenres({ serie, genre }, id),
+    cast: selector.credit.getSerieCast({ credit, person }, id),
+    videos: selector.video.getSerieVideos({ video, user }, id),
+    providers: selector.watch.getSerieProviders({ watch, user }, id),
     loadingCredits: status.loading['credit/GET_SERIE_CREDITS']
   }),
   {
     getSerie: action.serie.getSerie,
+    getSerieProviders: action.watch.getSerieProviders,
     getSerieCredits: action.credit.getSerieCredits,
     getSerieVideos: action.video.getSerieVideos,
     openCast: action.layout.openStack('cast')

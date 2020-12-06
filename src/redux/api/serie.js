@@ -8,6 +8,11 @@ export const getSerie = ({ id, language }) => request({
   }
 })
 
+export const getProviders = ({ id }) => request({
+  method: 'GET',
+  url: `/tv/${id}/watch/providers`
+})
+
 export const getCredits = ({ id }) => request({
   method: 'GET',
   url: `/tv/${id}/credits`

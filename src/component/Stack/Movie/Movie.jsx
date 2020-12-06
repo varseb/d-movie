@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import classnames from 'classnames'
 import { apiLogo } from 'env'
 import TextClamp from 'component/Layout/TextClamp'
@@ -7,6 +8,8 @@ import Rating from 'component/Media/Rating'
 import Genres from 'component/Media/Genres'
 import Credits from 'component/Media/Credits'
 import Videos from 'component/Media/Videos'
+import Availability from 'component/Media/Watch/Availability'
+import Providers from 'component/Media/Watch/Providers'
 
 const MovieStack = ({
   id,
@@ -15,6 +18,7 @@ const MovieStack = ({
   cast,
   director,
   videos,
+  providers,
   loadingCredits,
   openCast,
   openPerson,
@@ -31,17 +35,31 @@ const MovieStack = ({
     original_language
   } = movie
 
+  const [showProviders, setShowProviders] = useState(false)
+
   return (
     <div className="movie-stack">
       <div className="movie-stack-backdrop">
         <Backdrop media={movie} />
 
-        <img
-          className="thanks-themoviedb"
-          src={apiLogo}
-          alt=""
-        />
+        {/*
+          <img
+            className="thanks-themoviedb"
+            src={apiLogo}
+            alt=""
+          />
+        */}
+
+        {providers.length > 0 && (
+          <div onClick={() => setShowProviders(!showProviders)}>
+            <Availability />
+          </div>
+        )}
       </div>
+
+      {showProviders && (
+        <Providers providers={providers} />
+      )}
 
       <div className="movie-stack-content">
         <div className="movie-stack-head show-up-primary">

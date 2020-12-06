@@ -1,15 +1,13 @@
 import { createSelector } from 'reselect'
 
 export const getMovieVideos = createSelector(
-  ({ video }) => video.movie,
+  ({ video }, id) => video.movie[id],
   ({ user }) => user.language,
-  ({ id }) => id,
-  (videos, language, id) => videos[id] ? videos[id][language] || [] : []
+  (videos, language) => videos ? videos[language] || [] : []
 )
 
 export const getSerieVideos = createSelector(
-  ({ video }) => video.serie,
+  ({ video }, id) => video.serie[id],
   ({ user }) => user.language,
-  ({ id }) => id,
-  (videos, language, id) => videos[id] ? videos[id][language] || [] : []
+  (videos, language) => videos ? videos[language] || [] : []
 )

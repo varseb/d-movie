@@ -42,7 +42,7 @@ export default connect(
   ({ user, movie, person }, { personId }) => ({
     person: person.persons[personId],
     language: user.language,
-    knownFor: selector.person.getKnownFor({ movie, person, personId })
+    knownFor: selector.person.getKnownFor({ movie, person }, personId)
   }),
   {
     getPerson: action.person.getPerson,
