@@ -1,7 +1,7 @@
 {
   "name": "d-movie",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "homepage": "https://varseb.github.io/d-movie",
   "author": "Sebastian Azagra Sinatra <sebazagra@gmail.com>",
   "license": "MIT",
